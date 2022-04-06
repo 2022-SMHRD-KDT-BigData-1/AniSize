@@ -148,6 +148,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.38</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.26</version>
+		</dependency>
 		<!-- 스프링에서 jdbc 사용하기 위해 쓰는 API -->
 		<dependency>
 			<groupId>org.springframework</groupId>
