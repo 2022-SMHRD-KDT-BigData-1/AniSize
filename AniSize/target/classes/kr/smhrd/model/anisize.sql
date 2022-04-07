@@ -15,6 +15,22 @@ insert into member(mem_email, mem_pw, mem_nick, mem_tel, mem_address)
 values('스프링1 게시판', '오늘 첨2 써봄', '박병3괸','123','55');
 SHOW TABLE STATUS;
 
+select * from search_word
+drop table search_word
+create table search_word(
+	searchWord varchar(45) not null,
+	searchWord_count int default 0, 
+	primary key(searchWord)
+)
+
+
+
+
+
+
+
+
+
 drop table member
 drop table animal
 drop table cart

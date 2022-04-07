@@ -47,6 +47,7 @@
         .btn {
             background-color: #5e5e5e;
             color: #fff;
+            width: 330px;
         }
 
         html,
@@ -64,18 +65,19 @@
 
         <br><br><br><br>
         <div class="d-grid gap-3 col-12 form-group">
-            <input type="email" class="form-control" id="email" placeholder="아이디(이메일)" name="email">
+            <input type="email" class="form-control" id="email" placeholder="아이디(이메일)" name="mem_email">
 
-            <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password">
+            <input type="password" class="form-control" id="password" placeholder="비밀번호" name="mem_pw">
         </div>
 
         <br>
 
         <div class="d-grid gap-1 col-12 mx-auto">
 
-            <button type="button" class="btn" style="background-color: #5e5e5e;">로그인</button>
+            <button type="submit" class="btn" style="background-color: #5e5e5e;">로그인</button>
             <hr>
-            <button type="button" class="btn" style="background-color: #5e5e5e;">회원가입</button>
+            <!-- <button type="button" class="btn" style="background-color: #5e5e5e;">회원가입</button> -->
+             <a href="join.do"><button type="button" class="btn" style="background-color: #5e5e5e;">회원가입</button></a>
 
         </div>
 

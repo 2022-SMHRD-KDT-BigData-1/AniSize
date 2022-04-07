@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.smhrd.model.SearchMapper">
+    
+    <select id="selectSearchWord" resultType="String">
+        select searchWord from search_word where searchWord=#{searchWord}
+    </select>
+    
+    <update id="countSearchWord">
+        update search_word set searchWord_count=searchWord_count+1 where searchWord=#{searchWord}
+    </update> 
+    
+    <insert id="insertSearchWord">
+        insert into search_word(searchWord) values(#{searchWord})
+    </insert>
+    
+    <select id="getPopularSearchWord" resultType="String">
+        select searchWord from search_word order by searchWord_count desc
+    </select>
+    
+    
+</mapper>
