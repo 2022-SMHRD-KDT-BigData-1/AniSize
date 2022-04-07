@@ -59,13 +59,10 @@
 <body>
 
     <div class="container">
+       
         <h1>aniSize</h1>
 
-        <h1>AniSize</h1>
-
-        <h1>anisize</h1>
-
-        <br>
+        <br><br><br><br>
         <div class="d-grid gap-3 col-12 form-group">
             <input type="email" class="form-control" id="email" placeholder="아이디(이메일)" name="email">
 
