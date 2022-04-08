@@ -8,4 +8,8 @@ public class ProductController {
 	@RequestMapping("/product.do")
 	public void product() {
 	}
+	@RequestMapping("/best.do")
+	public void best() {
+	}
+	
 }

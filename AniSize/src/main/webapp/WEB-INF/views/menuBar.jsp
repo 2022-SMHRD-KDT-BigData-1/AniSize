@@ -9,10 +9,10 @@
                     <i class="bi bi-card-list"></i>
                 </a>
 
-                <a class="navbar-brand" href="#"><i class="bi bi-search"></i></a>
-                <a class="navbar-brand" href="#"><i class="bi bi-house-door"></i></a>
-                <a class="navbar-brand" href="#"><i class="bi bi-cart"></i></a>
-                <a class="navbar-brand" href="#"><i class="bi bi-person"></i></a>
+                <a class="navbar-brand" href="search.do"><i class="bi bi-search"></i></a>
+                <a class="navbar-brand" href="home.do"><i class="bi bi-house-door"></i></a>
+                <a class="navbar-brand" href="cart.do"><i class="bi bi-cart"></i></a>
+                <a class="navbar-brand" href="myPage.do"><i class="bi bi-person"></i></a>
 
                 <!-- 카테고리 안  -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"

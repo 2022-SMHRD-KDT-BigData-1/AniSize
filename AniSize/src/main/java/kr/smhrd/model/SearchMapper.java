@@ -9,5 +9,6 @@ public interface SearchMapper {
 	public String selectSearchWord(String searchWord);
 	public void insertSearchWord(String searchWord);
 	public void countSearchWord(String searchWord);
-	public List<String>getPopularSearchWord();
+	public List<String> getPopularSearchWord();
+	public List<ProductVO> searchedProductList(String searchWord);
 }

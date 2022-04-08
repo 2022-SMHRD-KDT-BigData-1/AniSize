@@ -18,8 +18,14 @@ public class MemberController {
 
 	@RequestMapping("/login.do")
 	public void login() {
-//		System.out.println("로그인 기능 동작");
 	}
+	@RequestMapping("/join.do")
+	public void join() {
+	}
+	@RequestMapping("/myPage.do")
+	public void myPage() {
+	}
+	
 	@RequestMapping("/loginSelect.do")
 	public String loginSelect(MemberVO vo, HttpSession session) {
 		System.out.println("로그인 기능 동작");
@@ -34,9 +40,6 @@ public class MemberController {
 		System.out.println("로그아웃 동작");
 		session.removeAttribute("member");
 		return "redirect:/home.do";
-	}
-	@RequestMapping("/join.do")
-	public void join() {
 	}
 	@RequestMapping("/joinInsert.do")
 	public String joinInsert(MemberVO vo) {

@@ -4,11 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class CartController {
-	@RequestMapping("/cart.do")
-	public void cart() {
+public class AniController {
+	@RequestMapping("/aniJoin.do")
+	public void aniJoin() {
 	}
-	@RequestMapping("/order.do")
-	public void order() {
+	@RequestMapping("/aniUpdate .do")
+	public void aniUpdate () {
 	}
+	
+	
 }

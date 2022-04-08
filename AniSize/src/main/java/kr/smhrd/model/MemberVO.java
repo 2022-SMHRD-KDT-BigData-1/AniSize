@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberVO {
-	private String mem_num;
+	private int mem_num;
 	private String mem_email;
 	private String mem_pw;
 	private String mem_nick;

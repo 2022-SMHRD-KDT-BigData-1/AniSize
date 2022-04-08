@@ -9,7 +9,7 @@
 
 	<select id="loginSelect" parameterType="kr.smhrd.model.MemberVO"
 		resultType="kr.smhrd.model.MemberVO">
-		select * from member where id = #{id} and pw = #{pw}
+		select * from member where mem_email = #{mem_email} and mem_pw = #{mem_pw}
 	</select>
 
 	<select id="memberList" resultType="kr.smhrd.model.MemberVO">

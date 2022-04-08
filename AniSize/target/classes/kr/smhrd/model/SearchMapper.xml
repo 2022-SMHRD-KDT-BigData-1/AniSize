@@ -18,5 +18,8 @@
         select searchWord from search_word order by searchWord_count desc
     </select>
     
+    <select id="searchedProductList" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_thumbnail from product where pd_name like '%#{searchword}%'
+    </select>
     
 </mapper>

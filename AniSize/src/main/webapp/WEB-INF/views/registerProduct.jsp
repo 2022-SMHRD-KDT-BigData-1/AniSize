@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>agasgㄻ널넘</h1>
-
-	<img src="images/4월 일정표.png">
+	
 </body>
 </html>
