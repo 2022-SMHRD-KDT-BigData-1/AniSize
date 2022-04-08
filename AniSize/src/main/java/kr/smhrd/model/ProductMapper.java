@@ -8,5 +8,4 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ProductMapper {
 	public List<ProductVO> getProductList();
 	public ProductVO selectProduct(int pd_num);
-	public 
 }
