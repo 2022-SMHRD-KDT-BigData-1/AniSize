@@ -6,9 +6,9 @@
         select searchWord from search_word where searchWord=#{searchWord}
     </select>
     
-    <update id="countSearchWord">
+     <update id="countSearchWord">
         update search_word set searchWord_count=searchWord_count+1 where searchWord=#{searchWord}
-    </update> 
+    </update>
     
     <insert id="insertSearchWord">
         insert into search_word(searchWord) values(#{searchWord})
@@ -19,7 +19,7 @@
     </select>
     
     <select id="searchedProductList" resultType="kr.smhrd.model.ProductVO">
-        select pd_name, pd_price, pd_thumbnail from product where pd_name like '%#{searchword}%'
+        select pd_num, pd_name, pd_price from product where pd_name like #{serachWord}
     </select>
     
 </mapper>

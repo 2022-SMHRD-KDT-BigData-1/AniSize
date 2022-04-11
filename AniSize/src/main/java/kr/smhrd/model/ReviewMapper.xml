@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.smhrd.model.ReviewMapper">
+    <select id="selectProductReview" resultType="kr.smhrd.model.ReviewVO">
+        select * from product_review where pd_num = #{pd_num} 
+    </select>
+    <insert id="insertProductReview" parameterType="kr.smhrd.model.ReviewVO">
+        insert into product_review(mem_num, pd_num, review_content, review_img, stk_option, stk_size, review_score) 
+        values(#{mem_num}, #{pd_num}, #{review_content}, #{review_img}, #{stk_option}, #{stk_size}, #{review_score})
+    </insert>
+    <select id="getReviewAvgScore">
+        select avg(review_score) from product_review where pd_num = #{pd_num}
+    </select>
+    
+    <select id="countReview">
+        select count(review_num) from product_review where pd_num = #{pd_num}
+    </select>
+    
+    <delete id="deleteReview">
+        delete from product_review where pd_num = #{pd_num} and mem_num = #{mem_num} 
+    </delete>
+</mapper>

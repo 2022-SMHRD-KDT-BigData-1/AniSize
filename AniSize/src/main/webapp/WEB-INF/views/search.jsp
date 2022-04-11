@@ -120,7 +120,7 @@ p {
 		<!-- 검색 -->
 		<form class="d-flex" action="doSearch.do">
 			<input class="form-control me-2" type="search" placeholder="Search"
-				aria-label="Search" na>
+				aria-label="Search" name="searchWord">
 			<button class="btn btn-outline btn-st" type="submit">Search</button>
 		</form>
 		<br>
@@ -135,7 +135,7 @@ p {
 		<hr>
 		<br>
 		<c:choose>
-			<c:when test="${empty searhcedProductList}">
+			<c:when test="${empty searchedProductList}">
 				<h2>추천 상품</h2>
 				<!-- row 안에 이미지 2개식 반복 -->
 				<!-- text-decoration: none; /* 링크의 밑줄 제거 */ color: inherit; /* 링크의 색상 제거 */-->
@@ -156,7 +156,7 @@ p {
 			<c:forEach items="${searhcedProductList}" var="product">
 				<div class="col-6">
 					<a class="namePrice" href="#" style="text-decoration: none; color: inherit;">
-						<img src="${product.pd_thumbnail}" class="img-thumbnail">
+						<img src="images/product/${product.pd_num}/thumbnail.jpg" class="img-thumbnail">
 						<br>
 						<br>
 						<p>${product.pd_name} <br> ${product.pd_price}</p>

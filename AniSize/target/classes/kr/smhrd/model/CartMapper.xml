@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.smhrd.model.CartMapper">
+    <insert id="addCart" parameterType="kr.smhrd.model.CartVO">
+        insert into cart 
+        values(null, #{mem_num}, #{pd_num}, #{cart_quantity}, #{stk_price}, #{stk_option}, #{stk_size})
+    </insert>
+    <select id="getCart" resultType="kr.smhrd.model.CartVO">
+        select * from cart where mem_num = #{mem_num}
+    </select>
+    <update id="updateCartQuantity" parameterType="kr.smhrd.model.CartVO">
+        update cart set cart_quantity where mem_num = #{mem_num}
+    </update>
+    <delete id="deleteCart" parameterType="kr.smhrd.model.CartVO">
+        delete from cart where mem_num = #{mem_num} and pd_num = #{pd_num} and stk_option = #{stk_option}
+    </delete>
+</mapper>
