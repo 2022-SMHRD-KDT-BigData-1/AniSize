@@ -8,8 +8,11 @@ public class AniController {
 	@RequestMapping("/aniJoin.do")
 	public void aniJoin() {
 	}
-	@RequestMapping("/aniUpdate .do")
+	@RequestMapping("/aniUpdate.do")
 	public void aniUpdate () {
+	}
+	@RequestMapping("/aniJoinCheck.do")
+	public void aniJoinCheck () {
 	}
 	
 	

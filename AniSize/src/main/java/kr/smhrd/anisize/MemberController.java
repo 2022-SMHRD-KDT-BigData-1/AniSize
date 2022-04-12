@@ -25,6 +25,9 @@ public class MemberController {
 	@RequestMapping("/myPage.do")
 	public void myPage() {
 	}
+	@RequestMapping("/memUpdate.do")
+	public void memUpdate() {
+	}
 	
 	@RequestMapping("/loginSelect.do")
 	public String loginSelect(MemberVO vo, HttpSession session) {
