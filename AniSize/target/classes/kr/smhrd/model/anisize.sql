@@ -39,6 +39,7 @@ CREATE TABLE animal
      foreign key(mem_num) references member(mem_num)
 );
 
+select * from product_category
 CREATE TABLE product_category
 (
     `pd_cate_num`   INT            NOT NULL    AUTO_INCREMENT COMMENT '상품 카테고리 번호', 
@@ -46,12 +47,14 @@ CREATE TABLE product_category
      PRIMARY KEY (pd_cate_num)
 );
 
+
+drop table product
 CREATE TABLE product
 (
     `pd_num`        INT             NOT NULL    AUTO_INCREMENT COMMENT '상품페이지 번호', 
     `pd_cate_num`   INT             NOT NULL    COMMENT '상품 카테고리 번호', 
     `pd_name`       VARCHAR(100)    NOT NULL    COMMENT '상품페이지 이름', 
-    `pd_price`      INT             NOT NULL    COMMENT '상품 페이지 가격', 
+    `pd_price`      INT             NOT NULL    COMMENT '상품 페이지 가격',
     `pd_img`        INT             NOT NULL    COMMENT '상품 이미지 갯수(or 이미지 이름)', 
     `pd_avg_score`  DOUBLE          NOT NULL    COMMENT '평균 별점', 
     `seller_num`    INT             NULL        COMMENT '판매자 번호', 
@@ -61,6 +64,7 @@ CREATE TABLE product
      foreign key (seller_num) references seller(seller_num)
 );
 alter table product add pd_thumbnail varchar(1000) --
+alter table product add brand varchar(100) not null default '자체브랜드'
 
 CREATE TABLE product_stock
 (
@@ -167,3 +171,27 @@ drop table
 drop table 
 drop table 
 drop table 
+insert into product_category
+values(null, '티셔츠 l 탑');
+insert into product_category
+values(null, '원피스 l 팬츠');
+insert into product_category
+values(null, '올인원');
+insert into product_category
+values(null, '맨투맨 l 후드');
+insert into product_category
+values(null, '셔츠 l 블라우스');
+insert into product_category
+values(null, '아우터');
+insert into product_category
+values(null, '니트 l 가디건');
+insert into product_category
+values(null, '잠옷 l 가운');
+insert into product_category
+values(null, '한복');
+insert into product_category
+values(null, '레인코트');
+insert into product_category
+values(null, '구명조끼');
+insert into product_category
+values(null, '커플룩');

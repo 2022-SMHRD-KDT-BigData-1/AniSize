@@ -24,7 +24,7 @@ public class ReviewController {
 	public void insertProductReview(ReviewVO vo) {
 		reviewMapper.insertProductReview(vo);
 //		vo.pd_num 왜 안되는지 vo를 넘겨서 맵퍼에서 vo.pd_num을 해야하는지 
-		double score = reviewMapper.getReviewAvgScore(vo.pd_num);
+		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
 		productMapper.updateProductAvgScore(score);
 		
 	}

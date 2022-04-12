@@ -26,7 +26,7 @@ public class CartController {
 	}
 	@RequestMapping("/deleteCart.do")
 	public void deleteCart(CartVO vo) {
-		cartMapper.deleteCart(vo.mem_num, vo.pd_num, vo.stk_option);
+		cartMapper.deleteCart(vo);
 	}
 	@RequestMapping("/updateCartQuantity.do")
 	public void updateCartQuantity(int mem_num, int quantity) {
