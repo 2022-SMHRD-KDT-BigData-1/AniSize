@@ -1,0 +1,317 @@
+.slider {
+  max-width: 350px;
+  min-width: 300px;
+  padding: 0px;
+  margin: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+a {
+  text-decoration-line: none;
+  color: #5e5e5e;
+  /*   text-decoration-line: underline; */
+  /*   text-decoration-line: overline; */
+  /*   text-decoration-line: line-through; */
+  /*   text-decoration-line: underline line-through overline; */
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  font-size: 10px;
+  color: #5e5e5e;
+  display: flex;
+  -ms-overflow-style: none; /*스크롤 없애기*/
+}
+/*스크롤 없애기*/
+::-webkit-scrollbar {
+  display: none;
+}
+
+ol,
+ul {
+  padding-left: 0em;
+}
+
+.container {
+  width: 100%;
+  max-width: 350px;
+  min-width: 300px;
+  padding: 10px;
+  margin: auto;
+  display: block;
+}
+
+h1 {
+  font-family: "MuseoModerno", cursive;
+  text-align: center;
+  font-size: 60px;
+  color: #cd84f1;
+}
+
+.container-fluid {
+  width: 100%;
+  /* 사이즈 fixed */
+  max-width: 350px;
+  min-width: 300px;
+  padding: 0px;
+  margin: auto;
+  display: block;
+}
+
+h3 {
+  font-family: "MuseoModerno", cursive;
+  text-align: center;
+  font-size: 40px;
+  color: #cd84f1;
+}
+
+/* 메뉴바 설정*/
+.navbar-brand {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* 메뉴바 아이콘  */
+.bi {
+  color: #ffffff;
+  font-size: 40px;
+}
+
+.products_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.products_list li {
+  list-style: none;
+  width: 48%;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.products_list .picture {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 224px;
+  text-indent: -9999em;
+}
+
+.products_list li h3 {
+  font-size: 13px;
+  font-family: "SF UI Display Medium";
+  margin-top: 19px;
+}
+
+.products_list li h4 {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.home_content {
+  flex: 1;
+}
+
+/* 메뉴바 설정*/
+.navbar-brand {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* 메뉴바 아이콘  */
+/* 메뉴바 아이콘  */
+.bi {
+  color: #c370de;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.products_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.products_list li {
+  list-style: none;
+  width: 48%;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.products_list .picture {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 224px;
+  text-indent: -9999em;
+}
+
+.products_list li h3 {
+  font-size: 13px;
+  font-family: "SF UI Display Medium";
+  margin-top: 19px;
+}
+
+.products_list li h4 {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.home_content2 {
+  flex: 1;
+}
+
+/* swiper*/
+.swiper {
+  width: 100%;
+  height: 371px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#first {
+  overflow: hidden;
+}
+
+#first li {
+  float: left;
+  display: block;
+  padding: 0 0;
+  margin-left: 8.49px;
+
+  border-radius: 10px;
+}
+
+.s_title h4 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+@font-face {
+  font-family: "InfinitySans-RegularA1";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h4 {
+  font-family: "InfinitySans-RegularA1";
+  color: #adadad;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+}
+
+/*footer*/
+
+footer {
+  position: static;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(141, 141, 141);
+  height: auto;
+  width: 234px;
+  padding-top: 40px;
+  color: #fff;
+  border-radius: 0.25rem;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer-content h3 {
+  font-family: "MuseoModerno", cursive;
+  font-size: 2.1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  line-height: 3rem;
+}
+
+.footer-content p {
+  max-width: 500px;
+  margin: 10px auto;
+  line-height: 28px;
+  font-size: 14px;
+  color: #cacdd2;
+}
+
+.socials {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 3rem 0;
+}
+
+.socials li {
+  margin: 0 10px;
+}
+
+.socials {
+  text-decoration: none;
+  color: #fff;
+  /* border: 1.1px solid white; */
+  padding: 5px;
+}
+
+.socials a i {
+  font-size: 20px;
+  width: 20px;
+  transition: color 0.4s ease;
+  color: #fff;
+}
+
+.socials a:hover i {
+  color: rgb(204, 70, 245);
+}
+
+ul li {
+  list-style: none;
+}
+
+.offcanvas-title img {
+  height: 50px;
+}
+.brand {
+  border-bottom: 1px solid rgba(158, 158, 158, 0.918);
+}
