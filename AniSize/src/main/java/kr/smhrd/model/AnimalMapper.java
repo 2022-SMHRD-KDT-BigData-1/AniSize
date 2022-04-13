@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AnimalMapper {
 	public void insertAniInfo(AnimalVO vo);
 	public List<AnimalVO> getAniInfoList();
+	
 }

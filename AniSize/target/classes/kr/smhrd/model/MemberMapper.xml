@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.model.MemberMapper">
 
-	<insert id="joinInsert" parameterType="kr.smhrd.model.MemberVO">
+	<insert id="insertMemJoin" parameterType="kr.smhrd.model.MemberVO">
 		insert into member(mem_email, mem_pw, mem_nick, mem_tel, mem_address)
 		values(#{mem_email}, #{mem_pw}, #{mem_nick}, #{mem_tel}, #{mem_address})
 	</insert>
 
-	<select id="loginSelect" parameterType="kr.smhrd.model.MemberVO"
+	<select id="selectLogin" parameterType="kr.smhrd.model.MemberVO"
 		resultType="kr.smhrd.model.MemberVO">
 		select * from member where mem_email = #{mem_email} and mem_pw = #{mem_pw}
 	</select>
@@ -15,9 +15,12 @@
 	<select id="memberList" resultType="kr.smhrd.model.MemberVO">
 		select * from member where id not like 'admin'
 	</select>
-
-	<select id="idCheck" resultType="kr.smhrd.model.MemberVO">
-		select * from member where id = #{id}
+ 
+	<select id="emailCheck" resultType="String">
+		select mem_email from member where mem_email = #{mem_email}
+	</select>
+	<select id="nickCheck" resultType="String">
+		select mem_nick from member where mem_nick = #{mem_nick}
 	</select>
 	
 

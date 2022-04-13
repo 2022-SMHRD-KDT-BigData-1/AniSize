@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberMapper {
-	public void joinInsert(MemberVO vo);
-	public MemberVO loginSelect(MemberVO vo);
+	public int insertMemJoin(MemberVO vo);
+	public MemberVO selectLogin(MemberVO vo);
 	public List<MemberVO> memberList();
-	public MemberVO idCheck(String id);
+	public String emailCheck(String email);
+	public String nickCheck(String nick);
+	
 }

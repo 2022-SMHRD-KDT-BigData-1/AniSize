@@ -66,6 +66,10 @@ CREATE TABLE product
 alter table product add pd_thumbnail varchar(1000) --
 alter table product add brand varchar(100) not null default '자체브랜드'
 
+select * from product_stock
+select count(stk_num) from product_stock 
+delete from product_stock where stk_num <= 100 
+
 CREATE TABLE product_stock
 (
     `stk_num`        INT             NOT NULL    AUTO_INCREMENT COMMENT '상품재고 번호', 

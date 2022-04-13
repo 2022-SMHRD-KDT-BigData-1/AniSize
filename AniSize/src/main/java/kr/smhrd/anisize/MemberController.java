@@ -28,11 +28,13 @@ public class MemberController {
 	@RequestMapping("/memUpdate.do")
 	public void memUpdate() {
 	}
+		
+	
 	
 	@RequestMapping("/loginSelect.do")
 	public String loginSelect(MemberVO vo, HttpSession session) {
 		System.out.println("로그인 기능 동작");
-		MemberVO member = mapper.loginSelect(vo);
+		MemberVO member = mapper.selectLogin(vo);
 		if (member != null) {
 			session.setAttribute("member", member);
 		}
@@ -47,16 +49,19 @@ public class MemberController {
 	@RequestMapping("/joinInsert.do")
 	public String joinInsert(MemberVO vo) {
 		System.out.println("회원가입 기능 동작");
-		mapper.joinInsert(vo);
-		return "redirect:/home.do";
+		mapper.insertMemJoin(vo);
+		return "redirect:/aniJoinCheck.do";
 	}
-	@RequestMapping("/idCheck.do")
-	public @ResponseBody MemberVO idCheck(String id) {
+	@RequestMapping("/emailCheck.do")
+	public @ResponseBody String emailCheck(String email) {
 		System.out.println("아이디중복체크 기능 수행");
-		MemberVO vo = mapper.idCheck(id);
-		if(vo == null) {
-			vo = new MemberVO();
-		}
-		return vo;
+		String e = mapper.emailCheck(email);
+		return e;
+	}
+	@RequestMapping("/nickCheck.do")
+	public @ResponseBody String nickCheck(String nick) {
+		System.out.println("닉네임 중복체크 기능 수행");
+		String e = mapper.emailCheck(nick);
+		return e;
 	}
 }
