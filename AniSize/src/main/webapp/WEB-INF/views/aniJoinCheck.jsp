@@ -50,6 +50,7 @@ h1 {
 .btn {
 	background-color: rgb(173, 103, 234);
 	color: #fff;
+	width: 300px;
 }
 
 html, body {
@@ -72,17 +73,20 @@ html, body {
 		<p style="text-align: center; font-size: 20px">Animal Join</p>
 		<br /> <br />
 
-		<div class="d-grid gap-1 col-12 mx-auto">
+		<div class="d-grid gap-1 col-12 mx-auto" style="display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;">
 			<a href="aniJoin.do">
 				<button type="button" class="btn"
-					style="background-color: rgb(173, 103, 234)">반려동물 등록</button>
+					style="background-color: rgb(173, 103, 234); ">반려동물 등록</button>
 			</a> <br />
 			<hr />
 			<br />
 			<p class="btn"
 				style="color: rgb(173, 103, 234); background-color: #ffffff">
 				 <span
-					style="padding: 5px 5px 5px 5px; border-radius: 5px; border: 1px solid rgb(173, 103, 234);"><a href="home.do" >나중에
+					style="padding: 5px 5px 5px 5px; border-radius: 5px; border: 1px solid rgb(173, 103, 234); "><a href="home.do" style="text-decoration:none; color: #ad67ea">나중에
 						등록할래요</a></span>
 				
 			</p>
