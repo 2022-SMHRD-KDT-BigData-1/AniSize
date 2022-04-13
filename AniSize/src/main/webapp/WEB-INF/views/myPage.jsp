@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -171,7 +172,16 @@
     </div>
     <!--낙네임 들어가는곳-->
     <i class="bi bi-person-circle" style="font-size: 50px; display: flex; justify-content: left; align-items: left; color: #c2c2c2;
-    font-size: 40px;">   <p style="text-align: center; font-size: 15px; margin-top: 10px; margin-left: 10px; margin-bottom: 40px; color: rgba(0, 0, 0, 0.76); font-weight: lighter;">박건하님</p></i>
+    font-size: 40px;">   <p style="text-align: center; font-size: 15px; margin-top: 10px; margin-left: 10px; margin-bottom: 40px; color: rgba(0, 0, 0, 0.76); font-weight: lighter;">
+    <c:choose>
+    	<c:when test="${empty member}">
+    		<a href="login.do">로그인</a>
+    	</c:when>
+    	<c:otherwise>
+   			 ${member.mem_nick}님
+    	</c:otherwise>
+    </c:choose>
+    </p></i>
      <div class="detail_product">
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
       height: 70px;"><a href=""><span >0<br> 입금/결제</span></a></div>

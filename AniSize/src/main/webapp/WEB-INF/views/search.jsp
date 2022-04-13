@@ -149,6 +149,22 @@ p {
 							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
 						</a>
 					</div>
+					<div class="col-6">
+						<a class="namePrice" href="https://www.naver.com/"
+							style="text-decoration: none; color: inherit;"> <img
+							src="cat_sample.jpg" class="img-thumbnail"><br>
+						<br>
+							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
+						</a>
+					</div>
+					<div class="col-6">
+						<a class="namePrice" href="https://www.naver.com/"
+							style="text-decoration: none; color: inherit;"> <img
+							src="cat_sample.jpg" class="img-thumbnail"><br>
+						<br>
+							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
+						</a>
+					</div>
 					<!-- 여기까지 삭제 -->
 				</div>
 			</c:when>

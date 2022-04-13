@@ -40,9 +40,10 @@ public class SearchController {
 		}
 //		+검색하는해서 결과값 출력하는 기능
 		List<ProductVO> searchedProductList = mapper.searchedProductList("%" + searchWord + "%");
+		System.out.println(searchedProductList.toString());
 		model.addAttribute("searchedProductList", searchedProductList);
 		
-		return "redirect:/searched.do";
+		return "searched";
 		
 	}
 	
