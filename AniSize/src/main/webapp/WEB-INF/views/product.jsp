@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 
@@ -137,7 +138,7 @@
         <!-- 상품 이미지 (썸네일)-->
         <div class="row">
             <!-- 예시 이미지 -->
-            <img src="2.jpg"
+            <img src="images/product/${product.pd_num}/thumnail.jpg"
                 style="width: 370px; padding: 0px; display: flex; justify-content: center; align-items: center; ">
             <br>
         </div>
@@ -145,16 +146,16 @@
         <!-- 상품명 정보 -->
         <br>
         <button type="button" class="btn btn-sm btn-outline rounded-pill btn-outline-default"
-            style=" border-color: #c370de; color: #c370de; background: #ffffff; height: 30px;">코코마펫</button>
+            style=" border-color: #c370de; color: #c370de; background: #ffffff; height: 30px;">${product.brand}</button>
 
         <br><br>
-        <p style="text-align: start; font-size: 25px; margin-bottom: 0px;">상품 이름</p>
-        <p style="text-align: end; font-size: 20px; margin-bottom: 8px;"> 10,000원</p>
+        <p style="text-align: start; font-size: 25px; margin-bottom: 0px;">${product.pd_name}</p>
+        <p style="text-align: end; font-size: 20px; margin-bottom: 8px;">${product.pd_price}원</p>
 
 
         <span style="text-align: start; font-size: 15px;">★★★★★</span>
-        <span style="text-align: start; font-size: 15px;">4.5 / 5.0 점 </span>
-        <a href="#review_title" style="font-size: 15px; padding-left: 100px; color:#5e5e5e;">105개 리뷰</a>
+        <span style="text-align: start; font-size: 15px;">${product.pd_avg_score} / 5.0 점 </span>
+        <a href="#review_title" style="font-size: 15px; padding-left: 100px; color:#5e5e5e;">${countReview}개 리뷰</a>
 
 
         <hr>
@@ -181,8 +182,9 @@
                 <h4>상품 설명</h4>
                 <p>--------- </p>
 
-
-                <img src="0.jpg" alt="" class="product_detail_img">
+				<c:forEach begin="1" end="${product.pd_img_count}">
+	                <img src="images/product/${product.pd_num}/thumnail.jpg" alt="" class="product_detail_img">
+				</c:forEach>
                 <img src="1.jpg" alt="" class="product_detail_img">
                 <h4>컬러 정보</h4>
                 <h4>사이즈 정보</h4>

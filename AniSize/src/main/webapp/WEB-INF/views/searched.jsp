@@ -165,7 +165,7 @@ p {
 			<h2>검색 결과</h2>
 			<c:forEach items="${searchedProductList}" var="product">
 				<div class="col-6">
-					<a class="namePrice" href="#" 
+					<a class="namePrice" href="product.do?pd_num=${product.pd_num}" 
 					style="text-decoration: none; color: inherit;">
 						<img src="images/product/${product.pd_num}/thumnail.jpg" class="img-thumbnail">
 						<br>

@@ -65,6 +65,7 @@ CREATE TABLE product
 );
 alter table product add pd_thumbnail varchar(1000) --
 alter table product add brand varchar(100) not null default '자체브랜드'
+update product set pd_avg_score = 0
 
 select * from product_stock
 select count(stk_num) from product_stock 
