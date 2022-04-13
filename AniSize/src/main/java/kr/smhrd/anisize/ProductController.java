@@ -18,23 +18,23 @@ import kr.smhrd.model.ReviewVO;
 public class ProductController {
 	@Inject
 	ProductMapper productMapper;
+	@Inject
 	ReviewMapper reviewMapper;
 	
-//	@RequestMapping("/product.do")
-//	public void product(Model model, String pd_num) {
-//		int pdNum = Integer.parseInt(pd_num);
-//		ProductVO product = productMapper.selectProduct(pdNum);
-//		ReviewVO review = reviewMapper.selectProductReview(pdNum);
-//		int countReview = reviewMapper.countReview(pdNum);
-//		List<ProductStockVO> productStockList = productMapper.getProductStock(pdNum);
-//		model.addAttribute("product", product);
-//		model.addAttribute("review", review);
-//		model.addAttribute("countReview", countReview);
-//		model.addAttribute("productStockList", productStockList);
-//	}
 	@RequestMapping("/product.do")
-	public void product() {
+	public void product(Model model, int pd_num) {
+		ProductVO product = productMapper.selectProduct(pd_num);
+		ReviewVO review = reviewMapper.selectProductReview(pd_num);
+		int countReview = reviewMapper.countReview(pd_num);
+		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
+		model.addAttribute("product", product);
+		model.addAttribute("review", review);
+		model.addAttribute("countReview", countReview);
+		model.addAttribute("productStockList", productStockList);
 	}
+//	@RequestMapping("/product.do")
+//	public void product() {
+//	}
 	@RequestMapping("/best.do")
 	public void best() {
 	}

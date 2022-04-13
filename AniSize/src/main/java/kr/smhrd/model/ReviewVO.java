@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewVO {
-	private int review_num;
 	private int mem_num;
 	private int pd_num;
 	private String review_content;
@@ -16,4 +15,5 @@ public class ReviewVO {
 	private String stk_option;
 	private String stk_size;
 	private int review_score;
+	private String review_date;
 }

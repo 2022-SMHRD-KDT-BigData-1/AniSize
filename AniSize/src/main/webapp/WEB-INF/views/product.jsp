@@ -91,7 +91,14 @@
 
         /* 탭 컬러 변경 */
         .nav-link {
+            color: #5e5e5e;
+        }
+
+
+        .nav-tabs .nav-link.active {
             color: #ad67ea;
+            background-color: #fff;
+            border-color: #dee2e6 #dee2e6 #fff;
         }
 
         /*탭 상품 성명 제목 글씨 크기*/
@@ -130,7 +137,7 @@
                     </i></a>
             </div>
             <div class="col-11">
-                <img src="logo_product.jpg" style="width: 200px; margin-left: 50px; margin-bottom: 30px;">
+                <img src="images/logo_product.jpg" style="width: 200px; margin-left: 50px; margin-bottom: 30px;">
 
             </div>
         </div>
@@ -182,13 +189,13 @@
                 <h4>상품 설명</h4>
                 <p>--------- </p>
 
-				<c:forEach begin="1" end="${product.pd_img_count}">
-	                <img src="images/product/${product.pd_num}/thumnail.jpg" alt="" class="product_detail_img">
+				<c:forEach begin="1" end="${product.pd_img_count}" varStatus="status">
+	                <img src="images/product/${product.pd_num}/${status.index}.jpg" alt="" class="product_detail_img">
 				</c:forEach>
                 <img src="1.jpg" alt="" class="product_detail_img">
-                <h4>컬러 정보</h4>
+<!--                 <h4>컬러 정보</h4>
                 <h4>사이즈 정보</h4>
-                <img src="size.jpg" alt="" class="product_detail_img">
+                <img src="size.jpg" alt="" class="product_detail_img"> -->
 
                 <br><br><br>
 
@@ -351,12 +358,12 @@
             <!-- review 상품 리뷰 -->
             <div id="review" class="container tab-pane fade" style="font-size: 15px; margin-bottom: 50px;"><br>
                 <h3>Review</h3>
-                <span>닉네임</span><span style="padding-left: 130px;">구매일 2022-03-24</span>
+                <span>닉네임</span><span style="padding-left: 130px;">구매일 ${review.review_date}</span>
                 <img src="3.jpg" alt="" class="review_img">
                 <span style="text-align: start; font-size: 15px;">★★★★★</span>
-                <span> 4.0</span>
+                <span> ${review.review_score}</span>
                 <span>/ 5.0 점</span><br>
-                <span>예쁘당~~~~~잘산듯 다른 분들도 많이 구입해 보세요~~~
+                <span>${review.review_content}
 
                 </span>
 
