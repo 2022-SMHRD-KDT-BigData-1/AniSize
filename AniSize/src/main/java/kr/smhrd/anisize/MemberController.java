@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,15 +32,21 @@ public class MemberController {
 		
 	
 	
-	@RequestMapping("/loginSelect.do")
-	public String loginSelect(MemberVO vo, HttpSession session) {
+	@RequestMapping("/selectLogin.do")
+	public String selectLogin(Model model, MemberVO vo, HttpSession session) {
 		System.out.println("로그인 기능 동작");
 		MemberVO member = mapper.selectLogin(vo);
 		if (member != null) {
 			session.setAttribute("member", member);
+			return "redirect:/home.do";
+			
 		}
-		return "redirect:/home.do";
+			String loginFail = "Fail";
+			model.addAttribute("loginFail", loginFail);
+			return "login";
 	}
+	
+	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		System.out.println("로그아웃 동작");
@@ -61,7 +68,7 @@ public class MemberController {
 	@RequestMapping("/nickCheck.do")
 	public @ResponseBody String nickCheck(String nick) {
 		System.out.println("닉네임 중복체크 기능 수행");
-		String e = mapper.emailCheck(nick);
+		String e = mapper.nickCheck(nick);
 		return e;
 	}
 }

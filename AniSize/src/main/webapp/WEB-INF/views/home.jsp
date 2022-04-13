@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
  <head>
     <!-- Required meta tags -->
@@ -169,7 +170,14 @@
       </div>
 
       <div class="s_title">
-        <h4><span style="color: black">박건하님</span>의 추천상품</h4>
+      <c:choose>
+      	<c:when test="${empty member}">
+	        <h4>추천상품</h4>
+      	</c:when>
+      	<c:otherwise>
+    	    <h4><span style="color: black">${member.mem_nick}님</span>의 추천상품</h4>
+      	</c:otherwise>
+      </c:choose>
       </div>
 
       <ul class="products_list">

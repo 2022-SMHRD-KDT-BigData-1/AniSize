@@ -142,24 +142,35 @@ p {
 				<div class="row">
 					<!-- 반복 예시 데이터 연결 후 삭제 -->
 					<div class="col-6">
-						<a class="namePrice" href="https://www.naver.com/"
-							style="text-decoration: none; color: inherit;"> <img
-							src="cat_sample.jpg" class="img-thumbnail"><br>
+						<a class="namePrice" href="#"
+							style="text-decoration: none; color: inherit;"> 
+							<!-- <img src="cat_sample.jpg" class="img-thumbnail"> -->
+							<br>
 						<br>
 							<p>검색 결과가 없습니다</p>
 						</a>
 					</div>
+<!-- 					<div class="col-6">
+						<a class="namePrice" href="https://www.naver.com/"
+							style="text-decoration: none; color: inherit;"> <img
+							src="cat_sample.jpg" class="img-thumbnail"><br>
+						<br>
+							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
+						</a>
+					</div> -->
 					<!-- 여기까지 삭제 -->
 				</div>
 			</c:when>
 			<c:otherwise>
-			<c:forEach items="${searhcedProductList}" var="product">
+			<h2>검색 결과</h2>
+			<c:forEach items="${searchedProductList}" var="product">
 				<div class="col-6">
-					<a class="namePrice" href="#" style="text-decoration: none; color: inherit;">
-						<img src="images/product/${product.pd_num}/thumbnail.jpg" class="img-thumbnail">
+					<a class="namePrice" href="product.do?pd_num=${product.pd_num}" 
+					style="text-decoration: none; color: inherit;">
+						<img src="images/product/${product.pd_num}/thumnail.jpg" class="img-thumbnail">
 						<br>
 						<br>
-						<p>${product.pd_name} <br> ${product.pd_price}</p>
+						<p>${product.pd_name} <br> ${product.pd_price}원</p>
 					</a>
 				</div>
 			</c:forEach>
