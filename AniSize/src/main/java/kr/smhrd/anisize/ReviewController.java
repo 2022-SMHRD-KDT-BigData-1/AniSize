@@ -20,6 +20,22 @@ public class ReviewController {
 	@RequestMapping("/review.do")
 	public void review() {
 	}
+	@RequestMapping("/review2.do")
+	public void review2() {
+	}
+	@RequestMapping("/review3_1.do")
+	public void review3_1() {
+	}
+	@RequestMapping("/review3_2.do")
+	public void review3_2() {
+	}
+	@RequestMapping("/review3_3.do")
+	public void review3_3() {
+	}
+	@RequestMapping("/review3_4.do")
+	public void review3_4() {
+	}
+	
 	@RequestMapping("/insertProductReview.do")
 	public void insertProductReview(ReviewVO vo) {
 		reviewMapper.insertProductReview(vo);
