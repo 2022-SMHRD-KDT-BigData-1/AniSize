@@ -20,6 +20,9 @@ public class ReviewController {
 	@RequestMapping("/review.do")
 	public void review() {
 	}
+	@RequestMapping("/review1_2.do")
+	public void review1_2() {
+	}
 	@RequestMapping("/review2.do")
 	public void review2() {
 	}
