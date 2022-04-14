@@ -7,8 +7,7 @@
 	</select>
 
 	<select id="selectProduct" resultType="kr.smhrd.model.ProductVO">
-		select * from product
-		where pd_num = #{pd_num}
+		select * from product where pd_num = #{pd_num}
 	</select>
 
 	<update id="updateProductAvgScore">

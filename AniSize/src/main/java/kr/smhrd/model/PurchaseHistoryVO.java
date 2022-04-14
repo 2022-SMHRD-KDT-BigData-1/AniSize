@@ -1,5 +1,12 @@
 package kr.smhrd.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PurchaseHistoryVO {
 	private int ph_num;
 	private int mem_num;
@@ -14,4 +21,7 @@ public class PurchaseHistoryVO {
 	private String recipient_tel;
 	private String delivery_requests;
 	private String payment;
+	
+	private String pd_name;
+	
 }

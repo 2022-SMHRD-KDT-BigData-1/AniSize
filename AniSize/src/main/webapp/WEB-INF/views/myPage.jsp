@@ -213,16 +213,27 @@
         <div class="mp">
         <c:choose>
         	<c:when test="${!empty member}">
-		        <a class="" href="memUpdate.do" >회원정보 수정</a>
         	</c:when>
         	<c:otherwise>
-		        <a class="" href="" onclick="requestLogin()" >회원정보 수정</a>
+		        
         	</c:otherwise>
         </c:choose>
-        <a class="" href="#" >반려동물 정보 수정</a>
-        <a class="" href="#">구매 내역</a>
-        <a class="" href="#">상품 리뷰</a>
-        <a class="" href="#">입점 문의</a>
+        <c:choose>
+        	<c:when test="${!empty member}">
+		        <a class="" href="memUpdate.do">회원정보 수정</a>
+		        <a class="" href="aniUpdate.do">반려동물 정보 수정</a>
+      			<a class="" href="purchaseHistory.do">구매 내역</a>
+		        <a class="" href="review.do">상품 리뷰</a>
+		        <a class="" href="#">입점 문의</a>
+        	</c:when>
+        	<c:otherwise>
+		        <a class="" href="#" onclick="requestLogin()">회원정보 수정</a>
+		        <a class="" href="#" onclick="requestLogin()">반려동물 정보 수정</a>
+      			<a class="" href="#" onclick="requestLogin()">구매 내역</a>
+		        <a class="" href="#" onclick="requestLogin()">상품 리뷰</a>
+		        <a class="" href="#" onclick="requestLogin()">입점 문의</a>
+        	</c:otherwise>
+        </c:choose>
       </div>
     </div>
     <br>

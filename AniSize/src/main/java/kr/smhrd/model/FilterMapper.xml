@@ -8,7 +8,7 @@
         select pd_name, pd_price, pd_num from product order by pd_avg_score desc
     </select>
     
-    <select id="selectCategoryProductList" resultType="kr.smhrd.model.ProductVO>
+    <select id="selectCategoryProductList" resultType="kr.smhrd.model.ProductVO">
         select pd_name, pd_price, pd_num from product where pd_cate_num = #{pd_cate_num}
     </select>
 </mapper>

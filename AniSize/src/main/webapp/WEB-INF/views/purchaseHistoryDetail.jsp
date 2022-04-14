@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 
@@ -30,9 +31,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
 
     <style>
         body {
@@ -132,23 +130,16 @@
 
             <span style="font-weight: 600;font-size: 18px">주문 상품 정보</span>
             <hr style="display:flex; max-width: 330px;">
-
+			
             <div class="col-5">
                 <!-- 상품 이미지 -->
-                <img src="3.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
-
+                <img src="images/product/${phDetail.pd_num}/thumnail.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
             </div>
-
-
             <div class="col-7 " style="font-size: 14px;">
-
-                <p style="font-weight: 600;font-size: 13px">상품명 오드펫 시워쏘쿨 베스트</p>
-
-                <p style="color: #828282; font-size: 10px;">컬러 옐로우 &nbsp;|&nbsp; 사이즈 S</p>
-                <p style="color: #828282; font-size: 10px;">가격 19,900 &nbsp;|&nbsp; 수량 1개</p>
-
-                <p style="text-align: end; font-weight: 600;">총 39,800원</p>
-
+                <p style="font-weight: 600;font-size: 13px">${phDetail.pd_name}</p>
+                <p style="color: #828282; font-size: 10px;">${phDetail.stk_option} &nbsp;|&nbsp; 사이즈 ${phDetail.stk_size}</p>
+                <p style="color: #828282; font-size: 10px;">가격 ${phDetail.stk_price}원 &nbsp;|&nbsp; 수량 ${phDetail.ph_quantity}개</p>
+                <p style="text-align: end; font-weight: 600;">총  ${phDetail.stk_price * phDetail.ph_quantity}원</p>
             </div>
 
             <div class="row" style="margin-top: 20px; ">
@@ -208,20 +199,16 @@
                     <tbody>
                         <tr>
                             <th scope="row">주문자</th>
-                            <td>홍길동</td>
+                            <td>${phDetail.recipient}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">이메일</th>
-                            <td>123@123</td>
 
-                        </tr>
                         <tr>
                             <th scope="row">연락처</th>
-                            <td>123-123-123</td>
+                            <td>${phDetail.recipient_tel}</td>
                         </tr>
                         <tr>
                             <th scope="row">구매일자</th>
-                            <td>2022-04-13</td>
+                            <td>${phDetail.ph_date}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -241,18 +228,17 @@
                                 배송비
 
                             </th>
-                            <td>10,000 원<br>
-                                10,000 원<br>
-                                0 원
-
+                            <td>${phDetail.stk_price * phDetail.ph_quantity} 원<br>
+                                ${phDetail.stk_price * phDetail.ph_quantity} 원<br>
+                                3000 원
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">할인금액<br>
                                 쿠폰할인
                             </th>
-                            <td>(-)3,000 원<br>
-                                3,000 원
+                            <td>(-)0 원<br>
+                                0 원
                             </td>
 
                         </tr>
@@ -261,7 +247,7 @@
                                 결제 수단<br>
                                 카드사
                             </th>
-                            <td> 10,000 원<br>
+                            <td> ${phDetail.stk_price * phDetail.ph_quantity + 3000} 원<br>
                                 카드결제<br>
                                 현대카드
                             </td>
@@ -279,16 +265,16 @@
                     <tbody>
                         <tr>
                             <th scope="row">받는사람</th>
-                            <td>홍길동</td>
+                            <td>${phDetail.recipient}</td>
                         </tr>
                         <tr>
                             <th scope="row">연락처</th>
-                            <td>123-123-123</td>
+                            <td>${phDetail.recipient_tel}</td>
 
                         </tr>
                         <tr>
                             <th scope="row">주소</th>
-                            <td>서울시....</td>
+                            <td>${phDetail.recipient_address}</td>
                         </tr>
                         <th scope="row">배송요청사항</th>
                         <td>경비실에 두세요</td>

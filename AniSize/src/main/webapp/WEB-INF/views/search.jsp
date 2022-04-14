@@ -134,54 +134,35 @@ p {
 		<br>
 		<hr>
 		<br>
-		<c:choose>
-			<c:when test="${empty searchedProductList}">
-				<h2>추천 상품</h2>
-				<!-- row 안에 이미지 2개식 반복 -->
-				<!-- text-decoration: none; /* 링크의 밑줄 제거 */ color: inherit; /* 링크의 색상 제거 */-->
-				<div class="row">
-					<!-- 반복 예시 데이터 연결 후 삭제 -->
-					<div class="col-6">
-						<a class="namePrice" href="https://www.naver.com/"
-							style="text-decoration: none; color: inherit;"> <img
-							src="cat_sample.jpg" class="img-thumbnail"><br>
-						<br>
-							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
-						</a>
-					</div>
-					<div class="col-6">
-						<a class="namePrice" href="https://www.naver.com/"
-							style="text-decoration: none; color: inherit;"> <img
-							src="cat_sample.jpg" class="img-thumbnail"><br>
-						<br>
-							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
-						</a>
-					</div>
-					<div class="col-6">
-						<a class="namePrice" href="https://www.naver.com/"
-							style="text-decoration: none; color: inherit;"> <img
-							src="cat_sample.jpg" class="img-thumbnail"><br>
-						<br>
-							<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
-						</a>
-					</div>
-					<!-- 여기까지 삭제 -->
-				</div>
-			</c:when>
-			<c:otherwise>
-			<c:forEach items="${searhcedProductList}" var="product">
+			<h2>추천 상품</h2>
+			<!-- row 안에 이미지 2개식 반복 -->
+			<!-- text-decoration: none; /* 링크의 밑줄 제거 */ color: inherit; /* 링크의 색상 제거 */-->
+			<div class="row">
+				<!-- 반복 예시 데이터 연결 후 삭제 -->
+				<c:forEach items="${productList}" var="product">
 				<div class="col-6">
-					<a class="namePrice" href="#" style="text-decoration: none; color: inherit;">
-						<img src="images/product/${product.pd_num}/thumbnail.jpg" class="img-thumbnail">
-						<br>
-						<br>
-						<p>${product.pd_name} <br> ${product.pd_price}</p>
+					<a class="namePrice" href="product.do?pd_num=${product.pd_num}"
+						style="text-decoration: none; color: inherit;"> <img
+						src="cat_sample.jpg" class="img-thumbnail"><br>
+					<br>
+						<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
 					</a>
 				</div>
-			</c:forEach>
+				</c:forEach>
+				<!-- 여기까지 삭제 -->
+			
+			<c:forEach items="${searhcedProductList}" var="product">
+			<div class="col-6">
+				<a class="namePrice" href="#" style="text-decoration: none; color: inherit;">
+					<img src="images/product/${product.pd_num}/thumnail.jpg" class="img-thumbnail">
+					<br>
+					<br>
+					<p>${product.pd_name} <br> ${product.pd_price}</p>
+				</a>
+			</div>
+		</c:forEach>
+		</div>
 
-			</c:otherwise>
-		</c:choose>
 	</div>
 
 	<jsp:include page="menuBar.jsp"></jsp:include>

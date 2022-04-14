@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 
@@ -239,37 +240,24 @@
         <div class="row" style="margin-bottom: 12px;">
 
             <hr style="display:flex; max-width: 330px;">
+            
+            <c:forEach items="${phList}" var="ph">
+            
             <div class="p_history" style="font-size: 18px; margin-bottom: 12px;">
                 <!-- &nbsp;공백 넣기(space) -->
-                <span>&nbsp;&nbsp;&nbsp;2022.04.14</span><a href="#" style="padding-left:200px; color: #5e5e5e;">
+                <span>&nbsp;&nbsp;&nbsp;${ph.ph_date}</span><a href="purchaseHistoryDetail.do?num=${ph.ph_num}" style="padding-left:200px; color: #5e5e5e;">
                     <i class="bi bi-chevron-double-right" style="color: #5e5e5e; font-size: 20px;"></i></a>
             </div>
-
-
-
             <div class="col-5">
                 <!-- 상품 이미지 -->
-                <img src="3.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
-
-
+                <img src="images/product/${ph.pd_num}/thumnail.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
             </div>
-
-
-
             <div class="col-7 " style="font-size: 14px;">
-
-                <p style="font-weight: 600;font-size: 13px">상품명 오드펫 시워쏘쿨 베스트</p>
-
-                <p style="color: #828282; font-size: 10px;">컬러 옐로우 &nbsp;|&nbsp; 사이즈 S</p>
-                <p style="color: #828282; font-size: 10px;">가격 19,900 &nbsp;|&nbsp; 수량 1개</p>
-
-                <p style="text-align: end; font-weight: 600;">총 39,800원</p>
-
-
-
-
+                <p style="font-weight: 600;font-size: 13px">${ph.pd_name}</p>
+                <p style="color: #828282; font-size: 10px;">${ph.stk_option} &nbsp;|&nbsp; 사이즈 ${ph.stk_size}</p>
+                <p style="color: #828282; font-size: 10px;">가격 ${ph.stk_price}원 &nbsp;|&nbsp; 수량 ${ph.ph_quantity}개</p>
+                <p style="text-align: end; font-weight: 600;">총 ${ph.stk_price * ph.ph_quantity}원</p>
             </div>
-
             <div class="row" style="margin-top: 10px;">
                 <div class="col-6">
                     <button type="button" class="btn btn secondary btn-sm">
@@ -280,6 +268,7 @@
                         1:1문의</button>
                 </div>
             </div>
+         </c:forEach>
         </div><!-- 구매내역 -->
 
         <!--/ container  -->

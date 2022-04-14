@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.smhrd.model.FilterMapper;
 import kr.smhrd.model.ProductVO;
 import kr.smhrd.model.SearchMapper;
 
@@ -15,11 +16,15 @@ import kr.smhrd.model.SearchMapper;
 public class SearchController {
 	@Inject
 	private SearchMapper mapper;
+	@Inject
+	FilterMapper filterMapper;
 
 	@RequestMapping("/search.do")
 	public void search(Model model) {
 		List<String> popularSearchWordList = mapper.getPopularSearchWord();
 		model.addAttribute("popularSearchWordList",popularSearchWordList);
+		List<ProductVO> productList = filterMapper.getHighSalesProductList();
+		model.addAttribute("productList", productList);
 		
 	}
 	@RequestMapping("/searched.do")
