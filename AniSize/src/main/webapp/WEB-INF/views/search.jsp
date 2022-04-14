@@ -127,8 +127,10 @@ p {
 		<br>
 		<h2>인기 검색어</h2>
 		<c:forEach items="${popularSearchWordList}" var="word">
+		<a href="doSearch.do?searchWord=${word}">
 			<button class="btn rounded-pill btn-outline-default btn-sm btn-st"
 				type="submit">${word}</button>
+		</a>
 		</c:forEach>
 		<br>
 		<br>
@@ -137,30 +139,17 @@ p {
 			<h2>추천 상품</h2>
 			<!-- row 안에 이미지 2개식 반복 -->
 			<!-- text-decoration: none; /* 링크의 밑줄 제거 */ color: inherit; /* 링크의 색상 제거 */-->
-			<div class="row">
-				<!-- 반복 예시 데이터 연결 후 삭제 -->
-				<c:forEach items="${productList}" var="product">
-				<div class="col-6">
-					<a class="namePrice" href="product.do?pd_num=${product.pd_num}"
-						style="text-decoration: none; color: inherit;"> <img
-						src="cat_sample.jpg" class="img-thumbnail"><br>
-					<br>
-						<p>오드펫 시워쏘쿨 베스트 <br> 24900</p>
-					</a>
-				</div>
-				</c:forEach>
-				<!-- 여기까지 삭제 -->
-			
-			<c:forEach items="${searhcedProductList}" var="product">
+		<div class="row">
+			<c:forEach items="${productList}" var="product">
 			<div class="col-6">
-				<a class="namePrice" href="#" style="text-decoration: none; color: inherit;">
+				<a class="namePrice" href="product.do?pd_num=${product.pd_num}" style="text-decoration: none; color: inherit;">
 					<img src="images/product/${product.pd_num}/thumnail.jpg" class="img-thumbnail">
 					<br>
 					<br>
 					<p>${product.pd_name} <br> ${product.pd_price}</p>
 				</a>
 			</div>
-		</c:forEach>
+			</c:forEach>
 		</div>
 
 	</div>

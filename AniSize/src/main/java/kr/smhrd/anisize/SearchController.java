@@ -47,7 +47,8 @@ public class SearchController {
 		List<ProductVO> searchedProductList = mapper.searchedProductList("%" + searchWord + "%");
 		System.out.println(searchedProductList.toString());
 		model.addAttribute("searchedProductList", searchedProductList);
-		
+		List<String> popularSearchWordList = mapper.getPopularSearchWord();
+		model.addAttribute("popularSearchWordList",popularSearchWordList);
 		return "searched";
 		
 	}
