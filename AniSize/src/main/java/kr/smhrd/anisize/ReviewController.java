@@ -38,6 +38,8 @@ public class ReviewController {
 	
 	@RequestMapping("/insertProductReview.do")
 	public void insertProductReview(ReviewVO vo) {
+		vo.setMem_num();
+		
 		reviewMapper.insertProductReview(vo);
 //		vo.pd_num 왜 안되는지 vo를 넘겨서 맵퍼에서 vo.pd_num을 해야하는지 
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());

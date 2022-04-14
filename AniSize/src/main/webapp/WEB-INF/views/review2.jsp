@@ -596,9 +596,6 @@
     
     </script>
 
- 
- 
-
     <!-- 메뉴바 + 카데고리 -->
     <nav
       class="navbar fixed-bottom"
@@ -610,8 +607,7 @@
         border-top: 0.1px solid #c370de;
       "
     >
-      <a href="insertProductReview.do"><button style="width: 100%; height: 50px; background-color: #a657e6;  color: #fff; border: 0px; font-size: 15px;">리뷰 등록</button>
-      </a>
+      <button style="width: 100%; height: 50px; background-color: #a657e6;  color: #fff; border: 0px; font-size: 15px;">리뷰 등록</button>
     </nav>
 
 
