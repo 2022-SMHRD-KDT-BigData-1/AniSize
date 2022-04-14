@@ -181,60 +181,17 @@
       </div>
 
       <ul class="products_list">
+      <c:forEach items="${productList}" var="product">
         <li>
-          <a href="">
-            <div class="picture" style="background-image: url('resources/images/0.jpg')">
-              제목
+          <a href="product.do?pd_num=${product.pd_num}">
+            <div class="picture" style="background-image: url('images/product/${product.pd_num}/thumnail.jpg')">
             </div>
           </a>
-          <h3><a href="">제목</a></h3>
-          <h4>가격</h4>
+          <h3><a href="">${product.pd_name}</a></h3>
+          <h4>${product.pd_price}원</h4>
         </li>
-        <li>
-          <a href="">
-            <div class="picture" style="background-image: url('resources/images/1.jpg')">
-              제목
-            </div>
-          </a>
-          <h3><a href="">제목</a></h3>
-          <h4>가격</h4>
-        </li>
-        <li>
-          <a href="">
-            <div class="picture" style="background-image: url('resources/images/2.jpg')">
-              제목
-            </div>
-          </a>
-          <h3><a href="">제목</a></h3>
-          <h4>가격</h4>
-        </li>
-        <li>
-          <a href="">
-            <div class="picture" style="background-image: url('resources/images/3.jpg')">
-              제목
-            </div>
-          </a>
-          <h3><a href="">제목</a></h3>
-          <h4>가격</h4>
-        </li>
-        <li>
-          <a href="">
-            <div class="picture" style="background-image: url('resources/images/4.jpg')">
-              제목
-            </div>
-          </a>
-          <h3><a href="">제목</a></h3>
-          <h4>가격</h4>
-        </li>
-        <li>
-          <a href="">
-            <div class="picture" style="background-image: url('resources/images/5.jpg')">
-              제목
-            </div>
-          </a>
-          <h3><a href="">제목</a></h3>
-          <h4>가격</h4>
-        </li>
+      </c:forEach>
+      
       </ul>
     </div>
 

@@ -26,14 +26,10 @@
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
 
     <style>
         body {
@@ -164,9 +160,7 @@
         <span style="text-align: start; font-size: 15px;">${product.pd_avg_score} / 5.0 점 </span>
         <a href="#review_title" style="font-size: 15px; padding-left: 100px; color:#5e5e5e;">${countReview}개 리뷰</a>
 
-
         <hr>
-
 
         <!-- 상품 설명 -->
         <!-- 탭 이름 -->
@@ -336,18 +330,6 @@
                 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 <br><br><br><br><br><br>
 
             </div>
@@ -371,8 +353,6 @@
 
         </div>
     </div>
-
-
 
 
 
@@ -404,38 +384,36 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
                         <div class="option1" style="padding-bottom: 10px;">
-
-
+						<c:choose>
+						<c:when test="${!empty stkOptionList}">
+							
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>[필수] 색상 선택</option>
-                                <option value="pink">핑크</option>
-                                <option value="white">화이트</option>
-                                <option value="blue">블루</option>
-                                <option value="red">레드</option>
-                                <option value="purple">퍼플</option>
-                                <!-- <option value=""></option> -->
+	                            <option selected>[필수] 색상 선택</option>
+	                            <c:forEach items="${stkOptionList}" var="option">
+	                          	  <option value="${option}" onclick="optionClick()">${option}</option>
+	                            </c:forEach>
                             </select>
-
                         </div>
 
                         <div class="opton2">
                             <!-- 사이즈 옵션에  <span>--------------------------------[ 추천 사이즈 ]</span> 표시 -->
                             <!-- 재고 5개 미만일 시 수량 보여줌 <span>-----------------------[ 3개 남음 ]</span>  -->
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize">
                                 <option selected>[필수] 사이즈 선택</option>
-                                <option value="s">S</option>
+     <!--                            <option value="s">S</option>
                                 <span>-----------------------[ 3개 남음 ]</span>
                                 <option value="m">M
                                     <span>-----------------------[ 추천 사이즈 ]</span>
                                 </option>
                                 <option value="l">L</option>
                                 <option value="xl">xL</option>
-                                <option value="2xl">2xL</option>
+                                <option value="2xl">2xL</option> -->
                                 <!-- <option value=""></option> -->
                             </select>
                         </div>
+                        </c:when>
+						</c:choose>
 
                         <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                         <div class="selected_option" style="font-size: 15px;">
@@ -460,9 +438,6 @@
                             </div>
                         </div>
 
-
-
-
                     </div>
                     <style>
                         .secondary:hover {
@@ -471,7 +446,6 @@
 
                         }
                     </style>
-
 
                     <div class="modal-footer" style="display: flex; justify-content: center; align-items: center">
 
@@ -489,13 +463,33 @@
             </div>
         </div>
 
-
     </div>
 
+	<script type="text/javascript">  /* ajax 재고 가져오기 */
+	function optionClick(values){
+		$.ajax({
+			url : 'selectOptionStock.do',
+			type : 'post',
+			data : {"stk_option": values},
+			dataType : 'json',
+			success : fuction(res){
+				for(let i = 0; i<res.length; i++){
+					size = `
+						<option value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>
+					`;
+					$('#optionSize').append(size);
+				}
+			},
+			error : function(e){
+				console.log(e);
+			}
+		});
+	}
+		
+	</script>
 
-
-    <script>
-        // 수량 수정
+    <script>  /* 수량 수정 */
+        
 
         $(function () {
             $('#decreaseQuantity').click(function (e) {

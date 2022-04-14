@@ -211,7 +211,14 @@
     <hr style="margin-top: 100px;">
       <div class="d-grid gap-3 col-12 form-group" style=" width: 280px; "><span style="font-size: 10px; text-align: left; ">쇼핑정보</span>
         <div class="mp">
-        <a class="" href="#" >회원정보 수정</a>
+        <c:choose>
+        	<c:when test="${!empty member}">
+		        <a class="" href="memUpdate.do" >회원정보 수정</a>
+        	</c:when>
+        	<c:otherwise>
+		        <a class="" href="" onclick="requestLogin()" >회원정보 수정</a>
+        	</c:otherwise>
+        </c:choose>
         <a class="" href="#" >반려동물 정보 수정</a>
         <a class="" href="#">구매 내역</a>
         <a class="" href="#">상품 리뷰</a>
@@ -230,9 +237,13 @@
     </div>
   </div>
 
-   
-
 <jsp:include page="menuBar.jsp"></jsp:include>
+
+<script type="text/javascript">
+	function requestLogin(){
+		alert('로그인을 해주세요');
+	}
+</script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

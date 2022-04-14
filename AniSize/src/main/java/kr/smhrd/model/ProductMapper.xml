@@ -15,14 +15,21 @@
 		update product set pd_avg_score = #{score}
 	</update> 
 
-	<select id="getProductStock"
+	<select id="selectOptionStock" resultType="kr.smhrd.model.ProductStockVO" parameterType="kr.smhrd.model.ProductStockVO">
+		select * from product_stock where pd_num = #{pd_num} and stk_option = #{stk_option}
+	</select>
+<!-- 	<select id="getProductStock"
 		resultType="kr.smhrd.model.ProductStockVO">
 		select * from product_stock where pd_num = #{pd_num}
-	</select>
+	</select> -->
 	<!-- <select id="mostSoldProduct" resultType="kr.smhrd.model.ProductVO"> 
 		select pd_name, pd_price, pd_num from product </select> -->
 	<select id="highScoreProduct" resultType="kr.smhrd.model.ProductVO">
 		select pd_name, pd_price, pd_num from product order by pd_avg_score desc
+	</select>
+	
+	<select id="selectStkOptionList" resultType="String">
+	    select distinct stk_option from product_stock where pd_num = #{pd_num}
 	</select>
 
 </mapper>

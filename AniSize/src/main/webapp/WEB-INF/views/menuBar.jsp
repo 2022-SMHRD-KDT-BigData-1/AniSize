@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         <!-- 메뉴바 + 카데고리 -->
             <nav
       class="navbar fixed-bottom"
@@ -64,7 +65,7 @@
                   class="nav-link active"
                   aria-current="page"
                   style="color: black"
-                  href="#"
+                  href="best.do?filter=highScore"
                   >베스트</a
                 >
               </li>
@@ -90,19 +91,18 @@
                   aria-labelledby="offcanvasNavbarDropdown"
                   style="font-size: 12px"
                 >
-                  <li><a class="dropdown-item" href="#">-티셔츠/탑</a></li>
-                  <li><a class="dropdown-item" href="#">-원피스/팬츠</a></li>
-                  <li><a class="dropdown-item" href="#">-올인원</a></li>
-                  <li><a class="dropdown-item" href="#">-맨추맨/후드</a></li>
-                  <li><a class="dropdown-item" href="#">-셔츠/블라우스</a></li>
-                  <li><a class="dropdown-item" href="#">-아우터</a></li>
-                  <li><a class="dropdown-item" href="#">-니트/가디건</a></li>
-                  <li><a class="dropdown-item" href="#">-잠옷/가운</a></li>
-                  <li><a class="dropdown-item" href="#">-한복</a></li>
-                  <li><a class="dropdown-item" href="#">-레인코트</a></li>
-                  <li><a class="dropdown-item" href="#">- 래쉬가드</a></li>
-                  <li><a class="dropdown-item" href="#">-구명조끼</a></li>
-                  <li><a class="dropdown-item" href="#">-커플룩</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=1">-티셔츠/탑</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=2">-원피스/팬츠</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=3">-올인원</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=4">-맨추맨/후드</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=5">-셔츠/블라우스</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=6">-아우터</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=7">-니트/가디건</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=8">-잠옷/가운</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=9">-한복</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=10">-레인코트</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=11">-구명조끼</a></li>
+                  <li><a class="dropdown-item" href="categorySearch.do?category=12">-커플룩</a></li>
                 </ul>
               </li>
             </ul> 

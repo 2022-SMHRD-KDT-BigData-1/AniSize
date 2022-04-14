@@ -28,37 +28,46 @@ public class UnknownController {
 //		Path currentPath = Paths.get("");
 //		String path = currentPath.toAbsolutePath().toString();
 //		System.out.println("현재 작업 경로: " + path);
-		List<ProductStockVO> psList = mapper.getProductStock();
-		String[] size = {"s","m","l","xl"};	
-		for (int i = 0; i < psList.size(); i++) {
-			int pd_num = psList.get(i).getPd_num();
-			int pd_price = mapper.selectProductPrice(pd_num);
-			String option = psList.get(i).getStk_option();
-			if (option == null) {
-				for (int j = 0; j < size.length; j++) {
-					ProductStockVO vo = new ProductStockVO();
-					vo.setPd_num(pd_num);
-					vo.setStk_quantity(100);
-					vo.setStk_price(pd_price);
-					vo.setStk_option(null);
-					vo.setStk_size(size[j]);
-					mapper.insertProductStock(vo);
-				}
-			}else {
-				String[] optionList = option.split(",");
-				for(int j = 0; j<optionList.length; j++) {
-					for (int k = 0; k < size.length; k++) {
-						ProductStockVO vo = new ProductStockVO();
-						vo.setPd_num(pd_num);
-						vo.setStk_quantity(100);
-						vo.setStk_price(pd_price);
-						vo.setStk_option(optionList[j]);
-						vo.setStk_size(size[k]);
-						mapper.insertProductStock(vo);
-					}
-				}
-			}
-		}
+		
+		
+		
+		
+		
+//		List<ProductStockVO> psList = mapper.getProductStock();
+//		String[] size = {"s","m","l","xl"};	
+//		for (int i = 0; i < psList.size(); i++) {
+//			int pd_num = psList.get(i).getPd_num();
+//			int pd_price = mapper.selectProductPrice(pd_num);
+//			String option = psList.get(i).getStk_option();
+//			if (option == null) {
+//				for (int j = 0; j < size.length; j++) {
+//					ProductStockVO vo = new ProductStockVO();
+//					vo.setPd_num(pd_num);
+//					vo.setStk_quantity(100);
+//					vo.setStk_price(pd_price);
+//					vo.setStk_option(null);
+//					vo.setStk_size(size[j]);
+//					mapper.insertProductStock(vo);
+//				}
+//			}else {
+//				String[] optionList = option.split(",");
+//				for(int j = 0; j<optionList.length; j++) {
+//					for (int k = 0; k < size.length; k++) {
+//						ProductStockVO vo = new ProductStockVO();
+//						vo.setPd_num(pd_num);
+//						vo.setStk_quantity(100);
+//						vo.setStk_price(pd_price);
+//						vo.setStk_option(optionList[j]);
+//						vo.setStk_size(size[k]);
+//						mapper.insertProductStock(vo);
+//					}
+//				}
+//			}
+//		}
 
 	}
+	
+	
+	
+	
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.smhrd.model.FilterMapper">
+    <select id="getHighSalesProductList" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_num from product order by sales_count desc
+    </select>
+    <select id="getHighScoreProductList" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_num from product order by pd_avg_score desc
+    </select>
+    
+    <select id="selectCategoryProductList" resultType="kr.smhrd.model.ProductVO>
+        select pd_name, pd_price, pd_num from product where pd_cate_num = #{pd_cate_num}
+    </select>
+</mapper>

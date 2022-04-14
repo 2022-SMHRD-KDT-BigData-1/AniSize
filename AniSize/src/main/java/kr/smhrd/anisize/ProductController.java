@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.smhrd.model.ProductMapper;
 import kr.smhrd.model.ProductStockVO;
@@ -24,20 +25,23 @@ public class ProductController {
 	@RequestMapping("/product.do")
 	public void product(Model model, int pd_num) {
 		ProductVO product = productMapper.selectProduct(pd_num);
-		ReviewVO review = reviewMapper.selectProductReview(pd_num);
-		int countReview = reviewMapper.countReview(pd_num);
-		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
 		model.addAttribute("product", product);
+		ReviewVO review = reviewMapper.selectProductReview(pd_num);
 		model.addAttribute("review", review);
-		model.addAttribute("countReview", countReview);
-		model.addAttribute("productStockList", productStockList);
+		int countReview = reviewMapper.countReview(pd_num);
+		List<String> stkOptionList = productMapper.selectStkOptionList(pd_num);
+		model.addAttribute("stkOptionList", stkOptionList);
+		model.addAttribute("countReview", countReview); 
+//		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
+//		model.addAttribute("productStockList", productStockList);
 	}
-//	@RequestMapping("/product.do")
-//	public void product() {
-//	}
-	@RequestMapping("/best.do")
-	public void best() {
+	@RequestMapping("/selectOptionStock.do")
+	public @ResponseBody List<ProductStockVO> selectOptionStock(ProductStockVO vo){
+		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo.getPd_num(),vo.getStk_option());
+		//나오는게 사이즈 , 가격, 재고
+		return stockList;
 	}
+
 	@RequestMapping("/highScoreProduct.do")
 	public String highScoreProduct(Model model) {
 		List<ProductVO> product = productMapper.highScoreProduct();
