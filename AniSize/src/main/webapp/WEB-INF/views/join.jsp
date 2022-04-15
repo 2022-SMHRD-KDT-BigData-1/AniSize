@@ -94,22 +94,22 @@ html, body {
 			<p style="text-align: right; font-size: 13px; font-weight: bold">
 				<span style="color: red">*</span>는 필수사항 입니다.
 			</p>
-			<span style="font-size: 13px">아이디<span
-				style="color: red">*</span></span>
+			<span style="font-size: 13px">아이디<span style="color: red">*</span>
+			
 			<form action="joinInsert.do" method="post">
 
-				<input type="email" class="form-control" id="email" placeholder="아이디(이메일)" name="mem_email" /> 
+				<input type="email" class="form-control my-2" id="email" placeholder="아이디(이메일)" name="mem_email" /> 
 				<font id = "checkId" size = "2" color="red"></font>
 				<span style="font-size: 13px">비밀번호<span style="color: red">*</span></span> 
-				<input type="password" class="form-control" id="password" placeholder="비밀번호" name="mem_pw" />
-				<input type="password" class="form-control" id="passwordCk" placeholder="비밀번호 확인" /> 
+				<input type="password" class="form-control my-2" id="password" placeholder="비밀번호" name="mem_pw" />
+				<input type="password" class="form-control my-2" id="passwordCk" placeholder="비밀번호 확인" /> 
 				<span style="font-size: 13px">닉네임<span style="color: red">*</span></span> 
-				<input type="text" class="form-control" id="nick" placeholder="닉네임" name="mem_nick" /> 
+				<input type="text" class="form-control my-2" id="nick" placeholder="닉네임" name="mem_nick" /> 
 				<font id = "checkNick" size = "2"></font>
 				<span style="font-size: 13px">전화번호<span style="color: red">*</span></span> 
-				<input type="text" class="form-control" id="tel" placeholder="전화번호" name="mem_tel" /> 
+				<input type="text" class="form-control my-2" id="tel" placeholder="전화번호" name="mem_tel" /> 
 				<span style="font-size: 13px">주소<span style="color: red">*</span></span>
-				<input type="text" class="form-control" id="address" placeholder="주소" name="mem_address" />
+				<input type="text" class="form-control my-2" id="address" placeholder="주소" name="mem_address" />
 		</div>
 
 		<br />
