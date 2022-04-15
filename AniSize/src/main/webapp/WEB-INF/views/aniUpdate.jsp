@@ -82,45 +82,46 @@ html, body {
 			<form action="insertAniInfo.do" method="post">
 				<input type="hidden" id="mem_num" name="mem_num" value="100">
 
-				<input type="text" class="form-control" id="ani_name" placeholder="강아지 이름" name="ani_name" required /> 
-				<input type="text" class="form-control" id="ani_kind" placeholder="견종" name="ani_kind" required /> 
+				<input type="text" class="form-control my-2" id="ani_name" placeholder="강아지 이름" name="ani_name" required /> 
+				<input type="text" class="form-control my-2" id="ani_kind" placeholder="견종" name="ani_kind" required /> 
 				<select class="form-select" aria-label="Default select example" name="ani_sex" required>
 					<option selected>성별</option>
 					<option value="f">암컷</option>
 					<option value="m">수컷</option>
-				</select> <input type="number" class="form-control" id="ani_weight" placeholder="체중 (숫자만 입력)" name="ani_weight" min=0 step='0.1' required/>
+				</select> <input type="number" class="form-control my-2" id="ani_weight" placeholder="체중 (숫자만 입력)" name="ani_weight" min=0 step='0.1' required/>
 				<hr/>
 				<p
 					style="text-align: left; font-size: 15px; font-weight: bold; margin-bottom: 0px;">
 					반려동물 사진으로 사이즈 측정하기</p>
 				<p
 					style="text-align: left; font-size: 12px; font-weight: bold; margin-bottom: 0px;">
-					이미지를 클릭하면 사진을 업로드 할 수 있습니다.</p>
-				<input type="number" class="form-control" id="ani_back_len" placeholder="등 길이" name="ani_back_len" min=0 step='0.1'/>
-				<input type="number" class="form-control" id="ani_neck_len" placeholder="목 둘레" name="ani_neck_len" min=0 step='0.1'/>
-				<input type="number" class="form-control" id="ani_chest_len" placeholder="몸통(가슴) 둘레" name="ani_chest_len" min=0 step='0.1'/>
+					파일선택을 클릭하면 사진을 업로드 할 수 있습니다.</p>
+				<input type="number" class="form-control my-2" id="ani_back_len" placeholder="등 길이" name="ani_back_len" min=0 step='0.1'/>
+				<input type="number" class="form-control my-2" id="ani_neck_len" placeholder="목 둘레" name="ani_neck_len" min=0 step='0.1'/>
+				<input type="number" class="form-control my-2" id="ani_chest_len" placeholder="몸통(가슴) 둘레" name="ani_chest_len" min=0 step='0.1'/>
 
 				<p
 					style="text-align: left; font-size: 15px; font-weight: bold; margin-bottom: 0px;">
 					옆면 사진 (신용카드와 같이 찍은 사진)</p>
 
 				<div class="input-group">
-					<input type="file" class="form-control" id="inputGroupFile04"
+					<input type="file" class="form-control my-2" id="inputGroupFile04"
 						aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
 					<img src="resources/images/dogsize.PNG" class="img-thumbnail"
-						style="display: flex; justify-content: center; align-items: center" />
+						style="display: flex; justify-content: center; align-items: center" /><br>
 				</div>
 
-				<p
+				<!-- <p
 					style="text-align: left; font-size: 15px; font-weight: bold; margin-bottom: 0px;">
 					정면 사진 (신용카드와 같이 찍은 사진)</p>
 
 				<div class="input-group">
-					<input type="file" class="form-control" id="inputGroupFile04"
+					<input type="file" class="form-control my-2" id="inputGroupFile04"
 						aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
 					<img src="resources/images/dogfrontsize.PNG" class="img-thumbnail"
 						style="display: flex; justify-content: center; align-items: center" />
-				</div>
+				</div> -->
+				
 				<div class="d-grid gap-1 col-12 mx-auto">
 					<button class="btn btn-outline-secondary" type="button"
 						id="inputGroupFileAddon04">사이즈 측정</button>
