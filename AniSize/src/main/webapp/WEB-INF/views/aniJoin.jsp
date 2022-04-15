@@ -149,15 +149,21 @@ html, body {
     
     <script>
     function predict() {
+    	var form = $('#inputGroupFile04')[0].files[0];
+		var formData = new FormData();
+		formData.append('img', form);
     	$.ajax({
-            url : "http://localhost:5000/predict",
+            url : "http://222.102.104.24:5000/predict",
             type : "POST",
-            data : {data:"안녕"},
+            enctype: 'multipart/form-data',
+            data : formData,
+            processData: false,
+	        contentType: false,
+	        cache: false,
             success : function(result){
-                console.log(result[0]);
-                $('#ani_back_len').val(result[1]);
-                $('#ani_neck_len').val(result[2]);
-                $('#ani_chest_len').val(result[3]);
+                $('#ani_back_len').val(result[0]);
+                $('#ani_neck_len').val(result[1]);
+                $('#ani_chest_len').val(result[2]);
             },
             error : function(){
             	alert("error!"); 
