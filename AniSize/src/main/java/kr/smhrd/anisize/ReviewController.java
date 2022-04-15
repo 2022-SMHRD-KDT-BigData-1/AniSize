@@ -1,12 +1,16 @@
 package kr.smhrd.anisize;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.smhrd.model.ProductMapper;
 import kr.smhrd.model.PurchaseHistoryMapper;
+import kr.smhrd.model.PurchaseHistoryVO;
 import kr.smhrd.model.ReviewMapper;
 import kr.smhrd.model.ReviewVO;
 
@@ -14,17 +18,26 @@ import kr.smhrd.model.ReviewVO;
 public class ReviewController {
 	@Inject
 	private ReviewMapper reviewMapper;
+	@Inject
 	private PurchaseHistoryMapper phMapper;
+	@Inject
 	private ProductMapper productMapper;
 	
 	@RequestMapping("/review.do")
-	public void review() {
+	public void review(Model model, int mem_num) {
+		List<PurchaseHistoryVO> writeReviewList = reviewMapper.getWriteReviewList(mem_num);
+		model.addAttribute("writeReviewList", writeReviewList);
 	}
 	@RequestMapping("/review1_2.do")
 	public void review1_2() {
 	}
 	@RequestMapping("/review2.do")
 	public void review2() {
+		//동물 정보 가져오고
+		//재고 정보 가져와서 보여주고 
+		
+		인설트 이동하면?
+	
 	}
 	@RequestMapping("/review3_1.do")
 	public void review3_1() {
@@ -41,7 +54,7 @@ public class ReviewController {
 	
 	@RequestMapping("/insertProductReview.do")
 	public void insertProductReview(ReviewVO vo) {
-		vo.setMem_num();
+		
 		
 		reviewMapper.insertProductReview(vo);
 //		vo.pd_num 왜 안되는지 vo를 넘겨서 맵퍼에서 vo.pd_num을 해야하는지 

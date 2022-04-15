@@ -372,11 +372,11 @@
       <hr style="margin-block-end: 10px" /> 
       <!--구매 날짜-->
       
-      <%-- <c:forEach items=""> --%>
+      <c:forEach items="${writeReviewList}" var="ph">
       
       <div class="day">
         <div style="font-size: 15px; margin-left: 10px;">구매일</div>
-        <div style="font-size: 15px; margin-left: 10px;">2022-04-13</div>
+        <div style="font-size: 15px; margin-left: 10px;">${ph.ph_date}</div>
       </div>
     
       <!-- 상품 이미지 (썸네일)-->
@@ -385,7 +385,7 @@
           <div class="one">
             <!-- 예시 이미지 -->
             <img
-              src="resources/images/2.jpg"
+              src="images/product/${ph.pd_num}/thumnail.jpg"
               style="
                 width: 120px;
                 height: 120px;
@@ -395,24 +395,43 @@
           </div>
         </div>
         <div class="row2">
-          <div class="tow">브랜드명</div>
+          <div class="tow">${ph.brand}</div>
           <!--브랜드명-->
-          <div class="three">상품명</div>
+          <div class="three">${ph.pd_name}</div>
           <!--상품명-->
-          <div class="four">사이즈</div>
+          <div class="four">${ph.stk_size}</div>
           <!--사이즈-->
         </div>
       </div>
     <div class="button_grid">
-     	<div><a href="review2.do"><button class="re-btn" >리뷰 작성</button></a></div>
+    
+     	<div><a href="javascript:hiddenQuery('review2.do','${ph.ph_num}')"><button class="re-btn" >리뷰 작성</button></a></div>
 <!--          <div><a href="review3_1.do"><button class="re-btn" >상품사진 후기 작성</button></a></div>
         <div><a href="review3_2.do"><button class="re-btn" >일반 후기 작성</button></a></div>
         <div><a href="review3_3.do"><button class="re-btn" >사이즈 후기 작성</button></a></div>  -->
     </div>  
      <hr class="hrbar" style="margin-block-start: 20px; border: solid 10px #999;" /> 
-	<%-- </c:forEach> --%>
+	</c:forEach> 
    
 	<jsp:include page="menuBar.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+	    function hiddenQuery(url, mem_num){
+	        let f = document.createElement('form');
+	        let obj;
+	        obj = document.createElement('input');
+	        obj.setAttribute('type', 'hidden');
+	        obj.setAttribute('name', 'ph_num');
+	        obj.setAttribute('value', ph_num);
+	        
+	        f.appendChild(obj);
+	        f.setAttribute('method', 'post');
+	        f.setAttribute('action', url);
+	        document.body.appendChild(f);
+	        f.submit();
+	    }
+ 
+    </script>
 
   
 

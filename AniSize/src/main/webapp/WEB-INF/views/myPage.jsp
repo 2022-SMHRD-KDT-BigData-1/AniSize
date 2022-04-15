@@ -222,8 +222,8 @@
         	<c:when test="${!empty member}">
 		        <a class="" href="memUpdate.do">회원정보 수정</a>
 		        <a class="" href="aniUpdate.do">반려동물 정보 수정</a>
-      			<a class="" href="purchaseHistory.do">구매 내역</a>
-		        <a class="" href="review.do">상품 리뷰</a>
+      			<a class="" href="javascript:hiddenQuery('purchaseHistory.do','${member.mem_num}')">구매 내역</a>
+		        <a class="" href="javascript:hiddenQuery('review.do', '${member.mem_num}')">상품 리뷰</a>
 		        <a class="" href="#">입점 문의</a>
         	</c:when>
         	<c:otherwise>
@@ -236,6 +236,24 @@
         </c:choose>
       </div>
     </div>
+    <script type="text/javascript">
+    function hiddenQuery(url, mem_num){
+        let f = document.createElement('form');
+        let obj;
+        obj = document.createElement('input');
+        obj.setAttribute('type', 'hidden');
+        obj.setAttribute('name', 'mem_num');
+        obj.setAttribute('value', mem_num);
+        
+        f.appendChild(obj);
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', url);
+        document.body.appendChild(f);
+        f.submit();
+    }
+ 
+    </script>
+    
     <br>
     <br>
 

@@ -24,13 +24,13 @@ public class PurchaseHistoryController {
 	
 	
 	@RequestMapping("/purchaseHistory.do")
-	public void purchaseHistory(Model model, HttpSession session) {
-		List<PurchaseHistoryVO> phList = phMapper.getPhList(8);
+	public void purchaseHistory(Model model, HttpSession session, int mem_num) {
+		List<PurchaseHistoryVO> phList = phMapper.getPhList(mem_num);
 		model.addAttribute("phList", phList);
 	}
 	@RequestMapping("/purchaseHistoryDetail.do")
-	public void purchaseHistoryDetail(Model model, int num) {
-		PurchaseHistoryVO phDetail = phMapper.selectPhDetail(num);
+	public void purchaseHistoryDetail(Model model, int ph_num) {
+		PurchaseHistoryVO phDetail = phMapper.selectPhDetail(ph_num);
 		model.addAttribute("phDetail", phDetail);
 	}
 	

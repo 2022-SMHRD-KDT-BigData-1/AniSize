@@ -21,7 +21,8 @@ public class PurchaseHistoryVO {
 	private String recipient_tel;
 	private String delivery_requests;
 	private String payment;
-	
 	private String pd_name;
+	private int review_done;
+	private String brand;
 	
 }

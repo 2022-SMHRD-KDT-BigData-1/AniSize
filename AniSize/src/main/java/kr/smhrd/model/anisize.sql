@@ -200,3 +200,7 @@ insert into product_category
 values(null, '구명조끼');
 insert into product_category
 values(null, '커플룩');
+
+select * 
+	from purchase_history as ph, product as pd 
+	where ph.pd_num = pd.pd_num;

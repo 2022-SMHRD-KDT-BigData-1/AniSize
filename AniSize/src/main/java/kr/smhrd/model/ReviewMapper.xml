@@ -21,4 +21,13 @@
     <delete id="deleteReview">
         delete from product_review where pd_num = #{pd_num} and mem_num = #{mem_num} 
     </delete>
+    
+    <select id="getWriteReviewList" resultType="kr.smhrd.model.PurchaseHistoryVO">
+		 select *
+			from purchase_history as ph, product as pd, product_stock as ps
+			where ph.mem_num = #{mem_num}
+		    and ph.pd_num = pd.pd_num
+		    and ph.stk_num = ps.stk_num
+		    and ph.review_done = 0
+    </select>
 </mapper>

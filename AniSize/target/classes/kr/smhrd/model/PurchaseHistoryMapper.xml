@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.model.PurchaseHistoryMapper">
     <select id="getPhList" resultType="kr.smhrd.model.PurchaseHistoryVO">
-        select ph.*, product.pd_name
-        from purchase_history as ph
-        join product
-        on ph.pd_num = product.pd_num
-        where mem_num = #{mem_num}
+		 select *
+			from purchase_history as ph, product as pd, product_stock as ps
+			where ph.mem_num = #{mem_num}
+		    and ph.pd_num = pd.pd_num
+		    and ph.stk_num = ps.stk_num
     </select>
     
     <select id="selectPhDetail" resultType="kr.smhrd.model.PurchaseHistoryVO">
-		select ph.*, product.pd_name
-        from purchase_history as ph
-        join product
-        on ph.pd_num = product.pd_num
+		select *
+        from purchase_history as ph, product as pd, product_stock as ps
         where ph_num = #{ph_num}
+        and ph.pd_num = pd.pd_num
+		and ph.stk_num = ps.stk_num
 	</select>
 	
 <!--     <select id="getPhList" resultType="kr.smhrd.model.PurchaseHistoryVO">

@@ -383,11 +383,16 @@
       </div>
       <hr style="margin-block-end: 10px; margin-bottom: 20px;" /> 
       <h4>상품은 만족하셨나요?</h3>
+      <form action="insertProductReview.do" method="post">
+      <input type="hidden" name="mem_num" value="${member.mem_num}">
+      <input type="hidden" name="pd_num" value="">
+      stock 재고 검색해서 가져온다 아니다 구매내역을 가져온다 
+     
     <span class="star">
         
         ★★★★★
         <span>★★★★★</span>
-        <input type="range" name="review_score" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+        <input type="range" name="review_score" oninput="drawStar(this)" value="1" step="1" min="0" max="10" required>
     </span>
  
     <!--별점 채우기-->
@@ -494,7 +499,7 @@
       <hr class="hrbar" style="margin-block-start: 20px; border: solid 10px #999;" /> 
     
       <script>
-    ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+      (/* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
       imageView = function imageView(att_zone, btn){
     
         var attZone = document.getElementById(att_zone);
@@ -517,7 +522,6 @@
             imageLoader(f);
           }
         }  
-        
       
         // 탐색기에서 드래그앤 드롭 사용
         attZone.addEventListener('dragenter', function(e){
@@ -542,8 +546,6 @@
           }
           
         }, false)
-        
-    
         
         /*첨부된 이미리즐을 배열에 넣고 미리보기 */
         imageLoader = function(file){
@@ -589,7 +591,7 @@
           }
           div.appendChild(img)
           div.appendChild(btn)
-          return div
+          return div;
         }
       }
     )('att_zone', 'btnAtt')
@@ -607,8 +609,9 @@
         border-top: 0.1px solid #c370de;
       "
     >
-      <button style="width: 100%; height: 50px; background-color: #a657e6;  color: #fff; border: 0px; font-size: 15px;">리뷰 등록</button>
+      <button type="submit" style="width: 100%; height: 50px; background-color: #a657e6;  color: #fff; border: 0px; font-size: 15px;">리뷰 등록</button>
     </nav>
+     </form>
 
 
 
