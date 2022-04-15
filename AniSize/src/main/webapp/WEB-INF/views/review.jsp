@@ -416,7 +416,7 @@
 	<jsp:include page="menuBar.jsp"></jsp:include>
 	
 	<script type="text/javascript">
-	    function hiddenQuery(url, mem_num){
+	    function hiddenQuery(url, ph_num){
 	        let f = document.createElement('form');
 	        let obj;
 	        obj = document.createElement('input');

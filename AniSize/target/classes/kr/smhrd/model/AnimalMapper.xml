@@ -6,7 +6,7 @@
         values(#{ani_name},#{mem_num},#{ani_sex},#{ani_kind},#{ani_weight},#{ani_back_len},#{ani_neck_len},#{ani_chest_len})
     </insert>
     
-    <select id="getAniInfoList" resultType="kr.smhrd.model.AnimalVO">
-        select * from animal
+    <select id="getAniInfo" resultType="kr.smhrd.model.AnimalVO">
+        select * from animal where mem_num = #{mem_num}
     </select> 
 </mapper>

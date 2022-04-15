@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -361,7 +362,7 @@
           <div class="one">
             <!-- 예시 이미지 -->
             <img
-              src="resources/images/2.jpg"
+              src="images/product/${ph.pd_num}/thumnail.jpg"
               style="
                 width: 120px;
                 height: 120px;
@@ -372,11 +373,11 @@
           </div>
         </div>
         <div class="row2">
-          <div class="tow">브랜드명</div>
+          <div class="tow"></div>
           <!--브랜드명-->
-          <div class="three">상품명</div>
+          <div class="three">${ph.pd_name}</div>
           <!--상품명-->
-          <div class="four">사이즈</div>
+          <div class="four">${ph.stk_size}</div>
           <!--사이즈-->
         </div>
         
@@ -384,9 +385,8 @@
       <hr style="margin-block-end: 10px; margin-bottom: 20px;" /> 
       <h4>상품은 만족하셨나요?</h3>
       <form action="insertProductReview.do" method="post">
-      <input type="hidden" name="mem_num" value="${member.mem_num}">
+      <input type="hidden" name="ph_num" value="${ph.ph_num}">
       <input type="hidden" name="pd_num" value="">
-      stock 재고 검색해서 가져온다 아니다 구매내역을 가져온다 
      
     <span class="star">
         
@@ -406,13 +406,6 @@
    </div>  
    <div class="review-share-view">
     <ul class="review-check">
-      <li class="n-radio-tab" value="1452">
-        <em class="label" style="font-size: 13px;">성별</em>
-        <input type="radio" id="choice0_25" value="25" name="answer0">
-        <label for="choice0_25">수컷</label>
-        <input type="radio" id="choice0_11" value="11" name="answer0">
-        <label for="choice0_11">암컷</label>
-      </li>
       <li>
         <em class="label" style="font-size: 13px;">목둘레</em>
         <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
