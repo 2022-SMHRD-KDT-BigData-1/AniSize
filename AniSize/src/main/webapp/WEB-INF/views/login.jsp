@@ -69,6 +69,9 @@ p .btn {
 	font-weight: normal;
 	font-style: normal;
 }
+h3 {
+	text-align: center;
+}
 </style>
 </head>
 
@@ -100,7 +103,7 @@ p .btn {
 				</c:otherwise>
 			</c:choose>
 			<form action="selectLogin.do">
-				<input type="email" class="form-control" id="email"
+				<input type="email" class="form-control my-2" id="email"
 					placeholder="아이디(이메일)" name="mem_email" /> <input type="password"
 					class="form-control" id="password" placeholder="비밀번호" name="mem_pw" />
 		</div>
@@ -111,10 +114,11 @@ p .btn {
 			</form>
 			<hr />
 			
-			<p class="btn" style="color: rgb(173, 103, 234); background-color: #ffffff">
-				<a href="join.do">회원이 아닐경우
-				 <span style="padding: 5px 5px 5px 5px; border-radius: 5px; border: 1px solid rgb(173, 103, 234);">회원가입</span>
-			</a></p>
+			<p class="btn" style="color: rgb(173, 103, 234); background-color: #ffffff; ">
+                <a href="join.do" style="text-decoration: none; color: rgb(173, 103, 234)">회원이 아닐경우
+                    <span style="padding: 5px 5px 5px 5px; border-radius: 5px; border: 1px solid rgb(173, 103, 234);">회원가입</span>
+                </a>
+            </p>
 		</div>
 	</div>
 
