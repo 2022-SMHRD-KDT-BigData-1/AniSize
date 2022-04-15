@@ -30,7 +30,11 @@ public class HomeController {
 	public void home(Model model, int pd_cate_num) {
 		List<ProductVO> productList = filterMapper.selectCategoryProductList();
 		model.addAttribute("productList", productList);
+	}	
+	@RequestMapping("/category.do")
+	public void category() {
 	}
+	
 
 
 	
