@@ -605,7 +605,7 @@
           </li>
           <li class="review-evaluation2__item">
               몸무게
-              <span>10cm</span>
+              <span>10kg</span>
           </li>
       </ul>
       

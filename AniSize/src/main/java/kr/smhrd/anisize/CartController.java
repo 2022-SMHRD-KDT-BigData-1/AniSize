@@ -35,6 +35,9 @@ public class CartController {
 	@RequestMapping("/order.do")
 	public void order() {
 	}
+	@RequestMapping("/orderOK.do")
+	public void orderOK() {
+	}
 	@RequestMapping("/buy.do")
 	public void buy() {
 	}
