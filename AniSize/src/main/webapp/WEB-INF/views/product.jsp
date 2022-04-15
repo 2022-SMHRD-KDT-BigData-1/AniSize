@@ -388,7 +388,7 @@
 						<c:choose>
 						<c:when test="${!empty stkOptionList}">
 							
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id = "option" onchange="optionClick()">
 	                            <option selected>[필수] 색상 선택</option>
 	                            <c:forEach items="${stkOptionList}" var="option">
 	                          	  <option value="${option}" onclick="optionClick()">${option}</option>
@@ -399,8 +399,9 @@
                         <div class="opton2">
                             <!-- 사이즈 옵션에  <span>--------------------------------[ 추천 사이즈 ]</span> 표시 -->
                             <!-- 재고 5개 미만일 시 수량 보여줌 <span>-----------------------[ 3개 남음 ]</span>  -->
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize" >
                                 <option selected>[필수] 사이즈 선택</option>
+                                	<!-- <option value=""></option> -->
      <!--                            <option value="s">S</option>
                                 <span>-----------------------[ 3개 남음 ]</span>
                                 <option value="m">M
@@ -464,15 +465,19 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script type="text/javascript">  /* ajax 재고 가져오기 */
-	function optionClick(values){
+	function optionClick(){
+		let option = $('#option').val();
+	 	let d = {"stk_option" : option, "pd_num" : '${product.pd_num}'}
+	 	console.log(d);
 		$.ajax({
 			url : 'selectOptionStock.do',
 			type : 'post',
-			data : {"stk_option": values},
+			data : {"stk_option": option},
 			dataType : 'json',
-			success : fuction(res){
+			success : function(res){
 				for(let i = 0; i<res.length; i++){
 					size = `
 						<option value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>

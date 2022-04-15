@@ -398,7 +398,9 @@
     <!--별점 채우기-->
     <script>
          const drawStar = (target) => {
-            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+        	 console.log(target.value)
+        	 // ${target.value * 10}
+            document.querySelector(`.star span`).style.width = (target.value * 10) + `%`;
         }
     </script>
      <div class="revuew-share">
@@ -406,26 +408,34 @@
    </div>  
    <div class="review-share-view">
     <ul class="review-check">
+    <c:if test="${!empty animal.ani_neck_len}">
       <li>
         <em class="label" style="font-size: 13px;">목둘레</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="${animal.ani_neck_len}" style="ime-mode:disabled;">
         <span>cm</span>
       </li>
+    </c:if>
+    <c:if test="${!empty animal.ani_chest_len}">
       <li>
         <em class="label" style="font-size: 13px;">가슴둘레</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="${animal.ani_chest_len}" style="ime-mode:disabled;">
         <span>cm</span>
       </li>
+    </c:if>
+    <c:if test="${!empty animal.ani_back_len}">
       <li>
         <em class="label" style="font-size: 13px;">등길이</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="${animal.ani_back_len}" style="ime-mode:disabled;">
         <span>cm</span>
       </li>
+    </c:if>
+    <c:if test="${!empty animal.ani_weight}">
       <li>
         <em class="label" style="font-size: 13px;">몸무게</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="${animal.ani_weight}" style="ime-mode:disabled;">
         <span>kg</span>
       </li>
+    </c:if>
       </ul>
    </div>
 

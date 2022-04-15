@@ -34,7 +34,7 @@ public class ReviewController {
 		List<PurchaseHistoryVO> writeReviewList = reviewMapper.getWriteReviewList(mem_num);
 		model.addAttribute("writeReviewList", writeReviewList);
 	}
-	@RequestMapping("/review1_2.do")
+	@RequestMapping("/review1_2.do") //리뷰내역
 	public void review1_2() {
 	}
 	@RequestMapping("/review2.do")
