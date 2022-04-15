@@ -56,13 +56,21 @@
     />
 
     <link rel="stylesheet" href="resources/css/style.css" />
+    
+    <style>
+   /* 메뉴바 높이 설정 : home page 만 */
+    .navbar {
+    height : 48px
+    }
+    </style>
+    
   </head>
 
   <body>
     <div class="container">
       <div class="brand" >
       <img src="resources/images/logo.jpg" style="width: 200px; height: 150px; margin-left: 60px;" />
-    </div>
+    
       <br />
 
       <!-- Swiper -->
@@ -200,11 +208,13 @@
     <!-- 메뉴바 -->
 	<jsp:include page="menuBar.jsp"></jsp:include>
 
+</div>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    </div>
   </body>
 </html>
