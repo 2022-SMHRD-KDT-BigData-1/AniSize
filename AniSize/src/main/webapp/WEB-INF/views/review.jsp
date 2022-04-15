@@ -23,6 +23,17 @@
       href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200&display=swap"
       rel="stylesheet"
     />
+      <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Google Fonts : MuseoModerno 한글-->
     <link
       href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap"
@@ -49,7 +60,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+	<link rel="stylesheet" href=" resources/css/style.css" />
     <style>
       @font-face {
         font-family: "InfinitySans-RegularA1";
@@ -249,9 +260,9 @@
         }
         .star {
             position: relative;
-            font-size: 3.3rem;
+            font-size: 2rem;
             text-align: center;
-            margin-left: 45px;
+            
             color: #ddd;
             }
   
@@ -321,6 +332,92 @@
         .hrbar{
             color: #999;
         }
+          .nav-link{
+          color: #595959;
+        }
+        .nav-link:focus, .nav-link:hover {
+            color: rgb(195, 120, 224);
+        }
+          
+    
+            /**/
+        .nav{
+          margin-left: 0px;
+          border: none;
+          font-size: 15px;
+      
+
+        }
+        .nav-item{
+          margin-left: 30px;
+        }
+         
+        
+            .review-evaluation {
+            display: flex;
+            padding: 10px 0 0 53px;
+            }
+            .review-evaluation__list {
+            display: flex;
+            width: auto;
+            justify-content: flex-start;
+            padding: 10px;
+            margin-left: -97px;
+            }
+            ol,li{
+                list-style: none;
+            }
+            .review-evaluation__item {
+            width: 100px;
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            height: 25px;
+            padding: 0 8px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #aaa;
+            align-items: center;
+            }
+            .review-evaluation__item>span {
+            padding-left: 5px;
+            color: #595959;
+            }
+            /**/
+            
+            .review-evaluation2 {
+            display: flex;
+            padding: 10px 0 0 53px;
+            }
+            .review-evaluation2__list {
+            display: flex;
+            width: auto;
+            justify-content: flex-start;
+            padding: 10px;
+            margin-left: -97px;
+            }
+            ol,li{
+                list-style: none;
+            }
+            .review-evaluation2__item {
+            width: 96px;
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            height: 25px;
+            padding: 0 8px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #aaa;
+            align-items: center;
+            }
+            .review-evaluation2__item>span {
+            padding-left: 5px;
+            color: #595959;
+            }
+             
         
 
       
@@ -346,32 +443,19 @@
           <h3 style="margin-right: 50px; margin-top: 0px">상품 리뷰 작성</h3>
         </div>
       </div>
-      <ul class="nav nav-tabs" role="tablist" style="border: none; margin-top: 50px;">
+          <hr style="margin-block-end: 10px" /> 
+      <ul class="nav" role="tablist">
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            data-toggle="tab"
-            type="button"
-            href="#detail"
-            style="border: none; font-size: 15px; padding-left: 50px; "
-            >후기작성</a
-          >
+          <a class="nav-link " data-toggle="pill" href="#home" style="margin-right: 70px; margin-left: ;">후기작성</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            data-toggle="tab"
-            type="button"
-            href="#review"
-            id="review_title"
-            style="border: none; font-size: 15px; margin-left: 70px;"
-            >후기내역</a
-          >
+          <a class="nav-link" data-toggle="pill" href="#menu1">후기내역</a>
         </li>
       </ul>
       <hr style="margin-block-end: 10px" /> 
       <!--구매 날짜-->
-      
+      <div class="tab-content">
+       <div id="home" class="container tab-pane active"><br>
       <c:forEach items="${writeReviewList}" var="ph">
       
       <div class="day">
@@ -432,6 +516,111 @@
 	    }
  
     </script>
+    </div>
+      <div id="menu1" class="container tab-pane fade"><br>
+                      <!--구매 날짜-->
+           <div class="day" >
+            <div style="font-size: 15px; margin-left: 10px; margin-top: 20px;">구매일</div>
+            <div style="font-size: 15px; margin-left: 10px; margin-top: 20px;">2022-04-13</div>
+          </div>
+        
+      <!-- 상품 이미지 (썸네일)-->
+      <div class="row">
+        <div class="detail_productname">
+          <div class="one">
+            <!-- 예시 이미지 -->
+            <img
+              src="resources/images/2.jpg"
+              style="
+                width: 120px;
+                height: 120px;
+                padding: 0px;
+           
+              "
+            />
+          </div>
+        </div>
+        <div class="row2">
+          <div class="tow">브랜드명</div>
+          <!--브랜드명-->
+          <div class="three">상품명</div>
+          <!--상품명-->
+          <div class="four">사이즈</div>
+          <!--사이즈-->
+        </div>
+        
+      </div>
+     
+    <span class="star">
+        
+        ★★★★★
+        <span>★★★★★</span>
+        <input type="range" name="review_score" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+    </span>
+ 
+    <!--별점 채우기-->
+    <script>
+         const drawStar = (target) => {
+            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+        }
+    </script>
+    <br>
+    <!--이미지 넣는구간-->
+    <img src="resources/images/2.jpg" style="width: 200px; height: 200px;">
+    <p style="font-size: 15px; margin-top: 20px;">구매후기 작성한 내용넣는구간</p>
+    <div class="review-evaluation">
+        <ul class="review-evaluation__list">
+            <li class="review-evaluation__item">
+                사이즈
+                <span>작아요</span>
+            </li>
+            <li class="review-evaluation__item">
+                밝기
+                <span>보통이에요</span>
+            </li>
+            <li class="review-evaluation__item">
+                색감
+                <span>보통이에요</span>
+            </li>
+            <li class="review-evaluation__item">
+                두께감
+                <span>얇아요</span>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="review-evaluation2">
+      <ul class="review-evaluation2__list">
+          <li class="review-evaluation2__item">
+              목둘레
+              <span>10cm</span>
+          </li>
+          <li class="review-evaluation2__item">
+              등길이
+              <span>10cm</span>
+          </li>
+          <li class="review-evaluation2__item">
+              가슴둘레
+              <span>10cm</span>
+          </li>
+          <li class="review-evaluation2__item">
+              몸무게
+              <span>10cm</span>
+          </li>
+      </ul>
+      
+  </div>
+     <hr class="hrbar" style="margin-block-start: 20px; border: solid 10px #999;" /> 
+
+  
+
+
+
+        
+        </div>
+        
+      </div>
+      
 
   
 
