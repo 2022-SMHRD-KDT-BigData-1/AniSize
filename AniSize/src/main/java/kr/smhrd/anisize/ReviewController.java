@@ -34,7 +34,7 @@ public class ReviewController {
 		List<PurchaseHistoryVO> writeReviewList = reviewMapper.getWriteReviewList(mem_num);
 		model.addAttribute("writeReviewList", writeReviewList);
 	}
-	@RequestMapping("/review1_2.do")
+	@RequestMapping("/review1_2.do") //리뷰내역
 	public void review1_2() {
 	}
 	@RequestMapping("/review2.do")
@@ -53,7 +53,7 @@ public class ReviewController {
 	
 	@RequestMapping("/insertProductReview.do")
 	public void insertProductReview(ReviewVO vo) {
-		
+		System.out.println("리뷰작성버튼은 성공함");
 		reviewMapper.insertProductReview(vo);
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
 		productMapper.updateProductAvgScore(score);

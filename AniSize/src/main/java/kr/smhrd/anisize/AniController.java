@@ -1,14 +1,15 @@
 package kr.smhrd.anisize;
 
+import java.util.List;
+
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.smhrd.model.AnimalMapper;
-import kr.smhrd.model.AnimalVO;
+import kr.smhrd.model.*;
 
 @Controller
 public class AniController {
@@ -16,7 +17,9 @@ public class AniController {
 	AnimalMapper aniMapper;
 	
 	@RequestMapping("/aniJoin.do")
-	public void aniJoin() {
+	public void aniJoin(Model model) {
+		List<AniKindVO> aniKindList = aniMapper.aniKindList();
+		model.addAttribute("aniKindList", aniKindList);
 	}
 	@RequestMapping("/aniUpdate.do")
 	public void aniUpdate () {

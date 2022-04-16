@@ -332,7 +332,6 @@
               display: block;
               clear: both;
             }
-           
 
     </style>
   </head>
@@ -367,7 +366,6 @@
                 width: 120px;
                 height: 120px;
                 padding: 0px;
-           
               "
             />
           </div>
@@ -386,7 +384,8 @@
       <h4>상품은 만족하셨나요?</h3>
       <form action="insertProductReview.do" method="post">
       <input type="hidden" name="ph_num" value="${ph.ph_num}">
-      <input type="hidden" name="pd_num" value="">
+      <input type="hidden" name="ph_num" value="${ph.pd_num}">
+      <!-- <input type="hidden" name="pd_num" value=""> -->
      
     <span class="star">
         
@@ -398,7 +397,9 @@
     <!--별점 채우기-->
     <script>
          const drawStar = (target) => {
-            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+        	 console.log(target.value)
+        	 // ${target.value * 10}
+            document.querySelector(`.star span`).style.width = (target.value * 10) + `%`;
         }
     </script>
      <div class="revuew-share">
@@ -406,64 +407,72 @@
    </div>  
    <div class="review-share-view">
     <ul class="review-check">
+    <c:if test="${!empty animal.ani_neck_len}">
       <li>
         <em class="label" style="font-size: 13px;">목둘레</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="ani_neck_len" id="review_share_height" value="${animal.ani_neck_len}" style="ime-mode:disabled;">
         <span>cm</span>
       </li>
+    </c:if>
+    <c:if test="${!empty animal.ani_chest_len}">
       <li>
         <em class="label" style="font-size: 13px;">가슴둘레</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="ani_chest_len" id="review_share_height" value="${animal.ani_chest_len}" style="ime-mode:disabled;">
         <span>cm</span>
       </li>
+    </c:if>
+    <c:if test="${!empty animal.ani_back_len}">
       <li>
         <em class="label" style="font-size: 13px;">등길이</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="ani_back_len" id="review_share_height" value="${animal.ani_back_len}" style="ime-mode:disabled;">
         <span>cm</span>
       </li>
+    </c:if>
+    <c:if test="${!empty animal.ani_weight}">
       <li>
         <em class="label" style="font-size: 13px;">몸무게</em>
-        <input type="number" class="n-input" placeholder="" name="review_share_height" id="review_share_height" value="" style="ime-mode:disabled;">
+        <input type="number" class="n-input" placeholder="" name="ani_weight" id="review_share_height" value="${animal.ani_weight}" style="ime-mode:disabled;">
         <span>kg</span>
       </li>
+    </c:if>
       </ul>
    </div>
 
     <ul class="review-check">
       <li class="n-radio-tab" value="1452">
         <em class="label">사이즈</em>
-        <input type="radio" id="choice0_25" value="25" name="answer0">
+        <input type="radio" id="choice0_25" value="커요" name="satis_size">
         <label for="choice0_25">커요</label>
-        <input type="radio" id="choice0_11" value="11" name="answer0">
+        <input type="radio" id="choice0_11" value="보통이에요" name="satis_size">
         <label for="choice0_11">보통이에요</label>
-        <input type="radio" id="choice0_20" value="20" name="answer0">
+        <input type="radio" id="choice0_20" value="작아요" name="satis_size">
         <label for="choice0_20">작아요</label>
       </li>
       <li class="n-radio-tab" value="1453">
         <em class="label">밝기</em>
-        <input type="radio" id="choice1_10" value="10" name="answer1">
+        <input type="radio" id="choice1_10" value="밝아요" name="satis_brightness">
         <label for="choice1_10">밝아요</label>
-        <input type="radio" id="choice1_11" value="11" name="answer1">
+        <input type="radio" id="choice1_11" value="보통이에요" name="satis_brightness">
         <label for="choice1_11">보통이에요</label>
-        <input type="radio" id="choice1_18" value="18" name="answer1">
+        <input type="radio" id="choice1_18" value="어두워요" name="satis_brightness">
         <label for="choice1_18">어두워요</label>
       </li>
       <li class="n-radio-tab" value="1454">
         <em class="label">색감</em>
-        <input type="radio" id="choice2_15" value="15" name="answer2">
+        <input type="radio" id="choice2_15" value="선명해요" name="satis_color">
         <label for="choice2_15">선명해요</label>
-        <input type="radio" id="choice2_11" value="11" name="answer2">
+        <input type="radio" id="choice2_11" value="보통이에요" name="satis_color">
         <label for="choice2_11">보통이에요</label>
-        <input type="radio" id="choice2_29" value="29" name="answer2">
+        <input type="radio" id="choice2_29" value="흐려요" name="satis_color">
         <label for="choice2_29">흐려요</label>
       </li>  
       <li class="n-radio-tab" value="1455">
         <em class="label">두께감</em>
-        <input type="radio" id="choice3_5" value="5" name="answer3">
+        <input type="radio" id="choice3_5" value="두꺼워요" name="satis_thickness">
         <label for="choice3_5">두꺼워요</label>
-        <input type="radio" id="choice3_11" value="11" name="answer3">
+        <input type="radio" id="choice3_11" value="보통이에요" name="satis_thickness">
         <label for="choice3_11">보통이에요</label>
-        <input type="radio" id="choice3_17" value="17" name="answer3">
+        <input type="radio" id="choice3_17" value="얇아요" name="satis_thickness">
         <label for="choice3_17">얇아요</label>
       </li>
     </ul>
@@ -477,13 +486,14 @@
     class="form-memo"
     id="email"
     placeholder="상품에 대한 평가를 20자 이상 작성해 주세요."
-    name="address"
+    name="review_content"
+    required
     />
 
     <!--이미지 업로드-->
     <div id='image_preview'>
      
-        <input type='file' id='btnAtt' multiple='multiple' />
+        <input type='file' id='btnAtt' multiple='multiple' name="review_img"/>
         <div id='att_zone'
           data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
       </div>

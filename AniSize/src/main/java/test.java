@@ -8,7 +8,6 @@ public class test {
 	public static void main(String[] args) {
 		
 		int a = 1;
-		System.out.println(a.getClass().getName());
 		
 //		File file = new File("images/4월 일정표.png");
 //		boolean isExists = file.exists();

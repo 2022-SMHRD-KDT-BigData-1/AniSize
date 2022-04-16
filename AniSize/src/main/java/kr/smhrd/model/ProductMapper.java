@@ -14,7 +14,7 @@ public interface ProductMapper {
 	public List<ProductVO> highScoreProduct();
 	public List<String> selectStkOptionList(int pd_num);
 //	public List<ProductStockVO> selectOptionStock(ProductStockVO vo);
-	public List<ProductStockVO> selectOptionStock(int pd_num, String stk_option);
+	public List<ProductStockVO> selectOptionStock(ProductStockVO vo);
 //	public List<ProductVO> selectPhProductList(List<Integer> pd_numList);
 	
 	

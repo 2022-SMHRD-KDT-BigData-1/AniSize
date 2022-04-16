@@ -13,7 +13,6 @@ import kr.smhrd.model.ProductMapper;
 import kr.smhrd.model.ProductStockVO;
 import kr.smhrd.model.ProductVO;
 import kr.smhrd.model.ReviewMapper;
-import kr.smhrd.model.ReviewVO;
 
 @Controller
 public class ProductController {
@@ -26,22 +25,29 @@ public class ProductController {
 	public void product(Model model, int pd_num) {
 		ProductVO product = productMapper.selectProduct(pd_num);
 		model.addAttribute("product", product);
-		ReviewVO review = reviewMapper.selectProductReview(pd_num);
-		model.addAttribute("review", review);
-		int countReview = reviewMapper.countReview(pd_num);
+		
+//		ReviewVO review = reviewMapper.selectProductReview(pd_num);
+//		model.addAttribute("review", review);
+		
+//		int countReview = reviewMapper.countReview(pd_num); List<String>
 		List<String> stkOptionList = productMapper.selectStkOptionList(pd_num);
 		model.addAttribute("stkOptionList", stkOptionList);
-		model.addAttribute("countReview", countReview); 
+//		model.addAttribute("countReview", countReview);
+		 
 //		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
 //		model.addAttribute("productStockList", productStockList);
-	}
+	}                 
 	@RequestMapping("/selectOptionStock.do")
 	public @ResponseBody List<ProductStockVO> selectOptionStock(ProductStockVO vo){
-		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo.getPd_num(),vo.getStk_option());
+//		System.out.println(pd_num + stk_option);
+		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo);
+//		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo.getPd_num(),vo.getStk_option());
 		//나오는게 사이즈 , 가격, 재고
+		System.out.println(stockList.toString());
 		return stockList;
 	}
 
+	//@RequestParam("pd_num") int pd_num, @RequestParam("stk_option") String stk_option
 	@RequestMapping("/highScoreProduct.do")
 	public String highScoreProduct(Model model) {
 		List<ProductVO> product = productMapper.highScoreProduct();

@@ -360,23 +360,26 @@
 
     <!--  장바구니 + 구매하기 하단 버튼-->
 
-    <div class="display: flex; justify-content: center; align-items: center;">
-        <nav class="navbar fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
+    
+        <nav class="fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
+          <div class="container-fluid">
             <!-- Button trigger modal -->
             <button type="button fixed-bottom" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                style="width: 375px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
-                구매하기
+                style="width: 350px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
+               		 구매하기
             </button>
+          </div>
         </nav>
+        
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog fixed-bottom" style="width: 375px; margin:0px">
 
-                <div class="modal-content">
+                <div class="modal-content" style=" display: flex; justify-content: center; align-items: center;">
                     <div class="modal-header"
                         style="display: flex; justify-content: center; align-items: center; padding: 0 0 0 0; ">
-                        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                        
                         <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"
                             style="padding: 0 0 0 0;">
                             <!-- 옵션 닫기 버튼 -->
@@ -388,7 +391,7 @@
 						<c:choose>
 						<c:when test="${!empty stkOptionList}">
 							
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id = "option" onchange="optionClick()">
 	                            <option selected>[필수] 색상 선택</option>
 	                            <c:forEach items="${stkOptionList}" var="option">
 	                          	  <option value="${option}" onclick="optionClick()">${option}</option>
@@ -399,8 +402,9 @@
                         <div class="opton2">
                             <!-- 사이즈 옵션에  <span>--------------------------------[ 추천 사이즈 ]</span> 표시 -->
                             <!-- 재고 5개 미만일 시 수량 보여줌 <span>-----------------------[ 3개 남음 ]</span>  -->
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize" >
                                 <option selected>[필수] 사이즈 선택</option>
+                                	<!-- <option value=""></option> -->
      <!--                            <option value="s">S</option>
                                 <span>-----------------------[ 3개 남음 ]</span>
                                 <option value="m">M
@@ -463,19 +467,23 @@
             </div>
         </div>
 
-    </div>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script type="text/javascript">  /* ajax 재고 가져오기 */
-	function optionClick(values){
+	function optionClick(){ 
+		let option = $('#option').val();
+	 	let d = {"stk_option" : option, "pd_num" : '${product.pd_num}'}
+	 	console.log(d);
 		$.ajax({
 			url : 'selectOptionStock.do',
 			type : 'post',
-			data : {"stk_option": values},
+			data : d,
 			dataType : 'json',
-			success : fuction(res){
+			success : function(res){
 				for(let i = 0; i<res.length; i++){
 					size = `
-						<option value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>
+						<option  value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>
 					`;
 					$('#optionSize').append(size);
 				}

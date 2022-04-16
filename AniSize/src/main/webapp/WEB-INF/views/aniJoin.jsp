@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix ='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +87,12 @@ html, body {
 				<input type="hidden" id="mem_num" name="mem_num" value="100">
 
 				<input type="text" class="form-control my-2" id="ani_name" placeholder="강아지 이름" name="ani_name" required /> 
-				<input type="text" class="form-control my-2" id="ani_kind" placeholder="견종" name="ani_kind" required /> 
+				<input type="text" class="form-control my-2" id="ani_kind" list="kindList" placeholder="견종" name="ani_kind" required />
+				<datalist id ="kindList">
+					<c:forEach var = 'kind' items ='${aniKindList}'>
+						<option>${kind.ani_kind}</option>
+					</c:forEach>
+				</datalist> 
 				<select class="form-select" aria-label="Default select example" name="ani_sex" required>
 					<option selected>성별</option>
 					<option value="f">암컷</option>
@@ -161,9 +167,16 @@ html, body {
 	        contentType: false,
 	        cache: false,
             success : function(result){
-                $('#ani_back_len').val(result[0]);
-                $('#ani_neck_len').val(result[1]);
-                $('#ani_chest_len').val(result[2]);
+            	if (result['err']==0){
+            		$('#ani_back_len').val(result['back']);
+                    $('#ani_neck_len').val(result['neck']);
+                    $('#ani_chest_len').val(result['chest']);
+            	} else if (result['err']==1) {
+            		alert("카드 인식 실패");
+            	} else {
+            		alert("강아지 인식 실패")
+            	}
+                
             },
             error : function(){
             	alert("error!"); 

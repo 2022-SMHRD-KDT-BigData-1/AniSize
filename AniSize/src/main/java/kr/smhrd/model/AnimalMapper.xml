@@ -9,4 +9,8 @@
     <select id="getAniInfo" resultType="kr.smhrd.model.AnimalVO">
         select * from animal where mem_num = #{mem_num}
     </select> 
+    
+    <select id='aniKindList' resultType="kr.smhrd.model.AniKindVO">
+        select * from animal_kind
+    </select>
 </mapper>
