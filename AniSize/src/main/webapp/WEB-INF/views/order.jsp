@@ -95,6 +95,18 @@
             align-items: center; */
 
         }
+        
+        /* 결제하기 버튼 설정*/
+        .container-fluid {
+            width: 100%;
+            /* 사이즈 fixed */
+            max-width: 350px;
+            min-width: 300px;
+            padding: 0px;
+            margin: auto;
+            display: block;
+
+        }
 
         /* 탭 컬러 변경 */
         .nav-link {

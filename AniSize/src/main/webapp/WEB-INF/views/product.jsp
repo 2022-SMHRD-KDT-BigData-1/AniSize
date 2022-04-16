@@ -360,23 +360,26 @@
 
     <!--  장바구니 + 구매하기 하단 버튼-->
 
-    <div class="display: flex; justify-content: center; align-items: center;">
-        <nav class="navbar fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
+    
+        <nav class="fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
+          <div class="container-fluid">
             <!-- Button trigger modal -->
             <button type="button fixed-bottom" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                style="width: 375px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
-                구매하기
+                style="width: 350px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
+               		 구매하기
             </button>
+          </div>
         </nav>
+        
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog fixed-bottom" style="width: 375px; margin:0px">
 
-                <div class="modal-content">
+                <div class="modal-content" style=" display: flex; justify-content: center; align-items: center;">
                     <div class="modal-header"
                         style="display: flex; justify-content: center; align-items: center; padding: 0 0 0 0; ">
-                        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                        
                         <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"
                             style="padding: 0 0 0 0;">
                             <!-- 옵션 닫기 버튼 -->
@@ -464,7 +467,7 @@
             </div>
         </div>
 
-    </div>
+    
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script type="text/javascript">  /* ajax 재고 가져오기 */

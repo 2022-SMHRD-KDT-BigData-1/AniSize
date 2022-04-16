@@ -95,6 +95,18 @@
             align-items: center; */
 
         }
+        
+        /* 결제하기 버튼 설정*/
+        .container-fluid {
+            width: 100%;
+            /* 사이즈 fixed */
+            max-width: 350px;
+            min-width: 300px;
+            padding: 0px;
+            margin: auto;
+            display: block;
+
+        }
 
 
 
@@ -320,25 +332,23 @@
 
         </div><!-- 장바구니 내역 까지-->
 
-
+</div><!--/ container  -->
 
         <!-- 하단 결제하기 버튼  -->
-        <div class="display: flex; justify-content: center; align-items: center;">
-            <nav class="navbar fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
+        
+            <nav class="fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
-                <!-- Button trigger modal -->
-                <button type="button fixed-bottom" class="btn" onclick="location.href='#' "
-                    style="width: 375px;height: 40px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
-                    결제하기
-                </button>
-            </nav>
+
+       				 <div class="container-fluid">
+            			<button type="button fixed-bottom" class="btn" onclick="location.href='#cart.html' "
+               				 style="width: 350px;height: 40px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
+               			 결제하기
+          				</button>
+        			</div>
+    		</nav>
 
 
-        </div>
-
-
-        <!--/ container  -->
-    </div>
+       
 
 
 
