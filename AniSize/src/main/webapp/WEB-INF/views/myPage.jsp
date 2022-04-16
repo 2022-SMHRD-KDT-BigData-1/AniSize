@@ -181,7 +181,12 @@
    			 ${member.mem_nick}님
     	</c:otherwise>
     </c:choose>
-    </p></i>
+    </p>   <button style="    width: 60px;
+    height: 30px;
+    font-size: 5px;
+    margin-left: 170px;
+    margin-top: 7px;
+    border: none;">로그아웃</button></i>
      <div class="detail_product">
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
       height: 70px;"><a href=""><span >0<br> 입금/결제</span></a></div>
