@@ -19,15 +19,21 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <!-- Google Fonts : MuseoModerno 영어-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=MuseoModerno:wght@600&display=swap"
-	rel="stylesheet">
-<!-- Google Fonts : MuseoModerno 한글-->
-<link
-	href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap"
-	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=MuseoModerno:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts : MuseoModerno 한글-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap"
+      rel="stylesheet"
+    />
 
 <!-- Google Icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -36,6 +42,8 @@
 <!-- Bootstrap Icon -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+<link rel="stylesheet" href="resources/css/style.css" />
 
 <style>
 body {
@@ -89,8 +97,9 @@ h3 {
 
 /* 메뉴바 아이콘  */
 .bi {
-	color: #ffffff;
-	font-size: 40px;
+	color: #c370de;
+	font-size: 30px;
+  	font-weight: bold;
 }
 
 /* 추천상품 */
@@ -106,8 +115,11 @@ p {
 
 .btn-st {
 	color: #ffffff;
-	background-color: #5e5e5e;
+	background-color: #c370de;
 	margin: 2px;
+}
+img {
+width:158.39px; height: 224px;
 }
 </style>
 </head>
@@ -143,7 +155,7 @@ p {
 			<c:forEach items="${productList}" var="product">
 			<div class="col-6">
 				<a class="namePrice" href="product.do?pd_num=${product.pd_num}" style="text-decoration: none; color: inherit;">
-					<img src="images/product/${product.pd_num}/thumnail.jpg" class="img-thumbnail">
+					<img src="images/product/${product.pd_num}/thumnail.jpg" >
 					<br>
 					<br>
 					<p>${product.pd_name} <br> ${product.pd_price}</p>
@@ -151,7 +163,7 @@ p {
 			</div>
 			</c:forEach>
 		</div>
-
+		<br><br><br><br><br>
 	</div>
 
 	<jsp:include page="menuBar.jsp"></jsp:include>
