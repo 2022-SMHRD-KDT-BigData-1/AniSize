@@ -201,8 +201,17 @@
       </c:forEach>
       
       </ul>
+      
+      <!-- 페이징 -->
+      <div style = "text-align: center;">
+      	<c:forEach varStatus = "pg" begin = "1" end = "${lastPage}">
+      		<a href = "home.do?page=${pg.index}" style = "font-size: 3ch;">${pg.index}</a>
+      	</c:forEach>
+      </div>
     </div>
-
+    <br><br><br>
+    
+	
     <!-- 메뉴바 + 카데고리 -->
 
     <!-- 메뉴바 -->

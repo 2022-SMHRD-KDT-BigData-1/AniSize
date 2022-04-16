@@ -3,12 +3,14 @@ package kr.smhrd.anisize;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.smhrd.model.FilterMapper;
+import kr.smhrd.model.MinMaxVO;
 import kr.smhrd.model.ProductMapper;
 import kr.smhrd.model.ProductVO;
 
@@ -20,9 +22,22 @@ public class HomeController {
 	FilterMapper filterMapper;
 	
 	@RequestMapping("/home.do")
-	public void home(Model model) {
-		List<ProductVO> productList = productMapper.getProductList();
+	public void home(Model model, HttpServletRequest request) {
+		int page = 1;
+		if (request.getParameter("page")!=null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int lastPage = productMapper.getProductList().size()/10+1;
+		if (page > lastPage) {
+			page = lastPage;
+		} else if (page < 1) {
+			page = 1;
+		}
+		int max = page*10;
+		int min = max-9;
+		List<ProductVO> productList = productMapper.getProductListByPage(new MinMaxVO(min,max));
 		model.addAttribute("productList", productList);
+		model.addAttribute("lastPage",lastPage);
 	}
 
 	
@@ -30,7 +45,8 @@ public class HomeController {
 	public void home(Model model, int pd_cate_num) {
 		List<ProductVO> productList = filterMapper.selectCategoryProductList();
 		model.addAttribute("productList", productList);
-	}	
+	}
+	
 	@RequestMapping("/category.do")
 	public void category() {
 	}

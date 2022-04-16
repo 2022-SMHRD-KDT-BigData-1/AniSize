@@ -204,3 +204,6 @@ values(null, '커플룩');
 select * 
 	from purchase_history as ph, product as pd 
 	where ph.pd_num = pd.pd_num;
+
+drop view pageProduct
+create view pageProduct as (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product)
