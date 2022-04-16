@@ -112,7 +112,7 @@
                 style="margin-left: 7px; margin-right: 7px"
               >
                 <!--add all information -->
-                <h3 style="color: #fff"> a nisize company</h3>
+                <h3 style="color: #fff"> anisize company</h3>
                 <p>고객센터 062-655-3506</p>
                 <p>펴일 오전9시 - 오후6시운영</p>
 
