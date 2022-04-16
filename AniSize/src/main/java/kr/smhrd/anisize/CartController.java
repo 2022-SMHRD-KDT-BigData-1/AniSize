@@ -3,6 +3,7 @@ package kr.smhrd.anisize;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.smhrd.model.CartMapper;
 import kr.smhrd.model.CartVO;
+import kr.smhrd.model.MemberVO;
 
 @Controller
 public class CartController {
 	@Inject
 	CartMapper cartMapper;
 	@RequestMapping("/cart.do")
-	public void cart(Model model, int mem_num) {
-		List<CartVO> cartList = cartMapper.getCart(mem_num); 
+	public void cart(Model model,HttpSession session) {
+		int mem_num = ((MemberVO)session.getAttribute("member")).getMem_num();
+		List<CartVO> cartList = cartMapper.getCart(mem_num);
 		model.addAttribute("cartList", cartList);
 	}
 	@RequestMapping("/addCart.do")

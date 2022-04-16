@@ -29,9 +29,16 @@
           ><i class="bi bi-search" style="font-size: 25px"></i
         ></a>
         <a class="navbar-brand" href="home.do"><i class="bi bi-house-door"></i></a>
-        <a class="navbar-brand" href="cart.do"
-          ><i class="bi bi-cart" style="font-size: 28px"></i
-        ></a>
+        <c:choose>
+        	<c:when test="${!empty member}">
+				<a class="navbar-brand" href="cart.do"><i
+					class="bi bi-cart" style="font-size: 28px"></i></a>
+			</c:when>
+        	<c:otherwise>
+        		<a class="navbar-brand" href="#" onclick="requestLogin()"><i
+					class="bi bi-cart" style="font-size: 28px"></i></a>
+        	</c:otherwise>
+        </c:choose>
         <a class="navbar-brand" href="myPage.do"
           ><i class="bi bi-person" style="font-size: 32px"></i
         ></a>
@@ -184,3 +191,8 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript">
+		function requestLogin(){
+			alert('로그인을 해주세요');
+		}
+	</script>
