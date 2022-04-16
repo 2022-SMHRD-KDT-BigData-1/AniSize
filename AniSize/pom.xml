@@ -185,7 +185,7 @@
 		
 	</dependencies>
 	<build>
-		<finalName> anisize </finalName>
+		<finalName> AniSize </finalName>
 			<pluginManagement>
 				<plugins>
 					<!-- 서버 배포 셋팅 -->
@@ -201,7 +201,7 @@
 					<password>${mvn_project.password}</password>
 					<update>true</update>
 					</configuration>
-					</plugin>
+					</plugin> 
 				</plugins>
 			</pluginManagement>
 		
