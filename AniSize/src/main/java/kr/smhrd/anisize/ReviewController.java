@@ -53,7 +53,7 @@ public class ReviewController {
 	
 	@RequestMapping("/insertProductReview.do")
 	public void insertProductReview(ReviewVO vo) {
-		
+		System.out.println("리뷰작성버튼은 성공함");
 		reviewMapper.insertProductReview(vo);
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
 		productMapper.updateProductAvgScore(score);

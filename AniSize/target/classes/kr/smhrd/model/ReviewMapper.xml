@@ -6,9 +6,15 @@
     </select>
     
     <insert id="insertProductReview" parameterType="kr.smhrd.model.ReviewVO">
+        insert into product_review(ph_num, review_content, review_img, satis_size, satis_color, satis_thinkness, ani_neck_length,
+        ani_chest_length, ani_back_length, ani_weight, review_score) 
+        values(#{ph_num}, #{review_content}, #{review_img}, #{satis_size}, #{satis_color}, #{satis_thinkness}, 
+        #{ani_neck_length}, #{ani_chest_length}, #{ani_back_length}, #{ani_weight}, #{review_score})
+    </insert>
+<!--     <insert id="insertProductReview" parameterType="kr.smhrd.model.ReviewVO">
         insert into product_review(mem_num, pd_num, review_content, review_img, stk_option, stk_size, review_score) 
         values(#{mem_num}, #{pd_num}, #{review_content}, #{review_img}, #{stk_option}, #{stk_size}, #{review_score})
-    </insert>
+    </insert> -->
     
     <select id="getReviewAvgScore">
         select avg(review_score) from product_review where pd_num = #{pd_num}
@@ -21,6 +27,9 @@
     <delete id="deleteReview">
         delete from product_review where pd_num = #{pd_num} and mem_num = #{mem_num} 
     </delete>
+<!--     <select id="selectPdNum" resultType="int">
+        select pd_num from purchase_History where ph_num = #{ph_num}
+    </select> -->
     
     <select id="getWriteReviewList" resultType="kr.smhrd.model.PurchaseHistoryVO">
 		 select *

@@ -468,19 +468,19 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script type="text/javascript">  /* ajax 재고 가져오기 */
-	function optionClick(){
+	function optionClick(){ 
 		let option = $('#option').val();
 	 	let d = {"stk_option" : option, "pd_num" : '${product.pd_num}'}
 	 	console.log(d);
 		$.ajax({
 			url : 'selectOptionStock.do',
 			type : 'post',
-			data : {"stk_option": option},
+			data : d,
 			dataType : 'json',
 			success : function(res){
 				for(let i = 0; i<res.length; i++){
 					size = `
-						<option value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>
+						<option  value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>
 					`;
 					$('#optionSize').append(size);
 				}

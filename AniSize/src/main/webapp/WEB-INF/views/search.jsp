@@ -4,7 +4,7 @@
 
 
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
 <!-- Required meta tags -->
@@ -38,6 +38,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 <style>
+
 body {
 	background-color: #ffffff;
 	font-size: 10px;
@@ -151,10 +152,10 @@ p {
 			</div>
 			</c:forEach>
 		</div>
+		<jsp:include page="menuBar.jsp"></jsp:include>
 
 	</div>
 
-	<jsp:include page="menuBar.jsp"></jsp:include>
 
 
 	<!-- Option 2: Separate Popper and Bootstrap JS -->

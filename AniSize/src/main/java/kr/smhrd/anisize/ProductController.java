@@ -3,12 +3,10 @@ package kr.smhrd.anisize;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.smhrd.model.ProductMapper;
@@ -38,13 +36,14 @@ public class ProductController {
 		 
 //		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
 //		model.addAttribute("productStockList", productStockList);
-	}
+	}                 
 	@RequestMapping("/selectOptionStock.do")
-	public @ResponseBody List<ProductStockVO> selectOptionStock(HttpServletRequest request, String stk_option){
-		ProductVO pd = (ProductVO)request.getAttribute("product");
-		List<ProductStockVO> stockList = productMapper.selectOptionStock(pd.getPd_num() , stk_option);
+	public @ResponseBody List<ProductStockVO> selectOptionStock(ProductStockVO vo){
+//		System.out.println(pd_num + stk_option);
+		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo);
 //		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo.getPd_num(),vo.getStk_option());
 		//나오는게 사이즈 , 가격, 재고
+		System.out.println(stockList.toString());
 		return stockList;
 	}
 
