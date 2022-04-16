@@ -479,44 +479,7 @@
 	      </ul>
 	   </div>
 
-    <ul class="review-check">
-      <li class="n-radio-tab" value="1452">
-        <em class="label">사이즈</em>
-        <input type="radio" id="choice0_25" value="25" name="answer0">
-        <label for="choice0_25">커요</label>
-        <input type="radio" id="choice0_11" value="11" name="answer0">
-        <label for="choice0_11">보통이에요</label>
-        <input type="radio" id="choice0_20" value="20" name="answer0">
-        <label for="choice0_20">작아요</label>
-      </li>
-      <li class="n-radio-tab" value="1453">
-        <em class="label">밝기</em>
-        <input type="radio" id="choice1_10" value="10" name="answer1">
-        <label for="choice1_10">밝아요</label>
-        <input type="radio" id="choice1_11" value="11" name="answer1">
-        <label for="choice1_11">보통이에요</label>
-        <input type="radio" id="choice1_18" value="18" name="answer1">
-        <label for="choice1_18">어두워요</label>
-      </li>
-      <li class="n-radio-tab" value="1454">
-        <em class="label">색감</em>
-        <input type="radio" id="choice2_15" value="15" name="answer2">
-        <label for="choice2_15">선명해요</label>
-        <input type="radio" id="choice2_11" value="11" name="answer2">
-        <label for="choice2_11">보통이에요</label>
-        <input type="radio" id="choice2_29" value="29" name="answer2">
-        <label for="choice2_29">흐려요</label>
-      </li>  
-      <li class="n-radio-tab" value="1455">
-        <em class="label">두께감</em>
-        <input type="radio" id="choice3_5" value="5" name="answer3">
-        <label for="choice3_5">두꺼워요</label>
-        <input type="radio" id="choice3_11" value="11" name="answer3">
-        <label for="choice3_11">보통이에요</label>
-        <input type="radio" id="choice3_17" value="17" name="answer3">
-        <label for="choice3_17">얇아요</label>
-      </li>
-    </ul>
+ 
 
        <hr style="margin-block-end: 10px; margin-bottom: 20px;" /> 
    
