@@ -556,12 +556,13 @@
 		
 		    <!--이미지 업로드-->
 		    <div id='image_preview'>
-		        <input  type=’file’ accept=’image/*’ id='btnAtt' multiple='multiple' name="review_img"/>
+		        <input  type='file' accept='image/*' id='btnAtt' multiple='multiple' name="review_img"/>
 		        <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 		    </div>
 		    <hr class="hrbar" style="margin-block-start: 20px; border: solid 10px #999;" />
 	    </form> 
     </div>
+    
     
       <script>
       (/* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
@@ -698,5 +699,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script> -->
+        
+        
+        <br><br><br><br><br><br><br><br><br><br>
   </body>
 </html>

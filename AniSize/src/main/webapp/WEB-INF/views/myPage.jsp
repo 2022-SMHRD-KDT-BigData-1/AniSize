@@ -266,6 +266,8 @@
       <a class="" href="#">FAQ</a>
       <a class="" href="#">공지사항</a>
     </div>
+    
+    <br><br><br><br><br>
   </div>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
