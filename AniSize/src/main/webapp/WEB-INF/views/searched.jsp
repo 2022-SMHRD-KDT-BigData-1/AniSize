@@ -123,6 +123,13 @@ width:158.39px; height: 224px;
 
 .page-item {
 	font-size: 3ch;
+	}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #c370de;
+    border-color: #c370de;
 }
 </style>
 </head>
