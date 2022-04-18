@@ -256,7 +256,7 @@
                <span style="font-size: 15px"
           >첨부파일</span
         >
-        <input type="file" class="real-upload" accept="image/*" required multiple>
+       <input  type=’file’ accept=’image/*’ class="real-upload" accept="image/*" required multiple>
         <div class="upload"><i class="bi bi-camera" style="font-size: 50px;"></i></div>
         <div class="form-check" style="margin-left: 8px;">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
@@ -332,7 +332,7 @@
           const imagePreview = document.querySelector('.image-preview');
           const docFrag = new DocumentFragment();
     
-          if ([...files].length >= 1) {
+          if ([...files].length >= 5) {
             alert('이미지는 최대 1개 까지 업로드가 가능합니다.');
             return;
           }
@@ -345,7 +345,7 @@
             }
     
             // 파일 갯수 검사
-            if ([...files].length < 2) {
+            if ([...files].length < 6) {
               uploadFiles.push(file);
               const reader = new FileReader();
               reader.onload = (e) => {

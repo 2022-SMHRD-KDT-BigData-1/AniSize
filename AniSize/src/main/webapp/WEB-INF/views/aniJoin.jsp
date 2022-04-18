@@ -114,7 +114,7 @@ html, body {
 					옆면 사진 (신용카드와 같이 찍은 사진)</p>
 
 				<div class="input-group">
-					<input type="file" class="form-control my-2" id="inputGroupFile04"
+					<input  type=’file’ accept=’image/*’ class="form-control my-2" id="inputGroupFile04"
 						aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
 					<img src="resources/images/dogsize.PNG" class="img-thumbnail my-2"
 						style="display: flex; justify-content: center; align-items: center" />

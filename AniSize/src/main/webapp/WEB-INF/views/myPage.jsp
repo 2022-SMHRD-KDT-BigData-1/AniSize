@@ -184,8 +184,9 @@
     </p>   <button style="    width: 60px;
     height: 30px;
     font-size: 5px;
-    margin-left: 170px;
+    margin-left: 140px;
     margin-top: 7px;
+    position:relative;
     border: none;">로그아웃</button></i>
      <div class="detail_product">
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
@@ -196,8 +197,6 @@
       height: 70px;"><a href=""><span >0<br> 배송완료</span></a></div>
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
       height: 70px;"><a href=""><span >0<br> 취소/환불</span></a></div>
-      
-     
     </div>
 
     <hr style="margin-top: 90px;">
