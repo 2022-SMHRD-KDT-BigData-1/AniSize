@@ -556,7 +556,7 @@
                  <nav class="navbar fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
                     <div class="container-fluid">
-                        <button type="button fixed-bottom" class="btn" onclick="location.href='#orderOK.html' "
+                        <button type="button fixed-bottom" class="btn" onclick="location.replace('orderOK.do'); "
                             style="width: 375px;height: 40px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
                             결제하기
                         </button>
