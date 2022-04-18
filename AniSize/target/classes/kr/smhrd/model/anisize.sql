@@ -204,3 +204,11 @@ values(null, '커플룩');
 select * 
 	from purchase_history as ph, product as pd 
 	where ph.pd_num = pd.pd_num;
+	
+select * from product_stock where stk_option is NULL
+
+select * 
+        from cart as c, product_stock as ps, product as pd
+        where c.stk_num = ps.stk_num
+        and ps.pd_num = pd.pd_num
+        and mem_num = 8

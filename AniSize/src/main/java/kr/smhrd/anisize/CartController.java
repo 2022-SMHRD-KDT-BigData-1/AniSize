@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.smhrd.model.CartMapper;
 import kr.smhrd.model.CartVO;
@@ -18,14 +19,18 @@ public class CartController {
 	@Inject
 	CartMapper cartMapper;
 	@RequestMapping("/cart.do")
-	public void cart(Model model,HttpSession session) {
+	public void cart(Model model, HttpSession session) {
 		int mem_num = ((MemberVO)session.getAttribute("member")).getMem_num();
 		List<CartVO> cartList = cartMapper.getCart(mem_num);
+		System.out.println(cartList.toString());
 		model.addAttribute("cartList", cartList);
 	}
 	@RequestMapping("/addCart.do")
-	public void addCart(CartVO vo) {
+	public @ResponseBody String addCart(CartVO vo) {
+//		System.out.println(vo.toString());
 		cartMapper.addCart(vo);
+		System.out.println("?");
+		return "성공";
 	}
 	@RequestMapping("/deleteCart.do")
 	public void deleteCart(CartVO vo) {

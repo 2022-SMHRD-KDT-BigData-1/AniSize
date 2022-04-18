@@ -17,6 +17,9 @@
 	<select id="selectOptionStock" resultType="kr.smhrd.model.ProductStockVO" parameterType="kr.smhrd.model.ProductStockVO">
 		select * from product_stock where pd_num = #{pd_num} and stk_option = #{stk_option}
 	</select>
+	<select id="selectNullOptionStock" resultType="kr.smhrd.model.ProductStockVO">
+		select * from product_stock where pd_num = #{pd_num}
+	</select>
 <!-- 	<select id="getProductStock"
 		resultType="kr.smhrd.model.ProductStockVO">
 		select * from product_stock where pd_num = #{pd_num}

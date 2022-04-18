@@ -2,11 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.model.CartMapper">
     <insert id="addCart" parameterType="kr.smhrd.model.CartVO">
-        insert into cart 
-        values(null, #{mem_num}, #{pd_num}, #{cart_quantity}, #{stk_price}, #{stk_option}, #{stk_size})
+        insert into cart (mem_num, stk_num, cart_quantity)
+        values(#{mem_num}, #{stk_num}, #{cart_quantity})
     </insert>
     <select id="getCart" resultType="kr.smhrd.model.CartVO">
-        select * from cart where mem_num = #{mem_num}
+        select * 
+        from cart as c, product_stock as ps, product as pd
+        where c.stk_num = ps.stk_num
+        and ps.pd_num = pd.pd_num
+        and mem_num = #{mem_num}
     </select>
     <update id="updateCartQuantity" parameterType="kr.smhrd.model.CartVO">
         update cart set cart_quantity where mem_num = #{mem_num}

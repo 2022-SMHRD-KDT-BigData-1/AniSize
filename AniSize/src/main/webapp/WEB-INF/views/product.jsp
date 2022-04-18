@@ -387,23 +387,32 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="option1" style="padding-bottom: 10px;">
+                    <!-- 옵션 없으면 히든으로 옵션명을 프로덕트 명으로 보내준다  -->
 						<c:choose>
-						<c:when test="${!empty stkOptionList}">
+						<c:when test="${stkOptionList[0] ne null}">
+                        <div class="option1" style="padding-bottom: 10px;">
 							
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id = "option" onchange="optionClick()">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id = "option" onchange="optionClick()" name="${stk_option}">
 	                            <option selected>[필수] 색상 선택</option>
 	                            <c:forEach items="${stkOptionList}" var="option">
 	                          	  <option value="${option}" onclick="optionClick()">${option}</option>
 	                            </c:forEach>
                             </select>
                         </div>
+                        </c:when>
+                        <c:otherwise>
+                        	<input type="hidden" id="option" name="${stk_option}" value="${stkOptionList[0]}">
+                        </c:otherwise>
+						</c:choose>
 
                         <div class="opton2">
                             <!-- 사이즈 옵션에  <span>--------------------------------[ 추천 사이즈 ]</span> 표시 -->
                             <!-- 재고 5개 미만일 시 수량 보여줌 <span>-----------------------[ 3개 남음 ]</span>  -->
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize" >
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize" name="stk_num">
                                 <option selected>[필수] 사이즈 선택</option>
+                                <c:forEach items="${stockList}" var="stk">
+		                            <option value="${stk.stk_num}">${stk.stk_size}</option>
+                                </c:forEach>
                                 	<!-- <option value=""></option> -->
      <!--                            <option value="s">S</option>
                                 <span>-----------------------[ 3개 남음 ]</span>
@@ -412,12 +421,10 @@
                                 </option>
                                 <option value="l">L</option>
                                 <option value="xl">xL</option>
-                                <option value="2xl">2xL</option> -->
                                 <!-- <option value=""></option> -->
                             </select>
                         </div>
-                        </c:when>
-						</c:choose>
+
 
                         <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                         <div class="selected_option" style="font-size: 15px;">
@@ -433,6 +440,7 @@
                                     <i class="bi bi-plus-square-fill" style="color: #5e5e5e;"></i></a>
                                 <!-- <i class="bi bi-plus-square"></i> -->
                                 <span id="numberUpDown">1</span>
+                                <input type="hidden" value="1" id="cart_quantity"> 
                                 <a href="#" id="decreaseQuantity">
                                     <i class="bi bi-dash-square" style="color: #5e5e5e;"></i></a>
 
@@ -452,15 +460,25 @@
                     </style>
 
                     <div class="modal-footer" style="display: flex; justify-content: center; align-items: center">
-
-                        <button type="button" class="btn secondary"
-                            style="width: 160px; color: #ad67ea; border-color: #ad67ea;">
-                            장바구니 담기</button>
-                        <!-- 장바구니 버튼을 누르면  alert('장바구니로 이동 하시겠습니까?') -> 회원(로그인X)이 아닐 시, 로그인 화면으로 이동해서 로그인 후 장바구니 페이지로 이동.  -->
-
-                        <button type="button" class="btn"
-                            style="background-color: #ad67ea; color: #ffffff; width: 160px;">
-                            바로 구매하기</button>
+					<c:choose>
+						<c:when test="${empty member}">
+	                        <a href="#" onclick="requestLogin()">
+	                        <button type="button" class="btn secondary" style="width: 160px; color: #ad67ea; border-color: #ad67ea;">장바구니 담기</button>
+	                        </a>
+	                        <!-- 장바구니 버튼을 누르면  alert('장바구니로 이동 하시겠습니까?') -> 회원(로그인X)이 아닐 시, 로그인 화면으로 이동해서 로그인 후 장바구니 페이지로 이동.  -->
+							<a href="#" onclick="requestLogin()">
+	                        <button type="button" class="btn" style="background-color: #ad67ea; color: #ffffff; width: 160px;">바로 구매하기</button>
+							</a>
+						</c:when>
+						<c:otherwise>
+	                        <a href="#" onclick="addCart()">
+	                        <button type="button" class="btn secondary" style="width: 160px; color: #ad67ea; border-color: #ad67ea;">장바구니 담기</button>
+	                        </a>
+							<a>
+	                        <button type="button" class="btn" style="background-color: #ad67ea; color: #ffffff; width: 160px;">바로 구매하기</button>
+							</a>
+						</c:otherwise>
+					</c:choose>
                         <!-- 구매하기 버튼 누르면 회원(로그인X)이 아닐 시, 로그인 화면으로 이동해서 로그인 후 결제 페이지로 바로 이동  , -->
                     </div>
                 </div>
@@ -469,6 +487,39 @@
 
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">  /* ajax 재고 가져오기 */
+	function addCart(){ 
+	if($('#optionSize').val().indexOf('[필수]') != -1){
+		alert('사이즈를 선택해주세요')
+		return
+	}
+	 	let form = {
+	 			"mem_num" : '${member.mem_num}',
+	 			"stk_num" : $('#optionSize').val(),
+	 			"cart_quantity" : $('#cart_quantity').val()
+	 			};
+	 	console.log(form);
+	 	
+	 	
+		$.ajax({
+			url : 'addCart.do',
+			type : 'post',
+			data : form,
+			success : function(res){
+				console.log(res);
+				if(confirm('장바구니 추가 성공 !\n장바구니로 이동하시겠습니까?')){
+					location.href="cart.do";
+				}
+			},
+			error : function(e){
+				console.log(e);
+			}
+		});
+	}
+		
+	</script>
+
+
 
 	<script type="text/javascript">  /* ajax 재고 가져오기 */
 	function optionClick(){ 
@@ -507,6 +558,7 @@
                 num--;
                 if (num <= 0) { alert('더이상 줄일수 없습니다.'); num = 1; }
                 $('#numberUpDown').text(num);
+                $('#cart_quantity').val(num);
             });
             $('#increaseQuantity').click(function (e) {
                 e.preventDefault();
@@ -517,12 +569,17 @@
                     num = 10;
                 }
                 $('#numberUpDown').text(num);
+                $('#cart_quantity').val(num);
             });
         });
 
 
     </script>
-
+<script type="text/javascript">
+	function requestLogin(){
+		alert('로그인을 해주세요');
+	}
+</script>
 
 
 

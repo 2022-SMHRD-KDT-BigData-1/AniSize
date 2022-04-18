@@ -31,6 +31,16 @@ public class ProductController {
 		
 //		int countReview = reviewMapper.countReview(pd_num); List<String>
 		List<String> stkOptionList = productMapper.selectStkOptionList(pd_num);
+		System.out.println("옵션은 : " + stkOptionList.toString());
+		System.out.println("옵션은 : " + stkOptionList.get(0));
+		if(stkOptionList.get(0) == null) {
+			ProductStockVO vo = new ProductStockVO();
+			vo.setPd_num(pd_num);
+			vo.setStk_option(null);
+			List<ProductStockVO> stockList = productMapper.selectNullOptionStock(pd_num);
+			System.out.println(stockList.toString());
+			model.addAttribute("stockList", stockList);
+		}
 		model.addAttribute("stkOptionList", stkOptionList);
 //		model.addAttribute("countReview", countReview);
 		 
@@ -39,9 +49,7 @@ public class ProductController {
 	}                 
 	@RequestMapping("/selectOptionStock.do")
 	public @ResponseBody List<ProductStockVO> selectOptionStock(ProductStockVO vo){
-//		System.out.println(pd_num + stk_option);
 		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo);
-//		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo.getPd_num(),vo.getStk_option());
 		//나오는게 사이즈 , 가격, 재고
 		System.out.println(stockList.toString());
 		return stockList;
