@@ -207,3 +207,8 @@ select *
 
 drop view pageProduct
 create view pageProduct as (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product)
+
+create view pageRecentProduct as (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product order by pd_date desc);
+create view pageHighSalesProduct as (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product order by sales_count desc);
+create view pageHighScoreProduct as (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product order by pd_avg_score desc);
+select * from (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product where pd_name like '%원피스%') as p where num between 1 and 10;

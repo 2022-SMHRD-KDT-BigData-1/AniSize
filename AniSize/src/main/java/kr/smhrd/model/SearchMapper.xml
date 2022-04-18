@@ -19,7 +19,10 @@
     </select>
     
     <select id="searchedProductList" resultType="kr.smhrd.model.ProductVO">
-        select pd_num, pd_name, pd_price from product where pd_name like #{serachWord}
+        select pd_num, pd_name, pd_price from product where pd_name like #{searchWord}
     </select>
     
+   	<select id ="searchedProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
+        select * from (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product where pd_name like #{searchWord}) as p where num between #{min} and #{max}
+    </select>
 </mapper>

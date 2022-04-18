@@ -121,6 +121,10 @@ p {
 img {
 width:158.39px; height: 224px;
 }
+
+.page-item {
+	font-size: 3ch;
+}
 </style>
 </head>
 
@@ -163,9 +167,60 @@ width:158.39px; height: 224px;
 			</div>
 			</c:forEach>
 		</div>
-		<br><br><br><br><br>
-	</div>
-
+		
+		<!-- 페이징 -->
+			<div>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination" style='text-align:center; display:block;'>
+						<li class="page-item previous" style="display: none;"><a class="page-link" onclick ='previousPageList()'
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+						<c:forEach varStatus="pg" begin="1" end="${lastPage}">
+							<c:choose>
+								<c:when test='${pg.index<=5}'>
+									<c:choose>
+										<c:when test='${pg.index == currentPage}'>
+											<li class="page-item active pageNum" style="display: inline-block;"><a
+												class="page-link" href="search.do?page=${pg.index}">${pg.index}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item pageNum" style="display: inline-block;"><a
+												class="page-link" href="search.do?page=${pg.index}">${pg.index}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test='${pg.index == currentPage}'>
+											<li class="page-item active pageNum" style="display: none;"><a
+												class="page-link" href="search.do?page=${pg.index}">${pg.index}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item pageNum" style="display: none;"><a
+												class="page-link" href="search.do?page=${pg.index}">${pg.index}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					<c:choose>
+						<c:when test='${lastPage<=5}'>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item next" style="display: inline-block;"><a
+								class="page-link" onclick='nextPageList()' aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+				</nav>
+			</div>
+			<br>
+			<br>
+			<br>
+		</div>
+		
 	<jsp:include page="menuBar.jsp"></jsp:include>
 
 
@@ -174,6 +229,52 @@ width:158.39px; height: 224px;
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    
+    <script>
+    	var startNum = 0;
+    	var endNum = 4;
+    	var pageList = document.querySelectorAll('li.page-item.pageNum');
+    	var previous = document.querySelector('li.page-item.previous');
+    	var next = document.querySelector('li.page-item.next')
+    	console.log(startNum,endNum);
+		function previousPageList() {
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'none';
+			}
+			startNum = startNum-5;
+			endNum = startNum+4;
+			console.log(startNum,endNum);
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'inline-block';
+			}
+			previous.style.display='inline-block';
+			next.style.display='inline-block';
+			if (startNum==0){
+				previous.style.display='none';
+			}
+		}
+		
+		function nextPageList() {
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'none';
+			}
+			startNum = startNum+5;
+			endNum = startNum+4;
+			if (endNum+1>=pageList.length){
+				endNum = pageList.length-1;
+			}
+			console.log(startNum,endNum);
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'inline-block';
+			}
+			previous.style.display='inline-block';
+			next.style.display='inline-block';
+			if (endNum==pageList.length-1){
+				next.style.display='none';
+			}
+			
+		}
+    </script>
 </body>
 
 </html>

@@ -11,4 +11,5 @@ public interface SearchMapper {
 	public void countSearchWord(String searchWord);
 	public List<String> getPopularSearchWord();
 	public List<ProductVO> searchedProductList(String searchWord);
+	public List<ProductVO> searchedProductListByPage(MinMaxVO minMaxVO);
 }

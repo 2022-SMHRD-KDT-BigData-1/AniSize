@@ -40,6 +40,7 @@ public class HomeController {
 		int min = max-9;
 		List<ProductVO> productList = productMapper.getProductListByPage(new MinMaxVO(min,max));
 		model.addAttribute("productList", productList);
+		model.addAttribute("currentPage", page);
 		model.addAttribute("lastPage",lastPage);
 	}
 

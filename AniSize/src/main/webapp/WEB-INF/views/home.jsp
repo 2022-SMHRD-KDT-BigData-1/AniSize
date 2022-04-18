@@ -63,7 +63,7 @@
 
 <body>
 	<div class="container">
-		<div class="brand">
+		<div class="brand" style="border-bottom: none;">
 			<img src="resources/images/logo.jpg"
 				style="width: 200px; height: 150px; margin-left: 60px;" /> <br />
 
@@ -173,18 +173,41 @@
 						<c:forEach varStatus="pg" begin="1" end="${lastPage}">
 							<c:choose>
 								<c:when test='${pg.index<=5}'>
-									<li class="page-item pageNum" style="display:inline-block;"><a class="page-link"
-										href="home.do?page=${pg.index}">${pg.index}</a></li>
+									<c:choose>
+										<c:when test='${pg.index == currentPage}'>
+											<li class="page-item active pageNum" style="display: inline-block;"><a
+												class="page-link" href="home.do?page=${pg.index}">${pg.index}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item pageNum" style="display: inline-block;"><a
+												class="page-link" href="home.do?page=${pg.index}">${pg.index}</a></li>
+										</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item pageNum" style="display: none;"><a
-										class="page-link" href="home.do?page=${pg.index}">${pg.index}</a></li>
+									<c:choose>
+										<c:when test='${pg.index == currentPage}'>
+											<li class="page-item active pageNum" style="display: none;"><a
+												class="page-link" href="home.do?page=${pg.index}">${pg.index}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item pageNum" style="display: none;"><a
+												class="page-link" href="home.do?page=${pg.index}">${pg.index}</a></li>
+										</c:otherwise>
+									</c:choose>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-						<li class="page-item next" style="display:inline-block;"><a class="page-link" onclick ='nextPageList()'
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
+						<c:choose>
+							<c:when test='${lastPage<=5}'>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item next" style="display: inline-block;"><a
+									class="page-link" onclick='nextPageList()' aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</nav>
 			</div>

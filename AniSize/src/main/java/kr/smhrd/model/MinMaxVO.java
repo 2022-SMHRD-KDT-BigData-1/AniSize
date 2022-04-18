@@ -10,4 +10,12 @@ import lombok.NoArgsConstructor;
 public class MinMaxVO {
 	int min;
 	int max;
+	String searchWord;
+
+public MinMaxVO(int min, int max) {
+	super();
+	this.min = min;
+	this.max = max;
+}
+	
 }
