@@ -27,7 +27,10 @@ public class HomeController {
 		if (request.getParameter("page")!=null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		int lastPage = productMapper.getProductList().size()/10+1;
+		int lastPage = (productMapper.getProductList().size()-1)/10+1;
+		if (lastPage == 0) {
+			lastPage =1;
+		}
 		if (page > lastPage) {
 			page = lastPage;
 		} else if (page < 1) {
