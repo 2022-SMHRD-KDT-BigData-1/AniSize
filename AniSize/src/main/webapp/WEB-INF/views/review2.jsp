@@ -430,7 +430,7 @@
 	          <!--사이즈-->
 	        </div>
 	      </div>
-	        
+	         
 	      <div class="review-share">
 	       	<p style="font-size: 10px;">강아지 체형 정보</p>
 			<table style="margin: auto;">
