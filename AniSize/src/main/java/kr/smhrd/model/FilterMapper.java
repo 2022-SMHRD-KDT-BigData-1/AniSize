@@ -9,4 +9,7 @@ public interface FilterMapper {
 	public List<ProductVO> getHighSalesProductList();
 	public List<ProductVO> getHighScoreProductList();
 	public List<ProductVO> selectCategoryProductList();
+	public List<ProductVO> getRecentProductListByPage(MinMaxVO minMaxVO);
+	public List<ProductVO> getHighSalesProductListByPage(MinMaxVO minMaxVO);
+	public List<ProductVO> getHighScoreProductListByPage(MinMaxVO minMaxVO);
 }

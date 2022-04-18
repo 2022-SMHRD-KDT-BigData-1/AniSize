@@ -81,7 +81,15 @@
         top:1px;
     }
 
-        
+    .page-item {
+		font-size: 3ch;
+	}
+	.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #c370de;
+    border-color: #c370de;
+}
     </style>
   </head>
 
@@ -110,178 +118,65 @@
         </li>
       </c:forEach>
       </ul>
-      
-    </div>
-
+    
+    <!-- 페이징 -->
+			<div>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination" style='text-align:center; display:block;'>
+						<li class="page-item previous" style="display: none;"><a class="page-link" onclick ='previousPageList()'
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+						<c:forEach varStatus="pg" begin="1" end="${lastPage}">
+							<c:choose>
+								<c:when test='${pg.index<=5}'>
+									<c:choose>
+										<c:when test='${pg.index == currentPage}'>
+											<li class="page-item active pageNum" style="display: inline-block;"><a
+												class="page-link" href="best.do?filter=${filter}&page=${pg.index}">${pg.index}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item pageNum" style="display: inline-block;"><a
+												class="page-link" href="best.do?filter=${filter}&page=${pg.index}">${pg.index}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test='${pg.index == currentPage}'>
+											<li class="page-item active pageNum" style="display: none;"><a
+												class="page-link" href="best.do?filter=${filter}&page=${pg.index}">${pg.index}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item pageNum" style="display: none;"><a
+												class="page-link" href="best.do?filter=${filter}&page=${pg.index}">${pg.index}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test='${lastPage<=5}'>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item next" style="display: inline-block;"><a
+									class="page-link" onclick='nextPageList()' aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</nav>
+			</div>
+			<br>
+			<br>
+			<br>
+		</div>
+		
+	
     <!-- 메뉴바 + 카데고리 -->
-    <nav
-      class="navbar fixed-bottom"
-      style="
-        margin: 0px;
-        padding: 0px;
-        background-color: #ffffff;
-        color: #c370de;
-        border-top: 0.1px solid #c370de;
-      "
-    >
-      <div class="container-fluid">
-        <a
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar"
-          style="margin: 0px; padding: 0px"
-        >
-          <i class="bi bi-list" style="font-size: 32px"></i>
-          <!-- <i class="bi bi-card-list"></i> -->
-        </a>
 
-        <a class="navbar-brand" href="#"
-          ><i class="bi bi-search" style="font-size: 25px"></i
-        ></a>
-        <a class="navbar-brand" href="#"><i class="bi bi-house-door"></i></a>
-        <a class="navbar-brand" href="#"
-          ><i class="bi bi-cart" style="font-size: 28px"></i
-        ></a>
-        <a class="navbar-brand" href="#"
-          ><i class="bi bi-person" style="font-size: 32px"></i
-        ></a>
-        <!-- 카테고리 안  -->
-        <div
-          class="offcanvas offcanvas-start"
-          tabindex="-1"
-          id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel"
-          style="max-width: 300px"
-        >
-          <div class="offcanvas-header">
-            <h3 class="offcanvas-title" id="offcanvasNavbarLabel">
-              <img src="resources/images/logo_size_invert.jpg" style="width: 240px" ; />
-            </h3>
-            <button
-              type="button"
-              class="btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-
-          <div
-            class="offcanvas-body"
-            style="font-family: 'Hahmlet', serif; font-size: 15px"
-          >
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  style="color: black"
-                  href="#"
-                  >베스트</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" style="color: black" href="#"
-                  >반려동물 치수재기</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="offcanvasNavbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style="color: black"
-                >
-                  의류
-                </a>
-                <ul
-                  class="menu"
-                  aria-labelledby="offcanvasNavbarDropdown"
-                  style="font-size: 12px"
-                >
-                  <li><a class="dropdown-item" href="#">-티셔츠/탑</a></li>
-                  <li><a class="dropdown-item" href="#">-원피스/팬츠</a></li>
-                  <li><a class="dropdown-item" href="#">-올인원</a></li>
-                  <li><a class="dropdown-item" href="#">-맨추맨/후드</a></li>
-                  <li><a class="dropdown-item" href="#">-셔츠/블라우스</a></li>
-                  <li><a class="dropdown-item" href="#">-아우터</a></li>
-                  <li><a class="dropdown-item" href="#">-니트/가디건</a></li>
-                  <li><a class="dropdown-item" href="#">-잠옷/가운</a></li>
-                  <li><a class="dropdown-item" href="#">-한복</a></li>
-                  <li><a class="dropdown-item" href="#">-레인코트</a></li>
-                  <li><a class="dropdown-item" href="#">- 래쉬가드</a></li>
-                  <li><a class="dropdown-item" href="#">-구명조끼</a></li>
-                  <li><a class="dropdown-item" href="#">-커플룩</a></li>
-                </ul>
-              </li>
-            </ul>
-            <footer>
-              <div
-                class="footer-content"
-                style="margin-left: 7px; margin-right: 7px"
-              >
-                <!--add all information -->
-                <h3 style="color: #fff">anisize company</h3>
-                <p>고객센터 062-655-3506</p>
-                <p>펴일 오전9시 - 오후6시운영</p>
-
-                <div class="info dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#collapseExample"
-                  role="button" aria-expanded="false" aria-controls="collapseExample"
-                  style="color: #cacdd2;">
-                  (주)애니사이즈 사업자 정보
-              </a>
-
-          </p>
-          <div class="collapse" id="collapseExample" style="width: 200px;">
-              <div class="card card-body" style="background: rgb(141, 141, 141); padding: 0px; margin-left: 20px;">
-                  <p style="font-size: 9px;">
-                      (주)애니사이즈 대표자 : 박상민 <br>
-                      개인정보책임관리자 : 박상민<br>
-                      사업자번호 : 178-82-00065<br>
-                      본점 : 광주 동구 예술길 31-15 3, 4, 7층<br>
-                      E-Mail : anisize@naver.com</p>
-
-              </div>
-          </div>
-                <!--
-              <p style="font-size: 10px; position: static;">
-                일부 상품의 경우 주식회사 anisize는 통신판매의 당사자가 아닌
-                통신판매중개자로서 상품, 상품정보, 거래에 대한 책임이 제한될
-                수 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기
-                바랍니다.
-              </p>
-              -->
-                <p></p>
-                <ul class="socials">
-                  <li>
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="bi bi-twitter"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="bi bi-google"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="bi bi-youtube"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="bi bi-instagram"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </footer>
-          </div>
-        </div>
-        <!-- 카테고리 -->
-      </div>
-    </nav>
     <!-- 메뉴바 -->
+    <jsp:include page="menuBar.jsp"></jsp:include>
 
     <!-- 아래 Popper 있어야 슬라이드로 나옴..... 절대 지우지마!!!!!!!! -->
     <!-- Optional JavaScript; choose one of the two! -->
@@ -301,5 +196,51 @@
     <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    
+    <script>
+    	var startNum = 0;
+    	var endNum = 4;
+    	var pageList = document.querySelectorAll('li.page-item.pageNum');
+    	var previous = document.querySelector('li.page-item.previous');
+    	var next = document.querySelector('li.page-item.next')
+    	console.log(startNum,endNum);
+		function previousPageList() {
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'none';
+			}
+			startNum = startNum-5;
+			endNum = startNum+4;
+			console.log(startNum,endNum);
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'inline-block';
+			}
+			previous.style.display='inline-block';
+			next.style.display='inline-block';
+			if (startNum==0){
+				previous.style.display='none';
+			}
+		}
+		
+		function nextPageList() {
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'none';
+			}
+			startNum = startNum+5;
+			endNum = startNum+4;
+			if (endNum+1>=pageList.length){
+				endNum = pageList.length-1;
+			}
+			console.log(startNum,endNum);
+			for (var i = startNum; i <= endNum; i++){
+				pageList[i].style.display = 'inline-block';
+			}
+			previous.style.display='inline-block';
+			next.style.display='inline-block';
+			if (endNum==pageList.length-1){
+				next.style.display='none';
+			}
+			
+		}
+    </script>
+    
   </body>
 </html>

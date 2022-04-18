@@ -33,5 +33,9 @@
 	<select id="selectStkOptionList" resultType="String">
 	    select distinct stk_option from product_stock where pd_num = #{pd_num}
 	</select>
+	
+	<select id="getProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
+	    select pd_num, pd_name, pd_cate_num, pd_price, pd_img_count, pd_avg_score, seller_num, pd_date, brand from pageProduct where num between #{min} and #{max}
+	</select>
 
 </mapper>

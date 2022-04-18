@@ -172,7 +172,7 @@
     </div>
     <!--낙네임 들어가는곳-->
     <i class="bi bi-person-circle" style="font-size: 50px; display: flex; justify-content: left; align-items: left; color: #c2c2c2;
-    font-size: 40px;">   <p style="text-align: center; font-size: 15px; margin-top: 10px; margin-left: 10px; margin-bottom: 40px; color: rgba(0, 0, 0, 0.76); font-weight: lighter;">
+    font-size: 40px;">   <p style="text-align: left; font-size: 15px; margin-top: 10px; margin-left: 10px; margin-bottom: 40px; color: rgba(0, 0, 0, 0.76); font-weight: lighter; width:230px">
     <c:choose>
     	<c:when test="${empty member}">
     		<a href="login.do">로그인</a>
@@ -181,12 +181,9 @@
    			 ${member.mem_nick}님
     	</c:otherwise>
     </c:choose>
-    </p>   <button style="    width: 60px;
-    height: 30px;
-    font-size: 5px;
-    margin-left: 170px;
-    margin-top: 7px;
-    border: none;">로그아웃</button></i>
+    </p>   <div class="logout" style="display: flex; justify-content: right; align-items: right;">
+                <button style="width: 60px; height: 30px; font-size: 5px;  margin-top: 7px; border: none;">로그아웃</button>
+            </div></i>
      <div class="detail_product">
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
       height: 70px;"><a href=""><span >0<br> 입금/결제</span></a></div>
@@ -269,6 +266,8 @@
       <a class="" href="#">FAQ</a>
       <a class="" href="#">공지사항</a>
     </div>
+    
+    <br><br><br><br><br>
   </div>
 
 <jsp:include page="menuBar.jsp"></jsp:include>

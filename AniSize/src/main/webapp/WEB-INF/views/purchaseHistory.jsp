@@ -32,6 +32,12 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
+	<!-- moment.js cdn : 날짜 형태 변환 라이브러리 -->
+	<script
+   		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+   		integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+   		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <style>
         body {
             background-color: #ffffff;
@@ -240,9 +246,9 @@
             
             <c:forEach items="${phList}" var="ph">
             
-            <div class="p_history" style="font-size: 18px; margin-bottom: 12px;">
+            <div class="p_history" style="font-size: 16px; margin-bottom: 12px;">
                 <!-- &nbsp;공백 넣기(space) -->                         
-                <span>&nbsp;&nbsp;&nbsp;${ph.ph_date}</span><a href="javascript:hiddenQuery('purchaseHistoryDetail.do','${ph.ph_num}')" style="padding-left:200px; color: #5e5e5e;">
+                <span class="phDate">&nbsp;&nbsp;&nbsp;&nbsp;${ph.ph_date}</span><a href="javascript:hiddenQuery('purchaseHistoryDetail.do','${ph.ph_num}')" style="padding-left:220px; color: #5e5e5e;">
                     <i class="bi bi-chevron-double-right" style="color: #5e5e5e; font-size: 20px;"></i></a>
             </div>
             <div class="col-5">
@@ -257,17 +263,22 @@
             </div>
             <div class="row" style="margin-top: 10px;">
                 <div class="col-6">
-                    <button type="button" class="btn btn secondary btn-sm">
+                    <button type="button" class="btn btn secondary btn-sm" >
                         배송조회</button>
                 </div>
                 <div class="col-6">
                     <button type="button" class="btn btn secondary btn-sm">
                         1:1문의</button>
                 </div>
+                <hr style="display:flex; max-width: 330px; margin-top: 12px; margin-bottom: 8px; border-width: 5px;">
             </div>
          </c:forEach>
+         
         </div><!-- 구매내역 -->
 
+
+      <br><br><br>
+      
         <!--/ container  -->
     </div>
 
@@ -295,11 +306,16 @@
 
 
 
+<script>
+   // 날짜 형식 변경 라이브러리
+   $(document).ready(function () {
+        var date = new Date();
+        $(".phDate").text(moment(date).format('YYYY-MM-DD'));
+   });
 
 
 
-
-
+   </script>
 
 
 

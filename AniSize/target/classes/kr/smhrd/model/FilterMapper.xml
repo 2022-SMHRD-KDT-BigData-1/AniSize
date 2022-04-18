@@ -11,4 +11,16 @@
     <select id="selectCategoryProductList" resultType="kr.smhrd.model.ProductVO">
         select pd_name, pd_price, pd_num from product where pd_cate_num = #{pd_cate_num}
     </select>
+    
+    <select id ="getRecentProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
+        select * from pageRecentProduct where num between #{min} and #{max}
+    </select>
+    
+    <select id ="getHighSalesProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
+        select * from pageHighSalesProduct where num between #{min} and #{max}
+    </select>
+    
+    <select id ="getHighScoreProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
+        select * from pageHighScoreProduct where num between #{min} and #{max}
+    </select>
 </mapper>
