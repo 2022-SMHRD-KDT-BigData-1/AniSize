@@ -207,7 +207,7 @@
       <div><span style="margin-left: 15px; text-align: left;">재입고 알림</span></div>
      
     </div>
-  
+
     
    
     <hr style="margin-top: 100px;">
