@@ -143,5 +143,37 @@ html, body {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    
+    <script>
+    function predict() {
+    	var form = $('#inputGroupFile04')[0].files[0];
+		var formData = new FormData();
+		formData.append('img', form);
+    	$.ajax({
+            url : "http://222.102.104.24:5000/predict",
+            type : "POST",
+            enctype: 'multipart/form-data',
+            data : formData,
+            processData: false,
+	        contentType: false,
+	        cache: false,
+            success : function(result){
+            	if (result['err']==0){
+            		$('#ani_back_len').val(result['back']);
+                    $('#ani_neck_len').val(result['neck']);
+                    $('#ani_chest_len').val(result['chest']);
+            	} else if (result['err']==1) {
+            		alert("카드 인식 실패");
+            	} else {
+            		alert("강아지 인식 실패")
+            	}
+                
+            },
+            error : function(){
+            	alert("error!"); 
+            }
+        })
+	};
+    </script>
 </body>
 </html>
