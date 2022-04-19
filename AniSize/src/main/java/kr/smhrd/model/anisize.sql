@@ -223,3 +223,8 @@ create view pageHighSalesProduct as (select row_number() over(order by pd_num) a
 create view pageHighScoreProduct as (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product order by pd_avg_score desc);
 select * from (select row_number() over(order by pd_num) as num,pd_num,pd_name,pd_cate_num,pd_price,pd_img_count,pd_avg_score,seller_num,pd_date,brand,sales_count from product where pd_name like '%원피스%') as p where num between 1 and 10;
 >>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-BigData-1/AniSize.git
+
+select *
+        from product_stock as ps, product as pd
+        where stk_num = 2293
+        and ps.pd_num = pd.pd_num

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!doctype html>
 <html lang="en">
 
@@ -174,11 +174,11 @@
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">
                         <!-- 이름 -->
-                        <h4>홍길동</h4>
+                        <h4>${member.mem_nick}</h4>
                         <!-- 주소 -->
-                        <p style="font-size: 16px;">서울시..........</p>
+                        <p style="font-size: 16px;">${member.mem_address}</p>
                         <!-- 연락처 -->
-                        <p style="font-size: 16px;">010-123-123</p>
+                        <p style="font-size: 16px;">${member.mem_tel}</p>
                     </label>
 
                 </div>
@@ -233,31 +233,35 @@
             <div class="row">
                 <span style="font-weight: 600;font-size: 18px">주문상품 정보</span>
             </div>
+            <c:forEach items="${orderList}" var="product">
             <hr style="display:flex; max-width: 330px; margin-top: 3px; ">
+            
             <div class="row">
                 <div class="col-5">
                     <!-- 상품 이미지 -->
-                    <img src="3.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
+                    <img src="images/product/${product.pd_num}/thumnail.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
 
                 </div>
 
                 <div class="col-7 " style="font-size: 14px;">
-                    <p style="font-weight: 600;font-size: 13px">상품명 오드펫 시워쏘쿨 베스트</p>
+                    <p style="font-weight: 600;font-size: 13px">상품명 ${product.pd_name}</p>
 
                     <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                     <div class="selected_option" style="font-size: 14px;">
 
-                        <span>컬러 블루 / </span>
-                        <span>사이즈 S</span><br>
-                        <span>수량 2 개</span><br>
+                        <span>${product.stk_option } </span>
+                        <span>사이즈 ${product.stk_size}</span><br>
+                        <span>수량 ${product.ph_quantity} 개</span><br>
 
-                        <p style="text-align: end;">가격 19,900원</p>
-                        <p style="text-align: end; font-weight: 700">총 39,800원</p>
-
+                        <p style="text-align: end;">가격 ${product.stk_price}원</p>
+                        <p style="text-align: end; font-weight: 700">총 ${product.stk_price * product.ph_quantity}원</p>
+                        <input type="hidden" class="price" value=" ${product.stk_price * product.ph_quantity}">
                     </div>
                 </div>
             </div>
+            </c:forEach>
             <hr style="display:flex; max-width: 330px; margin-top: 15x; margin-bottom: 20px; border-width: 5px;">
+            
 
         </div>
 
@@ -527,7 +531,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">총 상품금액</th>
-                                    <td>152,150원</td>
+                                    <td class="sum_price">0원</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">쿠폰 사용</th>
@@ -539,18 +543,17 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">배송비</th>
-                                    <td>+ 3,000원</td>
+                                    <td id="del_price">+ 3,000원</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="font-size: 18px; font-weight: 700;">총 결제금액</th>
-                                    <td style="color: #d700d7;font-size: 20px; font-weight: 700;">155,150 원</td>
+                                    <td style="color: #d700d7;font-size: 20px; font-weight: 700;" class="sum_price">0 원</td>
                                 </tr>
 
                             </tbody>
                         </table>
                     </div>
                 </div>
-
 
                 <!-- 하단 결제하기 버튼  -->
                  <nav class="navbar fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
@@ -563,8 +566,6 @@
                     </div>
 
                 </nav>
-                
-                
 
                 <hr style="display:flex; max-width: 330px; margin-top: 8px; margin-bottom: 5px; border-width: 5px;">
 
@@ -580,19 +581,35 @@
                         개인정보 제3자 제공 동의 보기<br>
                         결제대행 서비스 이용약관 (주)KG이니시스, (주)토스페이먼츠
                     </p>
-
-
                 </div>
                 <br><br><br><br>
-
             </div>
-
-
-
-
-
         </div>
     </div>
+    <script type="text/javascript">
+	    $(document).ready(function(){
+	    	let sum = 0;
+			$('.price').each(function(){
+				sum+= Number($(this).val());
+			});
+			console.log(sum);
+			let del_price = 3000;
+			if(sum>=50000){
+				del_price = 0;
+				$('#del_price').text('+ 0원');
+			}else{
+				del_price = 3000;
+				$('#del_price').text('+ 3,000원');
+				
+			}
+			$('.sum_price').text((sum+del_price)+' 원');
+	    });
+
+    </script>
+    
+    
+    
+    
     <!--/ container  -->
 
 

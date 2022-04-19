@@ -33,8 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
-
-
     <style>
         body {
             background-color: #ffffff;
@@ -129,11 +127,9 @@
                     </i></a>
             </div>
             <div class="col-11" style="display: flex; justify-content: center; align-items: center;">
-
                 <!-- My Order List -->
                 <!-- <img src="logo_product.jpg" style="width: 200px; margin-left: 50px; margin-bottom: 30px;"> -->
                 <h1 class="">장바구니</h1>
-
             </div>
         </div>
 
@@ -141,12 +137,11 @@
             style="color: #ad67ea; font-size: 50px;  display: flex; justify-content: center; align-items: center;"></i><br>
 
         <!-- 장바구니 담은 상품 리스트 -->
-
         <div class="row" style="margin-bottom: 12px;padding-left: 29px; ">
             <div class="form-check">
                 <!-- 전체선택 -->
                 <input class="form-check-input" type="checkbox" value="selectall" onclick='selectAll(this)'
-                    name="select" id="flexCheckDefault" style="font-weight: 600;font-size: 20px" />
+                    name="" id="flexCheckDefault" style="font-weight: 600;font-size: 20px" />
 
                 <label class="form-check-label" for="flexCheckDefault"
                     style="font-weight: 600;font-size: 14px; padding-top: 4px;">
@@ -167,44 +162,33 @@
             </div>
         </div>
 
+		<c:forEach items="${cartList}" var="product" varStatus="i">
         <!-- 선택한 상품 정보 -->
         <div class="selected_Product">
             <hr style="display:flex; max-width: 330px;">
-
 
             <div class="row" style="margin-bottom: 12px; ">
                 <!-- 선택 체크 -->
                 <div class="col-10" style="padding-left: 15px;">
                     <div class="form-check" style="padding-left: 35px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="select"
-                            style="font-weight: 600;font-size: 20px; margin-top: 0rem; ">
+                        <input class="form-check-input ckck" type="checkbox" value="" name="select" onclick=""
+                            style="font-weight: 600;font-size: 20px; margin-top: 0rem;">
                     </div>
                 </div>
-
-
                 <div class="col-2">
                     <!-- 삭제 버튼 -->
                     <button type="button" class="btn" aria-label="Delete">
-
                         <i class=" bi bi-x-square-fill" style="font-size: 20px; text-align: end; padding-top: 0px;"></i>
-
                     </button>
-
                 </div>
             </div>
-			<c:forEach items="${cartList}" var="product" varStatus="i">
-            <div class="row">
+            <div class="row aa">
                 <div class="col-5">
                     <!-- 상품 이미지 -->
                     <img src="images/product/${product.pd_num}/thumnail.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
-
                 </div>
-
-
-                <div class="col-7 " style="font-size: 14px;">
-
+                <div class="col-7 aa" style="font-size: 14px;">
                     <p style="font-weight: 600;font-size: 13px">상품명 ${product.pd_name}</p>
-
                     <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                     <div class="selected_option" style="font-size: 14px;">
 						<c:choose>
@@ -214,7 +198,7 @@
 						</c:choose>
                         <span>사이즈 ${product.stk_size}</span><br><br>
 
-                        <p style="text-align: end;" class="pd_price">가격 ${product.stk_price * product.cart_quantity}원</p>
+                        <p style="text-align: end;" class="pd_price">가격 ${product.stk_price}원</p>
 						<input type="hidden" value="${product.stk_price}" class="sp">
                         <!--수량 수정  -->
                         <div class="number" style="font-size: 20px; text-align: left; ">
@@ -228,29 +212,32 @@
                     </div>
                 </div>
             </div>
-			
 
-            <div class="row" style="margin-top: 16px; ">
+            <div class="row rororo" style="margin-top: 16px; ">
                 <div class="col-6">
                     <!-- 바로 구매 -->
                     <button type="button" class="btn btn secondary btn-sm" style=" color: #fff;
             padding: 0 0 0 0; background-color: #ad67ea; width: 120px; height: 28px; display: flex; text-align: center; justify-content: center;
             align-items: center; "> 바로구매</button>
                 </div>
-                </c:forEach>
-                <div class="col-6">
+                
+                <div class="col-6 rongrong">
                     <!-- 가격 X 수량 => 총금액 -->
-                    <p style="text-align: end; font-weight: 600; font-size: 18px;">총 39,800원</p>
+                    <p style="text-align: end; font-weight: 600; font-size: 18px;">총 ${product.stk_price * product.cart_quantity}원</p>
+                    <input type="hidden" class="" value="${product.stk_price * product.cart_quantity}">
+                    <input type="hidden" value="${product.stk_num}">
                 </div>
             </div>
         </div>
+        </c:forEach>
+        
 
         <hr style="display:flex; max-width: 330px; margin-top: 8px; margin-bottom: 5px;">
 
         <div class="row" style="padding-right: 15px;">
             <div class="col-11" style="padding-right: 0px;margin-top: 7px;">
-                <p style="text-align: end; font-weight: 600; font-size: 14px; padding: 0 0 0 0 ; margin-bottom: 0px;">
-                    상품 39,800 + 배송비 0 = 총 39,800</p>
+                <p style="text-align: end; font-weight: 600; font-size: 14px; padding: 0 0 0 0 ; margin-bottom: 0px;" id="sum_price">
+                    상품 0 + 배송비 0 = 총 0</p>
             </div>
 
             <div class="col-1" style="padding-left: 0px; text-align: end;">
@@ -267,7 +254,6 @@
                 </script>
             </div>
         </div>
-
 
         <style>
             th {
@@ -312,11 +298,11 @@
                     <tbody>
                         <tr>
                             <th scope="row">주문 상품 수</th>
-                            <td>총 2 개</td>
+                            <td id="pd_cnt">총 0 개</td>
                         </tr>
                         <tr>
                             <th scope="row">총 주문금액</th>
-                            <td>19,900 원</td>
+                            <td id="del_price2">0 원</td>
                         </tr>
                         <tr>
                             <th scope="row">총 배송비</th>
@@ -324,7 +310,7 @@
                         </tr>
                         <tr>
                             <th scope="row">총 결제금액</th>
-                            <td style="color: #d700d7;">39,800 원</td>
+                            <td style="color: #d700d7;" id="sum_price2">0 원</td>
                         </tr>
                     </tbody>
                 </table>
@@ -335,20 +321,116 @@
         <!-- 하단 결제하기 버튼  -->
             <nav class="fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
-
+					
        				 <div class="container-fluid">
-            			<button type="button fixed-bottom" class="btn" onclick="location.href='#cart.html' "
+       				 	<div id="hidden"></div>
+            			<button type="button fixed-bottom" class="btn" onclick="buy()"
                				 style="width: 350px;height: 40px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
                			 결제하기
           				</button>
         			</div>
     		</nav>
-
+   	
+    		
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-        // 수량 수정
-
+    /* 갯수랑 번호 리스트로 담아서 넘기기 체크된거 찾아서 그 위치서 반복문 */
+    
+    function buy(){
+    	console.log(  $($(this).parent()).html() );
+    	let pd_cnt = 0;
+ 	    var buyList = [];
+ 		$('.priceprice').each(function(){
+ 	   		buyList.push({
+ 	   	 		"stk_num" : $($(this).next('input')[0]).val(),
+ 	   	 		"cart_quantity" : $($(this).parent().parent().parent().children('div.aa').children('div.col-7').children('div.selected_option').children('div.number').children('span')).text()
+ 	   		})
+ 		});
+/*   	    var buyList = new Array(); 
+ 		$('.priceprice').each(function(i){
+ 	   		buyList[i] = {
+ 	   	 		"stk_num" : $($(this).next('input')[0]).val(),
+ 	   	 		"cart_quantity" : $($(this).parent().parent().parent().children('div.aa').children('div.col-7').children('div.selected_option').children('div.number').children('span')).text()
+ 	   		}
+ 		}); */
+		console.log(buyList);
+/* 		var h = "";
+		for(var i = 0; i < buyList.length; i++){
+			h += "<input type='hidden' name='stk_num' value='"+buyList[i].stk_num+"'>";
+			console.log(h);
+		}
+		$('#hidden').html(h); */
+		
+  		$.ajax({
+ 			url : 'buy.do',
+ 			type : 'post',
+ 			contentType:'application/json',
+ 			data: JSON.stringify(buyList),
+ 			success : function(res){
+ 				console.log(res);
+				location.href="order.do";
+ 			},
+ 			error : function(e){
+ 				console.log(e);
+ 			}
+ 		}); 
+    }
+	   
+    
+    
+          $(function(){
+        	$('.ckck').change(function (e){
+        		e.preventDefault();
+        		var ckTrue = $(this).is(":checked");
+        		console.log(ckTrue);
+        		if(ckTrue){
+        			console.log('체크됨')
+        			var ip = $($(this).parent().parent().parent().parent().children('div.rororo').children('div.rongrong').children('input')[0]);
+        			ip.addClass('priceprice');
+        			console.log(ip.attr('class'))
+    				let sum = 0; 
+    				let pd_count = 0;
+    				$('.priceprice').each(function(){
+    					sum+= Number($(this).val());
+    					pd_count +=1;
+    				});
+    				pd_cnt = pd_count;
+    				let del_price = 3000;
+    				
+    				if(sum>=50000){
+    					del_price = 0;
+    				}
+    				$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
+    				$('#sum_price2').text((sum+del_price)+' 원');
+    				$('#del_price2').text(del_price+' 원');
+    				$('#pd_cnt').text('총 '+pd_count+' 개');
+        			
+        		}else{
+        			console.log('체크 안됨')
+        			var ip = $($(this).parent().parent().parent().parent().children('div.rororo').children('div.rongrong').children('input')[0]);
+        			ip.removeClass('priceprice');
+        			console.log(ip.attr('class'))
+    				let sum = 0; 
+    				let pd_count = 0;
+    				pd_cnt = pd_count;
+    				$('.priceprice').each(function(){
+    					sum+= Number($(this).val());
+    					pd_count +=1;
+    				});
+    				let del_price = 3000;
+    				if(sum>=50000){
+    					del_price = 0;
+    				}
+    				$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
+    				$('#sum_price2').text((sum+del_price)+' 원');
+    				$('#del_price2').text(del_price+' 원');
+    				$('#pd_cnt').text('총 '+pd_count+' 개');
+        		}
+        	});
+        });   
+      
+        
         $(function () {
-
             $('.decreaseQuantity').click(function (e) {
                 e.preventDefault();
                 var stat = $($(this).prev('.numberUpDown')[0]).text();
@@ -361,7 +443,19 @@
                 	num = 1; 
                 }
                 $($(this).prev('.numberUpDown')[0]).text(num);
-                $($(this).parent().parent().children('p.pd_price')[0]).html(num*stk_price);
+                $($(this).parent().parent().parent().parent().parent().children('div.rororo')[0].children[1].children[0]).text('총 '+(num*stk_price)+'원');
+                $($(this).parent().parent().parent().parent().parent().children('div.rororo')[0].children[1].children[1]).val(num*stk_price);
+				let sum = 0; 
+				$('.priceprice').each(function(){
+					sum+= Number($(this).val());
+				});
+				let del_price = 3000;
+				if(sum>=50000){
+					del_price = 0;
+				}
+				$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
+				$('#sum_price2').text((sum+del_price)+' 원');
+				$('#del_price2').text(del_price+' 원');
                 
             });
             $('.increaseQuantity').click(function (e) {
@@ -376,7 +470,19 @@
                     num = 10;
                 }
                 $($(this).next('.numberUpDown')[0]).text(num);
-                $($(this).parent().parent().children('p.pd_price')[0]).html("가격 "+(num*stk_price)+"원");
+                $($(this).parent().parent().parent().parent().parent().children('div.rororo')[0].children[1].children[0]).text('총 '+(num*stk_price)+'원');
+                $($(this).parent().parent().parent().parent().parent().children('div.rororo')[0].children[1].children[1]).val(num*stk_price);
+                let sum = 0; 
+                $('.priceprice').each(function(){
+                	sum+= Number($(this).val());
+                });
+                let del_price = 3000;
+                if(sum>=50000){
+                	del_price = 0;
+                }
+                $('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
+                $('#sum_price2').text((sum+del_price)+' 원');
+                $('#del_price2').text(del_price+' 원');
             });
         });
 

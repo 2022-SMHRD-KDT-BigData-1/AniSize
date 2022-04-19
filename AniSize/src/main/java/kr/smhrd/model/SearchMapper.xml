@@ -15,7 +15,7 @@
     </insert>
     
     <select id="getPopularSearchWord" resultType="String">
-        select searchWord from search_word order by searchWord_count desc
+        select searchWord from search_word order by searchWord_count desc limit 10
     </select>
     
     <select id="searchedProductList" resultType="kr.smhrd.model.ProductVO">

@@ -169,7 +169,7 @@ width:158.39px; height: 224px;
 					<img src="images/product/${product.pd_num}/thumnail.jpg" >
 					<br>
 					<br>
-					<p>${product.pd_name} <br> ${product.pd_price}</p>
+					<p>${product.pd_name} <br> ${product.pd_price}원</p>
 				</a>
 			</div>
 			</c:forEach>

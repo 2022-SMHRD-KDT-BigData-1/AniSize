@@ -18,4 +18,11 @@
     <delete id="deleteCart" parameterType="kr.smhrd.model.CartVO">
         delete from cart where mem_num = #{mem_num} and pd_num = #{pd_num} and stk_option = #{stk_option}
     </delete>
+    
+    <select id="selectStkDetail" resultType="kr.smhrd.model.PurchaseVO">
+	    select *
+        from product_stock as ps, product as pd
+        where stk_num = #{stk_num}
+        and ps.pd_num = pd.pd_num
+	</select>
 </mapper>
