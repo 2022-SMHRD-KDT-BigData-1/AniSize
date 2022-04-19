@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!doctype html>
 <html lang="en">
 
@@ -192,39 +192,43 @@
 
                 </div>
             </div>
-
+			<c:forEach items="${cartList}" var="product" varStatus="i">
             <div class="row">
                 <div class="col-5">
                     <!-- 상품 이미지 -->
-                    <img src="3.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
+                    <img src="images/product/${product.pd_num}/thumnail.jpg" class="rounded" style="display:flex; max-width: 120px; max-height: 120px;">
 
                 </div>
 
 
                 <div class="col-7 " style="font-size: 14px;">
 
-                    <p style="font-weight: 600;font-size: 13px">상품명 오드펫 시워쏘쿨 베스트</p>
+                    <p style="font-weight: 600;font-size: 13px">상품명 ${product.pd_name}</p>
 
                     <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                     <div class="selected_option" style="font-size: 14px;">
+						<c:choose>
+							<c:when test="${!empty product.stk_option}">
+	                        <span>컬러 블루 / </span>
+							</c:when>
+						</c:choose>
+                        <span>사이즈 ${product.stk_size}</span><br><br>
 
-                        <span>컬러 블루 / </span>
-                        <span>사이즈 S</span><br><br>
-
-                        <p style="text-align: end;">가격 19,900원</p>
-
+                        <p style="text-align: end;" class="pd_price">가격 ${product.stk_price * product.cart_quantity}원</p>
+						<input type="hidden" value="${product.stk_price}" class="sp">
                         <!--수량 수정  -->
                         <div class="number" style="font-size: 20px; text-align: left; ">
-                            <a href="#" id="increaseQuantity">
+                            <a href="#" class="increaseQuantity">
                                 <i class="bi bi-plus-square-fill" style="color: #5e5e5e;"></i></a>
                             <!-- <i class="bi bi-plus-square"></i> -->
-                            <span id="numberUpDown">1</span>
-                            <a href="#" id="decreaseQuantity">
+                            <span class="numberUpDown">${product.cart_quantity}</span>
+                            <a href="#" class="decreaseQuantity">
                                 <i class="bi bi-dash-square" style="color: #5e5e5e;"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+			
 
             <div class="row" style="margin-top: 16px; ">
                 <div class="col-6">
@@ -233,6 +237,7 @@
             padding: 0 0 0 0; background-color: #ad67ea; width: 120px; height: 28px; display: flex; text-align: center; justify-content: center;
             align-items: center; "> 바로구매</button>
                 </div>
+                </c:forEach>
                 <div class="col-6">
                     <!-- 가격 X 수량 => 총금액 -->
                     <p style="text-align: end; font-weight: 600; font-size: 18px;">총 39,800원</p>
@@ -304,7 +309,6 @@
                 <span style="font-weight: 600;font-size: 18px">결제할 상품</span>
                 <hr class="l">
                 <table class="table">
-
                     <tbody>
                         <tr>
                             <th scope="row">주문 상품 수</th>
@@ -324,18 +328,11 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
-
-
-
-
         </div><!-- 장바구니 내역 까지-->
 
 </div><!--/ container  -->
-
         <!-- 하단 결제하기 버튼  -->
-        
             <nav class="fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
 
@@ -347,52 +344,39 @@
         			</div>
     		</nav>
 
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         // 수량 수정
 
         $(function () {
-            $('#decreaseQuantity').click(function (e) {
+
+            $('.decreaseQuantity').click(function (e) {
                 e.preventDefault();
-                var stat = $('#numberUpDown').text();
+                var stat = $($(this).prev('.numberUpDown')[0]).text();
                 var num = parseInt(stat, 10);
+                var stk_price = parseInt($($(this).parent().parent().children('input.sp')[0]).val(), 10);
+                
                 num--;
-                if (num <= 0) { alert('더이상 줄일수 없습니다.'); num = 1; }
-                $('#numberUpDown').text(num);
+                if (num <= 0) {
+                	alert('더이상 줄일수 없습니다.');
+                	num = 1; 
+                }
+                $($(this).prev('.numberUpDown')[0]).text(num);
+                $($(this).parent().parent().children('p.pd_price')[0]).html(num*stk_price);
+                
             });
-            $('#increaseQuantity').click(function (e) {
+            $('.increaseQuantity').click(function (e) {
                 e.preventDefault();
-                var stat = $('#numberUpDown').text();
+                var stat = $($(this).next('.numberUpDown')[0]).text();
                 var num = parseInt(stat, 10);
-                num++; if (num > 10) {
+                var stk_price = parseInt($($(this).parent().parent().children('input.sp')[0]).val(), 10);
+                
+                num++; 
+                if (num > 10) {
                     alert('더이상 늘릴수 없습니다.');
                     num = 10;
                 }
-                $('#numberUpDown').text(num);
+                $($(this).next('.numberUpDown')[0]).text(num);
+                $($(this).parent().parent().children('p.pd_price')[0]).html("가격 "+(num*stk_price)+"원");
             });
         });
 

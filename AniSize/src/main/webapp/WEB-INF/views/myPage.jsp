@@ -193,7 +193,7 @@
       height: 70px;"><a href=""><span >0<br> 배송완료</span></a></div>
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
       height: 70px;"><a href=""><span >0<br> 취소/환불</span></a></div>
-      
+       
      
     </div>
 
@@ -207,7 +207,7 @@
       <div><span style="margin-left: 15px; text-align: left;">재입고 알림</span></div>
      
     </div>
-  
+
     
    
     <hr style="margin-top: 100px;">
