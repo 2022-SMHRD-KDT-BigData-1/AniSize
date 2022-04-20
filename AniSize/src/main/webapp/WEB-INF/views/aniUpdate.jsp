@@ -124,7 +124,7 @@ html, body {
 				
 				<div class="d-grid gap-1 col-12 mx-auto">
 					<button class="btn btn-outline-secondary" type="button"
-						id="inputGroupFileAddon04">사이즈 측정</button>
+						id="inputGroupFileAddon04" onclick ='predict()'>사이즈 측정</button>
 
 					<hr />
 
