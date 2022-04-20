@@ -8,13 +8,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseVO {
-	private int ph_num;
+	private int[] ph_num;
 	private int mem_num;
-	private int pd_num;
-	private int ph_quantity;
-	private int stk_price;
-	private String stk_option;
-	private String stk_size;
+	private int[] pd_num;
+	private int[] ph_quantity;
+	private int[] stk_num;
+	private int[] stk_price;
+	private int[] sum_price;
+	private String[] stk_option;
+	private String[] stk_size;
 	private String ph_date;
 	private String recipient_address;
 	private String recipient;
@@ -24,5 +26,6 @@ public class PurchaseVO {
 	private String pd_name;
 	private int review_done;
 	private String brand;
+//	private int[] cart_num;
 	
 }

@@ -16,6 +16,7 @@ import kr.smhrd.model.CartMapper;
 import kr.smhrd.model.CartVO;
 import kr.smhrd.model.MemberVO;
 import kr.smhrd.model.PurchaseHistoryVO;
+import kr.smhrd.model.PurchaseVO;
 
 @Controller
 public class CartController {
@@ -32,14 +33,24 @@ public class CartController {
 	}
 	@RequestMapping("/addCart.do")
 	public @ResponseBody String addCart(CartVO vo) {
-//		System.out.println(vo.toString());
+		System.out.println("장바구니 담기 성공");
+		System.out.println(vo.toString());
+//		System.out.println("장바구니 담기 성공");
+//		int stk_num = cartMapper.selectStkNum(vo);
+//		vo.setStk_num(stk_num);
+		System.out.println("장바구니 담기 성공");
 		cartMapper.addCart(vo);
 		System.out.println("장바구니 담기 성공");
-		return "성공";
+		return "SuccessAddCart";
 	}
 	@RequestMapping("/deleteCart.do")
-	public void deleteCart(CartVO vo) {
-		cartMapper.deleteCart(vo);
+	public @ResponseBody String deleteCart(int cart_num) {
+		System.out.println("카트삭제로 넘어옴");
+		System.out.println("카트번호 : "+cart_num);
+		cartMapper.deleteCart(cart_num);
+		System.out.println("카트삭제 성공");
+		
+		return "SuccessCartDelete";
 	}
 	@RequestMapping("/updateCartQuantity.do")
 	public void updateCartQuantity(int mem_num, int quantity) {
@@ -51,12 +62,31 @@ public class CartController {
 		
 	}
 	@RequestMapping("/orderOK.do")
-	public void orderOK() {
+	public void orderOK(PurchaseVO vo) {
+		System.out.println(vo.toString());
+		for(int i = 0; i<vo.getStk_num().length; i++) {
+			PurchaseHistoryVO ph = new PurchaseHistoryVO();
+			ph.setMem_num(vo.getMem_num());
+			ph.setPd_num(vo.getPd_num()[i]);
+			ph.setStk_num(vo.getStk_num()[i]);
+			ph.setPh_quantity(vo.getPh_quantity()[i]);
+			ph.setRecipient(vo.getRecipient());
+			ph.setRecipient_address(vo.getRecipient_address());
+			ph.setRecipient_tel(vo.getRecipient_tel());
+			ph.setDelivery_requests(vo.getDelivery_requests());
+			ph.setPayment(vo.getPayment());
+			cartMapper.buyCartList(ph);
+			System.out.println((i+1)+"번 상품 구매 성공");
+			cartMapper.doneCartList(ph);
+			cartMapper.salesCount(ph.getPd_num());
+		}
+		System.out.println("상품구매 완료");
 		
 	}
 	@RequestMapping("/buy.do")
 	public @ResponseBody String buy(@RequestBody List<CartVO> buyList, Model model, HttpSession session) {
-//		System.out.println(buyList.toString());
+		System.out.println("바이함수실행");
+		System.out.println(buyList.toString());
 		//String[] stk_num = request.getParameterValues("stk_num");
 		List<PurchaseHistoryVO> orderList = new ArrayList<PurchaseHistoryVO>();
 		for(int i = 0; i<buyList.size(); i++) {

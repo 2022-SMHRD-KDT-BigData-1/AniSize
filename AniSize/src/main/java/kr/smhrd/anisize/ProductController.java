@@ -13,6 +13,7 @@ import kr.smhrd.model.ProductMapper;
 import kr.smhrd.model.ProductStockVO;
 import kr.smhrd.model.ProductVO;
 import kr.smhrd.model.ReviewMapper;
+import kr.smhrd.model.ReviewVO;
 
 @Controller
 public class ProductController {
@@ -26,23 +27,23 @@ public class ProductController {
 		ProductVO product = productMapper.selectProduct(pd_num);
 		model.addAttribute("product", product);
 		
-//		ReviewVO review = reviewMapper.selectProductReview(pd_num);
-//		model.addAttribute("review", review);
+		List<ReviewVO> reviewList = reviewMapper.selectProductReview(pd_num);
+		model.addAttribute("reviewList", reviewList);
 		
-//		int countReview = reviewMapper.countReview(pd_num); List<String>
+		int countReview = reviewMapper.countReview(pd_num);
 		List<String> stkOptionList = productMapper.selectStkOptionList(pd_num);
-		System.out.println("옵션은 : " + stkOptionList.toString());
-		System.out.println("옵션은 : " + stkOptionList.get(0));
+//		System.out.println("옵션은 : " + stkOptionList.toString());
+//		System.out.println("옵션은 : " + stkOptionList.get(0));
 		if(stkOptionList.get(0) == null) {
 			ProductStockVO vo = new ProductStockVO();
 			vo.setPd_num(pd_num);
 			vo.setStk_option(null);
 			List<ProductStockVO> stockList = productMapper.selectNullOptionStock(pd_num);
-			System.out.println(stockList.toString());
+//			System.out.println(stockList.toString());
 			model.addAttribute("stockList", stockList);
 		}
 		model.addAttribute("stkOptionList", stkOptionList);
-//		model.addAttribute("countReview", countReview);
+		model.addAttribute("countReview", countReview);
 		 
 //		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
 //		model.addAttribute("productStockList", productStockList);
@@ -52,6 +53,13 @@ public class ProductController {
 		List<ProductStockVO> stockList = productMapper.selectOptionStock(vo);
 		//나오는게 사이즈 , 가격, 재고
 		System.out.println(stockList.toString());
+		return stockList;
+	}
+	@RequestMapping("/selectNullOptionStock.do")
+	public @ResponseBody List<ProductStockVO> selectNullOptionStock(int pd_num){
+		List<ProductStockVO> stockList = productMapper.selectNullOptionStock(pd_num);
+		//나오는게 사이즈 , 가격, 재고
+//		System.out.println(stockList.toString());
 		return stockList;
 	}
 

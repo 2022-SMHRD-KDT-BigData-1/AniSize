@@ -12,17 +12,30 @@
         and ps.pd_num = pd.pd_num
         and mem_num = #{mem_num}
     </select>
+    <select id="selectStkNum" resultType="int" parameterType="kr.smhrd.model.CartVO">
+        select stk_num from product_stock where pd_num = #{pd_num} and stk_size = #{stk_size}
+    </select>
     <update id="updateCartQuantity" parameterType="kr.smhrd.model.CartVO">
         update cart set cart_quantity where mem_num = #{mem_num}
     </update>
-    <delete id="deleteCart" parameterType="kr.smhrd.model.CartVO">
-        delete from cart where mem_num = #{mem_num} and pd_num = #{pd_num} and stk_option = #{stk_option}
+    <delete id="deleteCart">
+        delete from cart where cart_num = #{cart_num}
+    </delete>
+    <delete id="doneCartList" parameterType="kr.smhrd.model.PurchaseHistoryVO">
+        delete from cart where mem_num = #{mem_num} and stk_num = #{stk_num}
     </delete>
     
-    <select id="selectStkDetail" resultType="kr.smhrd.model.PurchaseVO">
+    <select id="selectStkDetail" resultType="kr.smhrd.model.PurchaseHistoryVO">
 	    select *
         from product_stock as ps, product as pd
         where stk_num = #{stk_num}
         and ps.pd_num = pd.pd_num
 	</select>
+	<insert id="buyCartList" parameterType="kr.smhrd.model.PurchaseHistoryVO">
+	    insert into purchase_history(mem_num, pd_num, stk_num, ph_quantity, recipient, recipient_address, recipient_tel, delivery_requests, payment)
+	    values(#{mem_num}, #{pd_num}, #{stk_num}, #{ph_quantity}, #{recipient}, #{recipient_address}, #{recipient_tel}, #{delivery_requests}, #{payment})
+	</insert>
+	<update id="salesCount">
+	    update product set sales_count = sales_count+1 where pd_num = #{pd_num} 
+	</update>
 </mapper>

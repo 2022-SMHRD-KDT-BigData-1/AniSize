@@ -119,6 +119,32 @@
             border: solid salmon;
 
         }
+        .star {
+        position: relative;
+        font-size: 2rem;
+        text-align: center;
+        
+        color: #ddd;
+        }
+
+        .star input {
+            
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        }
+
+    .star span {
+        width: 0;
+        position: absolute; 
+        left: 0;
+        color: rgb(195, 120, 224);
+        overflow: hidden;
+        pointer-events: none;
+        }
     </style>
 </head>
 
@@ -155,9 +181,15 @@
         <p style="text-align: start; font-size: 25px; margin-bottom: 0px;">${product.pd_name}</p>
         <p style="text-align: end; font-size: 20px; margin-bottom: 8px;">${product.pd_price}원</p>
 
+    <span class="star" style="text-align: start; font-size: 15px;">
+        
+        ★★★★★
+        <span style="text-align: start; font-size: 15px; width: ${product.pd_avg_score * 10}%">★★★★★</span>
+    </span>  
 
-        <span style="text-align: start; font-size: 15px;">★★★★★</span>
-        <span style="text-align: start; font-size: 15px;">${product.pd_avg_score} / 5.0 점 </span>
+
+
+        <span style="text-align: start; font-size: 15px;">${product.pd_avg_score/2} / 5.0 점 </span>
         <a href="#review_title" style="font-size: 15px; padding-left: 100px; color:#5e5e5e;">${countReview}개 리뷰</a>
 
         <hr>
@@ -340,15 +372,23 @@
             <!-- review 상품 리뷰 -->
             <div id="review" class="container tab-pane fade" style="font-size: 15px; margin-bottom: 50px;"><br>
                 <h3>Review</h3>
-                <span>닉네임</span><span style="padding-left: 130px;">구매일 ${review.review_date}</span>
-                <img src="3.jpg" alt="" class="review_img">
-                <span style="text-align: start; font-size: 15px;">★★★★★</span>
-                <span> ${review.review_score}</span>
+            <c:forEach items="${reviewList}" var="review">
+                <span>닉네임 ${review.mem_nick}</span><span style="padding-left: 130px;">구매일 ${review.ph_date}</span>
+                <img src="${review.review_img}" alt="" class="review_img">
+                
+                
+	    <span class="star" style="text-align: start; font-size: 15px;">
+	        ★★★★★
+	    	<span style="text-align: start; font-size: 15px; width: ${review.review_score * 10}%;">★★★★★</span>
+	    </span>  
+                
+                <span> ${review.review_score/2}</span>
                 <span>/ 5.0 점</span><br>
                 <span>${review.review_content}
 
                 </span>
-
+                <hr style="display:flex; max-width: 330px; margin-top: 3px; margin-bottom: 5px;">
+				</c:forEach>
             </div>
 
         </div>
@@ -365,10 +405,20 @@
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
           <div class="container-fluid">
             <!-- Button trigger modal -->
-            <button type="button fixed-bottom" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                style="width: 350px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
-               		 구매하기
-            </button>
+            <c:choose>
+	            <c:when test="${stkOptionList[0] ne null}">
+		            <button type="button fixed-bottom" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+		                style="width: 350px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
+		               		 구매하기
+		            </button>
+		        </c:when>
+	            <c:otherwise>
+		            <button type="button fixed-bottom" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="loadNullOptionStock()"
+		                style="width: 350px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
+		               		 구매하기
+		            </button>
+	            </c:otherwise>
+            </c:choose>
           </div>
         </nav>
         
@@ -401,7 +451,8 @@
                         </div>
                         </c:when>
                         <c:otherwise>
-                        	<input type="hidden" id="option" name="${stk_option}" value="${stkOptionList[0]}">
+                        	<!-- <input type="text" id="option" onload="loadNullOptionStock()"> -->
+                        	<!-- <p onclick="optionClick()" id = "option"></p> -->
                         </c:otherwise>
 						</c:choose>
 
@@ -410,9 +461,9 @@
                             <!-- 재고 5개 미만일 시 수량 보여줌 <span>-----------------------[ 3개 남음 ]</span>  -->
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="optionSize" name="stk_num">
                                 <option selected>[필수] 사이즈 선택</option>
-                                <c:forEach items="${stockList}" var="stk">
+<%--                                 <c:forEach items="${stockList}" var="stk">
 		                            <option value="${stk.stk_num}">${stk.stk_size}</option>
-                                </c:forEach>
+                                </c:forEach> --%>
                                 	<!-- <option value=""></option> -->
      <!--                            <option value="s">S</option>
                                 <span>-----------------------[ 3개 남음 ]</span>
@@ -475,7 +526,7 @@
 	                        <button type="button" class="btn secondary" style="width: 160px; color: #ad67ea; border-color: #ad67ea;">장바구니 담기</button>
 	                        </a>
 							<a>
-	                        <button type="button" class="btn" style="background-color: #ad67ea; color: #ffffff; width: 160px;">바로 구매하기</button>
+	                        <button type="button" class="btn" style="background-color: #ad67ea; color: #ffffff; width: 160px;">바로 </button>
 							</a>
 						</c:otherwise>
 					</c:choose>
@@ -487,35 +538,34 @@
 
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">  /* ajax 재고 가져오기 */
-	function addCart(){ 
-	if($('#optionSize').val().indexOf('[필수]') != -1){
-		alert('사이즈를 선택해주세요')
-		return
-	}
-	 	let form = {
-	 			"mem_num" : '${member.mem_num}',
-	 			"stk_num" : $('#optionSize').val(),
-	 			"cart_quantity" : $('#cart_quantity').val()
-	 			};
-	 	console.log(form);
-	 	
-	 	
-		$.ajax({
-			url : 'addCart.do',
-			type : 'post',
-			data : form,
-			success : function(res){
-				console.log(res);
-				if(confirm('장바구니 추가 성공 !\n장바구니로 이동하시겠습니까?')){
-					location.href="cart.do";
-				}
-			},
-			error : function(e){
-				console.log(e);
+	<script type="text/javascript">  /* ajax 재고 가져오기 */
+		function addCart(){ 
+			if($('#optionSize').val().indexOf('[필수]') != -1){
+				alert('사이즈를 선택해주세요')
+				return
 			}
-		});
-	}
+		 	let form = {
+		 			"mem_num" : '${member.mem_num}',
+		 			"stk_num" : $('#optionSize').val(),
+		 			"cart_quantity" : $('#cart_quantity').val()
+		 	};
+			console.log(form);
+			 	
+			$.ajax({
+				url : 'addCart.do',
+				type : 'post',
+				data : form,
+				success : function(res){
+					console.log(res);
+					if(confirm('장바구니 추가 성공 !\n장바구니로 이동하시겠습니까?')){
+						location.href="cart.do";
+					}
+				},
+				error : function(e){
+					console.log(e);
+				}
+			});
+		}
 		
 	</script>
 
@@ -524,6 +574,7 @@
 	<script type="text/javascript">  /* ajax 재고 가져오기 */
 	function optionClick(){ 
 		let option = $('#option').val();
+		console.log(option);
 	 	let d = {"stk_option" : option, "pd_num" : '${product.pd_num}'}
 	 	console.log(d);
 		$.ajax({
@@ -534,7 +585,27 @@
 			success : function(res){
 				for(let i = 0; i<res.length; i++){
 					size = `
-						<option  value="` + res[i].stk_size + `"> `+ res[i].stk_size +`</option>
+						<option  value="` + res[i].stk_num + `"> `+ res[i].stk_size +`</option>
+					`;
+					$('#optionSize').append(size);
+				}
+			},
+			error : function(e){
+				console.log(e);
+			}
+		});
+	}
+	function loadNullOptionStock(){ 
+		let pd_num = '${product.pd_num}';
+	 	console.log('pd num : '+ pd_num);
+		$.ajax({
+			url : 'selectNullOptionStock.do',
+			type : 'post',
+			data : {"pd_num":pd_num},
+			success : function(res){
+				for(let i = 0; i<res.length; i++){
+					size = `
+						<option  value="` + res[i].stk_num + `"> `+ res[i].stk_size +`</option>
 					`;
 					$('#optionSize').append(size);
 				}

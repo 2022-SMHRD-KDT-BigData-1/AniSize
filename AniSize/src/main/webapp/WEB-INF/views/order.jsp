@@ -164,6 +164,9 @@
                     신규 배송지</a>
             </li>
         </ul>
+        <form action="orderOK.do" method="post">
+        <input type="hidden" name="mem_num" value="${member.mem_num}">
+        
         <div class="tab-content">
             <!-- 기존 배송지 설명 탭 -->
             <div id="address" class="container tab-pane active" style="font-size: 12px; margin-bottom: 10px;"><br>
@@ -192,16 +195,15 @@
                     <option value="6">배송전에 연락주세요</option>
                     <option value="7">문앞에 두세요</option>
                 </select>
-                <input type="text" class="form-control my-2" id=" " placeholder="직접입력" name="delivery">
             </div>
 
             <!-- 신규배송지 입력 탭-->
 
             <div id="new_address" class="container tab-pane fade" style="font-size: 12px; margin-bottom: 20px;">
                 <br>
-                <input type="text" class="form-control my-2" id=" " placeholder="수령인" name="" id="recipient2">
-                <input type="text" class="form-control my-2" id=" " placeholder="배송지" name="" id="recipient_address2">
-                <input type="text" class="form-control my-2" id=" " placeholder="연락처" name="" id="recipient_tel2">
+                <input type="text" class="form-control my-2"  placeholder="수령인" name="" id="recipient2">
+                <input type="text" class="form-control my-2"  placeholder="배송지" name="" id="recipient_address2">
+                <input type="text" class="form-control my-2"  placeholder="연락처" name="" id="recipient_tel2">
                 <select class="form-select form-select-sm my-2" aria-label=".form-select-sm example" name="" id="delivery_requests2">
                     <option selected>배송시 요청사항을 선택해 주세요</option>
                     <option value="1">부재시 문앞에 놓아주세요</option>
@@ -212,8 +214,6 @@
                     <option value="6">배송전에 연락주세요</option>
                     <option value="7">문앞에 두세요</option>
                 </select>
-                <input type="text" class="form-control" id=" " placeholder="직접입력" name="delivery">
-
             </div>
         </div>
 
@@ -237,17 +237,23 @@
 
                 <div class="col-7 " style="font-size: 14px;">
                     <p style="font-weight: 600;font-size: 13px">상품명 ${product.pd_name}</p>
+                    <input type="hidden" name="pd_num" value="${product.pd_num}">
 
                     <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                     <div class="selected_option" style="font-size: 14px;">
 
                         <span>${product.stk_option } </span>
+                        <input type="hidden" name="stk_option" value="${product.stk_option}">
                         <span>사이즈 ${product.stk_size}</span><br>
+                        <input type="hidden" name="stk_num" value="${product.stk_num}">
                         <span>수량 ${product.ph_quantity} 개</span><br>
+                        <input type="hidden" name="ph_quantity" value="${product.ph_quantity}">
 
                         <p style="text-align: end;">가격 ${product.stk_price}원</p>
+                        <input type="hidden" name="stk_price" value="${product.stk_price}">
                         <p style="text-align: end; font-weight: 700">총 ${product.stk_price * product.ph_quantity}원</p>
                         <input type="hidden" class="price" value=" ${product.stk_price * product.ph_quantity}">
+                        <input type="hidden" name="sum_price" value="${product.stk_price * product.ph_quantity}">
                     </div>
                 </div>
             </div>
@@ -306,7 +312,7 @@
                             checked="">
 
                         <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle " data-bs-toggle="dropdown"
-                            aria-expanded="false"
+                            aria-expanded="false" 
                             style="width: 170px; height: 26px; margin-bottom: 8px; border-color: #5e5e5e;">
                             <label class="btn" for="btnradio1">신용/체크카드</label>
                         </button>
@@ -338,7 +344,7 @@
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
                         style="margin-bottom: 0px;">
-                    <label class="btn btn-outline-primary" for="btnradio2" data-bs-toggle="modal"
+                    <label class="btn btn-outline-primary" for="btnradio2" data-bs-toggle="modal" id="cash1"
                         data-bs-target="#cashModal" style="border-color: #5e5e5e">무통장입금</label>
 
                     <style>
@@ -430,7 +436,7 @@
                                 <div class="modal-content" style="width: 320px;margin-left: 18px;">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">무통장 입금 결제</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="checkCash()"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -511,8 +517,14 @@
                 <div class="row" style="margin-bottom: 12px; ">
 
                     <div class="row pm">
+                    <input type="hidden" name="payment" id="id_payment" value="">
                         <table class="table">
                             <tbody>
+                                <tr>
+                                    <th scope="row">결제수단</th>
+                                    <td id="payment"></td>
+                                    
+                                </tr>
                                 <tr>
                                     <th scope="row">총 상품금액</th>
                                     <td class="sum_price">0원</td>
@@ -543,13 +555,14 @@
                  <nav class="navbar fixed-bottom" style="margin: 0px; padding: 0px; background-color:#c370de ;
                 color:#ffffff; border-top: 0.1px solid #ad67ea;">
                     <div class="container-fluid">
-                        <button type="button fixed-bottom" class="btn" onclick="location.replace('orderOK.do'); "
+                        <button type="submit" class="btn"
                             style="width: 375px;height: 40px; display: flex; justify-content: center; align-items: center; background:#c370de; color: #ffffff;">
                             결제하기
                         </button>
                     </div>
 
                 </nav>
+                </form>
 
                 <hr style="display:flex; max-width: 330px; margin-top: 8px; margin-bottom: 5px; border-width: 5px;">
 
@@ -571,6 +584,16 @@
         </div>
     </div>
     <script type="text/javascript">
+     	$('#btnGroupDrop1').click(function(){
+    		$('#payment').text('카드');
+    		$('#id_payment').val('카드');
+    	}); 
+     	$('#cash1').click(function(){
+    		$('#payment').text('무통장입금');
+    		$('#id_payment').val('무통장입금');
+    	}); 
+    </script>
+    <script type="text/javascript">
 	    $(document).ready(function(){
 	    	let sum = 0;
 			$('.price').each(function(){
@@ -587,6 +610,7 @@
 				
 			}
 			$('.sum_price').text((sum+del_price)+' 원');
+			/* $('#id_sum_price').val(sum+del_price); */
 	    });
 	    
 	    

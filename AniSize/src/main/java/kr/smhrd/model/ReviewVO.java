@@ -24,6 +24,7 @@ public class ReviewVO {
 	private double ani_weight;
 	private int review_score;
 	private String ph_date;
+	private String mem_nick;
 	private int pd_num;
 	private String pd_name;
 	private String brand;

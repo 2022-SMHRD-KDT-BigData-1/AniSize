@@ -164,7 +164,7 @@
 
 		<c:forEach items="${cartList}" var="product" varStatus="i">
         <!-- 선택한 상품 정보 -->
-        <div class="selected_Product">
+        <div class="selected_Product" id="cartList${product.cart_num}">
             <hr style="display:flex; max-width: 330px;">
 
             <div class="row" style="margin-bottom: 12px; ">
@@ -177,7 +177,7 @@
                 </div>
                 <div class="col-2">
                     <!-- 삭제 버튼 -->
-                    <button type="button" class="btn" aria-label="Delete">
+                    <button type="button" class="btn" aria-label="Delete" onclick="deleteCart(${product.cart_num})">
                         <i class=" bi bi-x-square-fill" style="font-size: 20px; text-align: end; padding-top: 0px;"></i>
                     </button>
                 </div>
@@ -335,6 +335,21 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
     /* 갯수랑 번호 리스트로 담아서 넘기기 체크된거 찾아서 그 위치서 반복문 */
+    function deleteCart(cart_num){
+    	console.log(cart_num);
+    	$.ajax({
+ 			url : 'deleteCart.do',
+ 			type : 'post',
+ 			data: {"cart_num" : cart_num},
+ 			success : function(res){
+ 				console.log(res);
+ 				$('#cartList'+cart_num).remove();
+ 			},
+ 			error : function(e){
+ 				console.log(e);
+ 			}
+ 		}); 
+    }
     
     function buy(){
     	console.log(  $($(this).parent()).html() );
@@ -346,13 +361,6 @@
  	   	 		"cart_quantity" : $($(this).parent().parent().parent().children('div.aa').children('div.col-7').children('div.selected_option').children('div.number').children('span')).text()
  	   		})
  		});
-/*   	    var buyList = new Array(); 
- 		$('.priceprice').each(function(i){
- 	   		buyList[i] = {
- 	   	 		"stk_num" : $($(this).next('input')[0]).val(),
- 	   	 		"cart_quantity" : $($(this).parent().parent().parent().children('div.aa').children('div.col-7').children('div.selected_option').children('div.number').children('span')).text()
- 	   		}
- 		}); */
 		console.log(buyList);
 /* 		var h = "";
 		for(var i = 0; i < buyList.length; i++){
@@ -360,8 +368,12 @@
 			console.log(h);
 		}
 		$('#hidden').html(h); */
+
 		
-  		$.ajax({
+		
+		
+		
+   		$.ajax({
  			url : 'buy.do',
  			type : 'post',
  			contentType:'application/json',
@@ -373,7 +385,7 @@
  			error : function(e){
  				console.log(e);
  			}
- 		}); 
+ 		});  
     }
 	   
     

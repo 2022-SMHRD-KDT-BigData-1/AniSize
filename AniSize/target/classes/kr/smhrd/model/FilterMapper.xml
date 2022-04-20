@@ -9,7 +9,7 @@
     </select>
     
     <select id="selectCategoryProductList" resultType="kr.smhrd.model.ProductVO">
-        select pd_name, pd_price, pd_num from product where pd_cate_num = #{pd_cate_num}
+        select pd_name, pd_price, pd_num from product where pd_cate_num = #{categoryNum}
     </select>
     
     <select id ="getRecentProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">

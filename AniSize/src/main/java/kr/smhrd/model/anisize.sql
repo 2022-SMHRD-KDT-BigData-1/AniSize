@@ -240,3 +240,14 @@ select *
         and ph.mem_num = 8
         and ph.pd_num = pd.pd_num
         and ph.stk_num = ps.stk_num
+  select stk_num from product_stock where pd_num = 10 and stk_size = 'l'
+select pr.*, ph.ph_date 
+        from product_review as pr, purchase_history as ph 
+        where pr.pd_num = 41
+        and pr.ph_num = ph.ph_num
+        
+select pr.*, ph.ph_date, ph.mem_num , m.mem_nick
+        from product_review as pr, purchase_history as ph, member as m
+        where pr.pd_num = 41
+        and pr.ph_num = ph.ph_num
+        and ph.mem_num = m.mem_num

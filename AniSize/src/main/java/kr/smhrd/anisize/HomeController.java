@@ -46,9 +46,11 @@ public class HomeController {
 
 	
 	@RequestMapping("/categorySearch.do")
-	public void home(Model model, int pd_cate_num) {
-		List<ProductVO> productList = filterMapper.selectCategoryProductList();
+	public String categorySearch(Model model, int categoryNum) {
+		List<ProductVO> productList = filterMapper.selectCategoryProductList(categoryNum);
 		model.addAttribute("productList", productList);
+		return "home";
+		
 	}
 	
 	@RequestMapping("/category.do")

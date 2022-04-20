@@ -560,7 +560,7 @@
 
     <!-- 메뉴바 + 카데고리 -->
     <nav
-      class="navbar fixed-bottom"
+      class="navbar fixed-bottom" 
       style="
         margin: 0px;
         padding: 0px;

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ReviewMapper {
-	public ReviewVO selectProductReview(int pd_num);
+	public List<ReviewVO> selectProductReview(int pd_num);
 	public List<ReviewVO> selectMemReview(int mem_num);
 	public void insertProductReview(ReviewVO vo);
 	public double getReviewAvgScore(int pd_num);

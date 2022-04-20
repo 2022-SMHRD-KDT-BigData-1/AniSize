@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.smhrd.model.ReviewMapper">
     <select id="selectProductReview" resultType="kr.smhrd.model.ReviewVO">
-        select * from product_review where pd_num = #{pd_num} 
+        select pr.*, ph.ph_date, ph.mem_num , m.mem_nick
+        from product_review as pr, purchase_history as ph, member as m
+        where pr.pd_num = #{pd_num}
+        and pr.ph_num = ph.ph_num
+        and ph.mem_num = m.mem_num
     </select>
     <select id="selectMemReview" resultType="kr.smhrd.model.ReviewVO">
         select *

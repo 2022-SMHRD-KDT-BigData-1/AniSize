@@ -68,7 +68,8 @@ public class ReviewController {
 //		System.out.println(vo.getReview_image().getOriginalFilename());
 		String dir = "resources/images/review";
 		String path = session.getServletContext().getRealPath(dir);
-		System.out.println(path);
+//		String path2 = "C:\\Users\\smhrd\\git\\AniSize\\AniSize\\src\\main\\webapp\\resources\\images\\review";
+//		System.out.println(path);
 		
 //		String folder = "C:/";
 		String fileName = review_image.getOriginalFilename();

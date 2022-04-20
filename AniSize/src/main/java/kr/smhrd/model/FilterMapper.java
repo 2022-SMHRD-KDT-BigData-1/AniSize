@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface FilterMapper {
 	public List<ProductVO> getHighSalesProductList();
 	public List<ProductVO> getHighScoreProductList();
-	public List<ProductVO> selectCategoryProductList();
+	public List<ProductVO> selectCategoryProductList(int categoryNum);
 	public List<ProductVO> getRecentProductListByPage(MinMaxVO minMaxVO);
 	public List<ProductVO> getHighSalesProductListByPage(MinMaxVO minMaxVO);
 	public List<ProductVO> getHighScoreProductListByPage(MinMaxVO minMaxVO);
