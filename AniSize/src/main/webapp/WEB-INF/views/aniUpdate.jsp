@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix ='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,9 @@
 
 <link rel="stylesheet" href="resources/css/style.css">
 
+<script
+	src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
+	
 <style>
 body {
 	background-color: #ffffff;
@@ -124,7 +128,7 @@ html, body {
 				
 				<div class="d-grid gap-1 col-12 mx-auto">
 					<button class="btn btn-outline-secondary" type="button"
-						id="inputGroupFileAddon04" onclick ='predict()'>사이즈 측정</button>
+						id="inputGroupFileAddon04" onclick = 'predict()'>사이즈 측정</button>
 
 					<hr />
 
