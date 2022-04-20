@@ -557,7 +557,7 @@
         
         ★★★★★
         <span style="width: ${review.review_score * 10}%">★★★★★</span>
-    </span>
+    </span>  
  
 
     <br>
