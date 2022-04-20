@@ -225,7 +225,8 @@
 		        <a class="" href="memUpdate.do">회원정보 수정</a>
 		        <a class="" href="aniUpdate.do">반려동물 정보 수정</a>
       			<a class="" href="javascript:hiddenQuery('purchaseHistory.do','${member.mem_num}')">구매 내역</a>
-		        <a class="" href="javascript:hiddenQuery('review.do', '${member.mem_num}')">상품 리뷰</a>
+		        <a class="" href="review.do">상품 리뷰</a>
+<%-- 		        <a class="" href="javascript:hiddenQuery('review.do', '${member.mem_num}')">상품 리뷰</a> --%>
 		        <a class="" href="#">입점 문의</a>
         	</c:when>
         	<c:otherwise>

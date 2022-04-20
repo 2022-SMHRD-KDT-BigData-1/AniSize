@@ -24,6 +24,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.smhrd.anisize" />
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
 	
 	
 	

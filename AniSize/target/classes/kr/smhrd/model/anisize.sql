@@ -228,3 +228,15 @@ select *
         from product_stock as ps, product as pd
         where stk_num = 2293
         and ps.pd_num = pd.pd_num
+        
+select pr.*, ph.mem_num 
+        from product_review as pr, purchase_history as ph
+        where pr.ph_num = ph.ph_num 
+        and mem_num = 8
+        \
+select *
+        from product_review as pr, purchase_history as ph, product as pd, product_stock as ps
+        where pr.ph_num = ph.ph_num 
+        and ph.mem_num = 8
+        and ph.pd_num = pd.pd_num
+        and ph.stk_num = ps.stk_num

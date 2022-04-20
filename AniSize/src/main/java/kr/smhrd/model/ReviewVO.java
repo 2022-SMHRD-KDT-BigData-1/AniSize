@@ -1,5 +1,7 @@
 package kr.smhrd.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,8 @@ public class ReviewVO {
 	private String review_img;
 	private String satis_size;
 	private String satis_color;
-	private String satis_thinkness;
+	private String satis_thickness;
+	private String satis_brightness;
 	private double ani_neck_length;
 	private double ani_chest_length;
 	private double ani_back_length;
@@ -22,4 +25,8 @@ public class ReviewVO {
 	private int review_score;
 	private String ph_date;
 	private int pd_num;
+	private String pd_name;
+	private String brand;
+	private String stk_size;
+	private MultipartFile review_image;
 }

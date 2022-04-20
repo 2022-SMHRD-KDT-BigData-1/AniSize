@@ -452,6 +452,7 @@
           <a class="nav-link" data-toggle="pill" href="#menu1">후기내역</a>
         </li>
       </ul>
+      
       <hr style="margin-block-end: 10px" /> 
       <!--구매 날짜-->
       <div class="tab-content">
@@ -518,10 +519,11 @@
     </script>
     </div>
       <div id="menu1" class="container tab-pane fade"><br>
+      <c:forEach items="${reviewList}" var="review">
                       <!--구매 날짜-->
            <div class="day" >
             <div style="font-size: 15px; margin-left: 10px; margin-top: 20px;">구매일</div>
-            <div style="font-size: 15px; margin-left: 10px; margin-top: 20px;">2022-04-13</div>
+            <div style="font-size: 15px; margin-left: 10px; margin-top: 20px;">${review.ph_date}</div>
           </div>
         
       <!-- 상품 이미지 (썸네일)-->
@@ -530,7 +532,7 @@
           <div class="one">
             <!-- 예시 이미지 -->
             <img
-              src="resources/images/2.jpg"
+              src="resources/images/product/${review.pd_num}/thumnail.jpg"
               style="
                 width: 120px;
                 height: 120px;
@@ -541,50 +543,46 @@
           </div>
         </div>
         <div class="row2">
-          <div class="tow">브랜드명</div>
+          <div class="tow">브랜드명 ${review.brand}</div>
           <!--브랜드명-->
-          <div class="three">상품명</div>
+          <div class="three">상품명 ${review.pd_name}</div>
           <!--상품명-->
-          <div class="four">사이즈</div>
+          <div class="four">사이즈 ${review.stk_size}</div>
           <!--사이즈-->
         </div>
         
       </div>
      
-    <span class="star">
+    <span class="star" >
         
         ★★★★★
-        <span>★★★★★</span>
-        <input type="range" name="review_score" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+        <span style="width: ${review.review_score * 10}%">★★★★★</span>
     </span>
  
-    <!--별점 채우기-->
-    <script>
-         const drawStar = (target) => {
-            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-        }
-    </script>
+
     <br>
     <!--이미지 넣는구간-->
-    <img src="resources/images/2.jpg" style="width: 200px; height: 200px;">
-    <p style="font-size: 15px; margin-top: 20px;">구매후기 작성한 내용넣는구간</p>
+    <c:if test="${!empty review.review_img}">
+    <img src="${review.review_img}" style="width: 200px; height: 200px;">
+    </c:if>
+    <p style="font-size: 15px; margin-top: 20px;">${review.review_content}</p>
     <div class="review-evaluation">
         <ul class="review-evaluation__list">
             <li class="review-evaluation__item">
                 사이즈
-                <span>작아요</span>
+                <span>${review.satis_size}</span>
             </li>
             <li class="review-evaluation__item">
                 밝기
-                <span>보통이에요</span>
+                <span>${review.satis_brightness}</span>
             </li>
             <li class="review-evaluation__item">
                 색감
-                <span>보통이에요</span>
+                <span>${review.satis_color}</span>
             </li>
             <li class="review-evaluation__item">
                 두께감
-                <span>얇아요</span>
+                <span>${review.satis_thickness}</span>
             </li>
         </ul>
         
@@ -593,25 +591,25 @@
       <ul class="review-evaluation2__list">
           <li class="review-evaluation2__item">
               목둘레
-              <span>10cm</span>
+              <span>${review.ani_neck_length}cm</span>
           </li>
           <li class="review-evaluation2__item">
               등길이
-              <span>10cm</span>
+              <span>${review.ani_back_length}cm</span>
           </li>
           <li class="review-evaluation2__item">
               가슴둘레
-              <span>10cm</span>
+              <span>${review.ani_chest_length}cm</span>
           </li>
           <li class="review-evaluation2__item">
               몸무게
-              <span>10kg</span>
+              <span>${review.ani_weight}kg</span>
           </li>
       </ul>
       
   </div>
      <hr class="hrbar" style="margin-block-start: 20px; border: solid 10px #999;" /> 
-
+</c:forEach>
   
 
 

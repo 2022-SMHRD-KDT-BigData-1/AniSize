@@ -150,21 +150,19 @@
 
         <i class="bi bi-credit-card-2-back"
             style="color: #ad67ea; font-size: 50px;  display: flex; justify-content: center; align-items: center;"></i><br>
-
         <!-- 배송지 정보 -->
         <!-- 탭 이름 -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#address"
+                <a class="nav-link active" data-toggle="tab" href="#address" id="default_add"
                     style="font-size: 14px; width: 165px; text-align: center;">
                     기존 배송지</a>
             </li>
             <li class=" nav-item">
-                <a class="nav-link" data-toggle="tab" href="#new_address"
+                <a class="nav-link" data-toggle="tab" href="#new_address" id="new_add"
                     style="font-size: 14px; width: 165px; text-align: center;">
                     신규 배송지</a>
             </li>
-
         </ul>
         <div class="tab-content">
             <!-- 기존 배송지 설명 탭 -->
@@ -175,14 +173,16 @@
                     <label class="form-check-label" for="flexRadioDefault1">
                         <!-- 이름 -->
                         <h4>${member.mem_nick}</h4>
+                        <input type="hidden" value="${member.mem_nick}" name="recipient" id="recipient">
                         <!-- 주소 -->
                         <p style="font-size: 16px;">${member.mem_address}</p>
+                        <input type="hidden" value="${member.mem_address}" name="recipient_address" id="recipient_address">
                         <!-- 연락처 -->
                         <p style="font-size: 16px;">${member.mem_tel}</p>
+                        <input type="hidden" value="${member.mem_tel}" name="recipient_tel" id="recipient_tel">
                     </label>
-
                 </div>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="delivery_requests" id="delivery_requests">
                     <option selected>배송시 요청사항을 선택해 주세요</option>
                     <option value="1">부재시 문앞에 놓아주세요</option>
                     <option value="2">부재시 경비실에 맡겨주세요</option>
@@ -193,19 +193,16 @@
                     <option value="7">문앞에 두세요</option>
                 </select>
                 <input type="text" class="form-control my-2" id=" " placeholder="직접입력" name="delivery">
-
             </div>
-
 
             <!-- 신규배송지 입력 탭-->
 
             <div id="new_address" class="container tab-pane fade" style="font-size: 12px; margin-bottom: 20px;">
                 <br>
-                <input type="text" class="form-control my-2" id=" " placeholder="배송지명" name="">
-                <input type="text" class="form-control my-2" id=" " placeholder="수령인" name="">
-                <input type="text" class="form-control my-2" id=" " placeholder="배송지" name="">
-                <input type="text" class="form-control my-2" id=" " placeholder="연락처" name="">
-                <select class="form-select form-select-sm my-2" aria-label=".form-select-sm example">
+                <input type="text" class="form-control my-2" id=" " placeholder="수령인" name="" id="recipient2">
+                <input type="text" class="form-control my-2" id=" " placeholder="배송지" name="" id="recipient_address2">
+                <input type="text" class="form-control my-2" id=" " placeholder="연락처" name="" id="recipient_tel2">
+                <select class="form-select form-select-sm my-2" aria-label=".form-select-sm example" name="" id="delivery_requests2">
                     <option selected>배송시 요청사항을 선택해 주세요</option>
                     <option value="1">부재시 문앞에 놓아주세요</option>
                     <option value="2">부재시 경비실에 맡겨주세요</option>
@@ -219,11 +216,6 @@
 
             </div>
         </div>
-
-
-
-
-
 
         <!-- 선택한 상품 정보 -->
         <div class="selected_Product">
@@ -262,7 +254,6 @@
             </c:forEach>
             <hr style="display:flex; max-width: 330px; margin-top: 15x; margin-bottom: 20px; border-width: 5px;">
             
-
         </div>
 
         <span style="font-weight: 600;font-size: 18px">결제방법</span>
@@ -350,7 +341,6 @@
                     <label class="btn btn-outline-primary" for="btnradio2" data-bs-toggle="modal"
                         data-bs-target="#cashModal" style="border-color: #5e5e5e">무통장입금</label>
 
-
                     <style>
                         .btn-check:active+.btn-outline-primary,
                         .btn-check:checked+.btn-outline-primary,
@@ -362,12 +352,6 @@
                             border-color: #c370de;
                         }
                     </style>
-
-
-
-
-
-
 
                     <!-- 신용카드 선택 후 모달창  -->
                     <div class="card_info" style="display: flex; justify-content: end; align-items: end;">
@@ -604,8 +588,32 @@
 			}
 			$('.sum_price').text((sum+del_price)+' 원');
 	    });
+	    
+	    
+	    
+	    $('#new_add').click(function(){
+	    	$('#recipient').attr('name','');
+	    	$('#recipient2').attr('name','recipient');
+	    	$('#recipient_address').attr('name','');
+	    	$('#recipient_address2').attr('name','recipient_address');
+	    	$('#recipient_tel').attr('name','');
+	    	$('#recipient_tel2').attr('name','recipient_tel');
+	    	$('#delivery_requests').attr('name','');
+	    	$('#delivery_requests2').attr('name','delivery_requests');
+	    });
+	    $('#default_add').click(function(){
+	    	$('#recipient2').attr('name','');
+	    	$('#recipient').attr('name','recipient');
+	    	$('#recipient_address2').attr('name','');
+	    	$('#recipient_address').attr('name','recipient_address');
+	    	$('#recipient_tel2').attr('name','');
+	    	$('#recipient_tel').attr('name','recipient_tel');
+	    	$('#delivery_requests2').attr('name','');
+	    	$('#delivery_requests1').attr('name','delivery_requests');
+	    });
 
     </script>
+    
     
     
     

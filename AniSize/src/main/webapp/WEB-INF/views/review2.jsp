@@ -388,6 +388,7 @@
   </head>
 
   <body>
+ 
     <div class="container">
       <!-- 뒤로 가기 + 로고 -->
       <div class="row">
@@ -430,13 +431,13 @@
 	          <!--사이즈-->
 	        </div>
 	      </div>
-	        
+	    
 	      <div class="review-share">
 	       	<p style="font-size: 10px;">강아지 체형 정보</p>
 			<table style="margin: auto;">
 				<tr>
 					<td><span class="label" style="font-size: 10px;">목둘레 </span></td>
-					<td><span class="label" style="font-size: 10px;">가습둘레</span></td>
+					<td><span class="label" style="font-size: 10px;">가슴둘레</span></td>
 					<td><span class="label" style="font-size: 10px;">등 길이</span></td>
 					<td><span class="label" style="font-size: 10px;">체중</span></td>
 				</tr>
@@ -467,9 +468,9 @@
 	        
 	      <hr style="margin-block-end: 10px; margin-bottom: 20px;" /> 
 	      <h4>상품은 만족하셨나요?</h4>
-	      <form action="insertProductReview.do" method="post">
+	  <form action="insertProductReview.do" method="post" enctype="multipart/form-data">
 		      <input type="hidden" name="ph_num" value="${ph.ph_num}">
-		      <input type="hidden" name="ph_num" value="${ph.pd_num}">
+		      <input type="hidden" name="pd_num" value="${ph.pd_num}">
 		      <!-- <input type="hidden" name="pd_num" value=""> -->
 	     
 		   	<span class="star">★★★★★
@@ -478,13 +479,7 @@
 		    </span>
 		 
 		    <!--별점 채우기-->
-		    <script>
-		         const drawStar = (target) => {
-		        	 console.log(target.value)
-		        	 // ${target.value * 10}
-		            document.querySelector(`.star span`).style.width = (target.value * 10) + `%`;
-		        }
-		    </script>
+
 	 
 			<div class="review-share-view" style="display:none;">
 				<c:if test="${!empty animal.ani_neck_length}">
@@ -556,15 +551,35 @@
 		
 		    <!--이미지 업로드-->
 		    <div id='image_preview'>
-		        <input  type='file' accept='image/*' id='btnAtt' multiple='multiple' name="review_img"/>
+		        <input type='file' accept='image/*' id='btnAtt' name="review_image"/>
 		        <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 		    </div>
+		    
 		    <hr class="hrbar" style="margin-block-start: 20px; border: solid 10px #999;" />
-	    </form> 
     </div>
-    
-    
-      <script>
+
+    <!-- 메뉴바 + 카데고리 -->
+    <nav
+      class="navbar fixed-bottom"
+      style="
+        margin: 0px;
+        padding: 0px;
+        background-color: #c370de;
+        color: #c370de;
+        border-top: 0.1px solid #c370de;
+      "
+    >
+      <button type="submit" style="width: 100%; height: 50px; background-color: #a657e6;  color: #fff; border: 0px; font-size: 15px;">리뷰 등록</button>
+    </nav>
+    </form>
+	 <script>
+	        const drawStar = (target) => {
+	       	 console.log(target.value)
+	       	 // ${target.value * 10}
+	           document.querySelector(`.star span`).style.width = (target.value * 10) + `%`;
+	       }
+	</script>
+    <script>
       (/* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
       imageView = function imageView(att_zone, btn){
     
@@ -663,22 +678,6 @@
     )('att_zone', 'btnAtt')
     
     </script>
-
-    <!-- 메뉴바 + 카데고리 -->
-    <nav
-      class="navbar fixed-bottom"
-      style="
-        margin: 0px;
-        padding: 0px;
-        background-color: #c370de;
-        color: #c370de;
-        border-top: 0.1px solid #c370de;
-      "
-    >
-      <button type="submit" style="width: 100%; height: 50px; background-color: #a657e6;  color: #fff; border: 0px; font-size: 15px;">리뷰 등록</button>
-    </nav>
-    
-
 
 
     <!-- 아래 Popper 있어야 슬라이드로 나옴..... 절대 지우지마!!!!!!!! -->
