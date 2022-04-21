@@ -84,7 +84,7 @@ html, body {
 
 		<div class="d-grid gap-2 col-12 form-group">
 			<form action="insertAniInfo.do" method="post">
-				<input type="hidden" id="mem_num" name="mem_num" value="100">
+				<input type="hidden" id="mem_num" name="mem_num" value="${member.mem_num}">
 
 				<input type="text" class="form-control my-2" id="ani_name" placeholder="강아지 이름" name="ani_name" required /> 
 				<input type="text" class="form-control my-2" id="ani_kind" list="kindList" placeholder="견종" name="ani_kind" required />

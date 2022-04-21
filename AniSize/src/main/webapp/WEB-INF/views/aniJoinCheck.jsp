@@ -86,7 +86,7 @@ html, body {
 			<p class="btn"
 				style="color: rgb(173, 103, 234); background-color: #ffffff">
 				 <span
-					style="padding: 5px 5px 5px 5px; border-radius: 5px; border: 1px solid rgb(173, 103, 234); "><a href="home.do" style="text-decoration:none; color: #ad67ea">나중에
+					style="padding: 5px 5px 5px 5px; border-radius: 5px; border: 1px solid rgb(173, 103, 234); "><a href="insertAniInfoLater.do" style="text-decoration:none; color: #ad67ea">나중에
 						등록할래요</a></span>
 				
 			</p>

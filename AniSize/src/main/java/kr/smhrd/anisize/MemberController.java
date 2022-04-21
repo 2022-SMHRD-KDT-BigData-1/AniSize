@@ -38,6 +38,7 @@ public class MemberController {
 		MemberVO member = mapper.selectLogin(vo);
 		if (member != null) {
 			session.setAttribute("member", member);
+			
 			return "redirect:/home.do";
 			
 		}

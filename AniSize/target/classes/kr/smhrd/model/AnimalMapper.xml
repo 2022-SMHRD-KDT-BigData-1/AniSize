@@ -5,6 +5,18 @@
         insert into animal(ani_name, mem_num, ani_sex, ani_kind, ani_weight, ani_back_length, ani_neck_length, ani_chest_length) 
         values(#{ani_name},#{mem_num},#{ani_sex},#{ani_kind},#{ani_weight},#{ani_back_length},#{ani_neck_length},#{ani_chest_length})
     </insert>
+    <insert id="insertAniInfoLater">
+        insert into animal(mem_num)
+        values(${mem_num})
+    </insert>
+    <insert id="updateAniInfo" parameterType="kr.smhrd.model.AnimalVO">
+        update animal set ani_name = #{ani_name}, ani_sex = #{ani_sex}, ani_kind = #{ani_kind}, ani_weight = #{ani_weight}, 
+        ani_back_length = #{ani_back_length}, ani_neck_length = #{ani_neck_length}, ani_chest_length = #{ani_chest_length} 
+        where mem_num = #{mem_num}
+        
+        insert into animal(ani_name, mem_num, ani_sex, ani_kind, ani_weight, ani_back_length, ani_neck_length, ani_chest_length) 
+        values(#{ani_name},#{mem_num},#{ani_sex},#{ani_kind},#{ani_weight},#{ani_back_length},#{ani_neck_length},#{ani_chest_length})
+    </insert>
     
     <select id="getAniInfo" resultType="kr.smhrd.model.AnimalVO">
         select * from animal where mem_num = #{mem_num}
@@ -13,4 +25,8 @@
     <select id='aniKindList' resultType="kr.smhrd.model.AniKindVO">
         select * from animal_kind
     </select>
+    
+<!--     <select id="isAniInfo">
+        select ani_name 
+    </select> -->
 </mapper>

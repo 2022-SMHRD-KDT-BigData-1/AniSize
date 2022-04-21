@@ -31,9 +31,6 @@
 
 <link rel="stylesheet" href="resources/css/style.css">
 
-<script
-	src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
-	
 <style>
 body {
 	background-color: #ffffff;
@@ -65,7 +62,10 @@ h1 {
 html, body {
 	height: 100%;
 }
+
 </style>
+<script
+	src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
 </head>
 
 <body>
@@ -79,15 +79,20 @@ html, body {
 				style="width: 200px; height: 60px; margin-left: 30px; margin-top: 40px; margin-bottom: 50px;" /></a>
 		</div>
 		<br />
-		<p style="text-align: center; font-size: 20px">Animal update</p>
+		<p style="text-align: center; font-size: 20px">Animal Update</p>
 		<hr />
 
 		<div class="d-grid gap-2 col-12 form-group">
-			<form action="insertAniInfo.do" method="post">
-				<input type="hidden" id="mem_num" name="mem_num" value="100">
+			<form action="updateAniInfo.do" method="post">
+				<input type="hidden" id="mem_num" name="mem_num" value="${member.mem_num}">
 
 				<input type="text" class="form-control my-2" id="ani_name" placeholder="강아지 이름" name="ani_name" required /> 
-				<input type="text" class="form-control my-2" id="ani_kind" placeholder="견종" name="ani_kind" required /> 
+				<input type="text" class="form-control my-2" id="ani_kind" list="kindList" placeholder="견종" name="ani_kind" required />
+				<datalist id ="kindList">
+					<c:forEach var = 'kind' items ='${aniKindList}'>
+						<option>${kind.ani_kind}</option>
+					</c:forEach>
+				</datalist> 
 				<select class="form-select" aria-label="Default select example" name="ani_sex" required>
 					<option selected>성별</option>
 					<option value="f">암컷</option>
@@ -99,7 +104,7 @@ html, body {
 					반려동물 사진으로 사이즈 측정하기</p>
 				<p
 					style="text-align: left; font-size: 12px; font-weight: bold; margin-bottom: 0px;">
-					파일선택을 클릭하면 사진을 업로드 할 수 있습니다.</p>
+					이미지를 클릭하면 사진을 업로드 할 수 있습니다.</p>
 				<input type="number" class="form-control my-2" id="ani_back_len" placeholder="등 길이" name="ani_back_length" min=0 step='0.1'/>
 				<input type="number" class="form-control my-2" id="ani_neck_len" placeholder="목 둘레" name="ani_neck_length" min=0 step='0.1'/>
 				<input type="number" class="form-control my-2" id="ani_chest_len" placeholder="몸통(가슴) 둘레" name="ani_chest_length" min=0 step='0.1'/>
@@ -111,8 +116,8 @@ html, body {
 				<div class="input-group">
 					<input  type='file' accept='image/*' class="form-control my-2" id="inputGroupFile04"
 						aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
-					<img src="resources/images/dogsize.PNG" class="img-thumbnail"
-						style="display: flex; justify-content: center; align-items: center" /><br>
+					<img src="resources/images/dogsize.PNG" class="img-thumbnail my-2"
+						style="display: flex; justify-content: center; align-items: center" />
 				</div>
 
 				<!-- <p
@@ -134,7 +139,7 @@ html, body {
 
 
 					
-					<button type="submit" class="btn" style="background-color: rgb(173, 103, 234); margin-bottom: 70px">수정 완료</button>
+					<button type="submit" class="btn" style="background-color: rgb(173, 103, 234); margin-bottom: 70px">완료</button>
 				</div>
 			</form>
 		</div>
@@ -150,11 +155,12 @@ html, body {
     
     <script>
     function predict() {
+    	
     	var form = $('#inputGroupFile04')[0].files[0];
 		var formData = new FormData();
 		formData.append('img', form);
     	$.ajax({
-            url : 'http://f5.project-jupyter.ddns.net:8875/predict',
+            url : "http://f5.project-jupyter.ddns.net:8875/predict",
             type : "POST",
             enctype: 'multipart/form-data',
             data : formData,
