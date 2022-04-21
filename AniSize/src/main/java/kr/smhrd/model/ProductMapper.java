@@ -13,11 +13,10 @@ public interface ProductMapper {
 	public List<ProductVO> mostSoldProduct();
 	public List<ProductVO> highScoreProduct();
 	public List<String> selectStkOptionList(int pd_num);
-//	public List<ProductStockVO> selectOptionStock(ProductStockVO vo);
 	public List<ProductStockVO> selectOptionStock(ProductStockVO vo);
 	public List<ProductStockVO> selectNullOptionStock(int pd_num);
-//	public List<ProductVO> selectPhProductList(List<Integer> pd_numList);
 	public List<ProductVO> getProductListByPage(MinMaxVO vo);
+	public List<ProductStockVO> getProductSizeList(int pd_num);
 	
 	
 }

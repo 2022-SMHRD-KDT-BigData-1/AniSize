@@ -180,6 +180,9 @@ width:158.39px; height: 224px;
 						<a class="namePrice" href="product.do?pd_num=${product.pd_num}" 
 						style="text-decoration: none; color: inherit;">
 							<img src="images/product/${product.pd_num}/thumnail.jpg">
+							<c:if test="${product.recommend_size ne null}">
+								<img src="images/dh/${product.recommend_size}_size.png" style="width: 50px; float: right; padding-top: 176px; padding-right: 7px;">
+							</c:if>
 							<br>
 							<br>
 							<p>${product.pd_name} <br> ${product.pd_price}원</p>

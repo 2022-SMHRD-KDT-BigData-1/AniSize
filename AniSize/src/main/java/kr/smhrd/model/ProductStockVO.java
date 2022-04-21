@@ -14,7 +14,7 @@ public class ProductStockVO {
 	private int stk_price;
 	private String stk_option;
 	private String stk_size;
-	private double stk_back_len;
-	private double stk_neck_len;
-	private double stk_chest_len;
+	private double stk_back_length;
+	private double stk_neck_length;
+	private double stk_chest_length;
 }

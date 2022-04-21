@@ -37,6 +37,9 @@
 	<select id="getProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
 	    select pd_num, pd_name, pd_cate_num, pd_price, pd_img_count, pd_avg_score, seller_num, pd_date, brand from pageProduct where num between #{min} and #{max}
 	</select>
+	<select id="getProductSizeList" resultType="kr.smhrd.model.ProductStockVO">
+	    select * from product_stock where pd_num = #{pd_num}
+	</select>
 	
 
 

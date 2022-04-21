@@ -17,5 +17,6 @@ public class ProductVO {
 	private int seller_num;
 	private String pd_date;
 	private String brand;
+	private String recommend_size;
 	
 }

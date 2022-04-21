@@ -13,8 +13,8 @@ public class AnimalVO {
 	private String mem_num;
 	private String ani_sex;
 	private String ani_kind;
-	private String ani_weight;
-	private String ani_back_length;
-	private String ani_neck_length;
-	private String ani_chest_length;
+	private double ani_weight;
+	private double ani_back_length;
+	private double ani_neck_length;
+	private double ani_chest_length;
 }

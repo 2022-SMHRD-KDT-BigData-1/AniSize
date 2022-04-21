@@ -111,6 +111,9 @@
         <li>
           <a href="product.do?pd_num=${product.pd_num}">
             <div class="picture" style="background-image: url('images/product/${product.pd_num}/thumnail.jpg')">
+      		<c:if test="${product.recommend_size ne null}">
+				<img src="images/dh/${product.recommend_size}_size.png" style="width: 50px; float: right; padding-top: 176px; padding-right: 7px;">
+			</c:if>
             </div>
           </a>
           <h3><a href="">${product.pd_name}</a></h3>

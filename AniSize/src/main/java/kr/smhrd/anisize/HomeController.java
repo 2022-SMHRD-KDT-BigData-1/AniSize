@@ -1,17 +1,26 @@
 package kr.smhrd.anisize;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.smhrd.model.AnimalMapper;
+import kr.smhrd.model.AnimalVO;
 import kr.smhrd.model.FilterMapper;
+import kr.smhrd.model.MemberVO;
 import kr.smhrd.model.MinMaxVO;
 import kr.smhrd.model.ProductMapper;
+import kr.smhrd.model.ProductStockVO;
 import kr.smhrd.model.ProductVO;
 
 @Controller
@@ -20,44 +29,96 @@ public class HomeController {
 	ProductMapper productMapper;
 	@Inject
 	FilterMapper filterMapper;
-	
+	@Inject
+	AnimalMapper animalMapper;
+
 	@RequestMapping("/home.do")
-	public void home(Model model, HttpServletRequest request) {
+	public void home(Model model, HttpServletRequest request, HttpSession session) {
 		int page = 1;
-		if (request.getParameter("page")!=null) {
+		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		int lastPage = (productMapper.getProductList().size()-1)/10+1;
+		int lastPage = (productMapper.getProductList().size() - 1) / 10 + 1;
 		if (lastPage == 0) {
-			lastPage =1;
+			lastPage = 1;
 		}
 		if (page > lastPage) {
 			page = lastPage;
 		} else if (page < 1) {
 			page = 1;
 		}
-		int max = page*10;
-		int min = max-9;
-		List<ProductVO> productList = productMapper.getProductListByPage(new MinMaxVO(min,max));
+		int max = page * 10;
+		int min = max - 9;
+		List<ProductVO> productList = productMapper.getProductListByPage(new MinMaxVO(min, max));
+
+		MemberVO mem = (MemberVO) session.getAttribute("member");
+		Map<String, Integer> sizeMap = new HashMap<>();
+		sizeMap.put("XS", 1);
+		sizeMap.put("S", 2);
+		sizeMap.put("M", 3);
+		sizeMap.put("L", 4);
+		sizeMap.put("XL", 5);
+		sizeMap.put("XXL", 6);
+
+		if (mem != null) {
+			AnimalVO ani = animalMapper.getAniInfo(mem.getMem_num());
+//			System.out.println("저장된 동물 등길이 : " + ani.getAni_back_length());
+//			System.out.println("저장된 동물 목 : " + ani.getAni_neck_length());
+//			System.out.println("저장된 동물 가슴길이 : " + ani.getAni_chest_length());
+			if (ani.getAni_back_length() != 0) {
+
+				for (int i = 0; i < productList.size(); i++) {
+					List<ProductStockVO> stkList = productMapper.getProductSizeList(productList.get(i).getPd_num());
+//					System.out.println(stkList.toString());
+					List<Integer> tmp = new ArrayList<Integer>();
+					System.out.println("pd _ num : "+productList.get(i).getPd_num());
+					for (int j = 0; j < stkList.size(); j++) {
+						// s는 3cm 범위
+						System.out.println("back : " + stkList.get(j).getStk_back_length());
+						System.out.println("neck : " + stkList.get(j).getStk_neck_length());
+						System.out.println("chest : " + stkList.get(j).getStk_chest_length());
+						if (ani.getAni_back_length() < stkList.get(j).getStk_back_length()
+								&& ani.getAni_neck_length() < stkList.get(j).getStk_neck_length()
+								&& ani.getAni_chest_length() < stkList.get(j).getStk_chest_length()) {
+							Integer n = sizeMap.get(stkList.get(j).getStk_size());
+							tmp.add(n);
+							//대문자로 바꿔서 비교
+						}
+					}
+					System.out.println(tmp.toString());
+					if (!tmp.isEmpty()) {
+//					if (false) {
+						int sizeNum = Collections.min(tmp);
+						String rcmSize = "";
+						for (String key : sizeMap.keySet()) {
+							Integer value = sizeMap.get(key);
+							if (value == sizeNum) {
+								System.out.println("key : " + key);
+								rcmSize = key;
+								break;
+							}
+						}
+						productList.get(i).setRecommend_size(rcmSize);
+					}
+
+				}
+			}
+		}
 		model.addAttribute("productList", productList);
 		model.addAttribute("currentPage", page);
-		model.addAttribute("lastPage",lastPage);
+		model.addAttribute("lastPage", lastPage);
 	}
 
-	
 	@RequestMapping("/categorySearch.do")
 	public String categorySearch(Model model, int categoryNum) {
 		List<ProductVO> productList = filterMapper.selectCategoryProductList(categoryNum);
 		model.addAttribute("productList", productList);
 		return "home";
-		
+
 	}
-	
+
 	@RequestMapping("/category.do")
 	public void category() {
 	}
-	
 
-
-	
 }

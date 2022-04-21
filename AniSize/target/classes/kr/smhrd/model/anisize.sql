@@ -251,3 +251,6 @@ select pr.*, ph.ph_date, ph.mem_num , m.mem_nick
         where pr.pd_num = 41
         and pr.ph_num = ph.ph_num
         and ph.mem_num = m.mem_num
+        
+SELECT * FROM anisize.product_stock WHERE pd_num = 1;
+        

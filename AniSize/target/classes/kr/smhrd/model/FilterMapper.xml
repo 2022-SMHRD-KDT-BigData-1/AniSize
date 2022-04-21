@@ -23,4 +23,8 @@
     <select id ="getHighScoreProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
         select * from pageHighScoreProduct where num between #{min} and #{max}
     </select>
+    
+    <select id="getRecommendSizeProductList" parameterType="" resultType="kr.smhrd.model.ProductVO">
+        
+    </select>
 </mapper>
