@@ -24,7 +24,7 @@
         select * from pageHighScoreProduct where num between #{min} and #{max}
     </select>
     
-    <select id="getRecommendSizeProductList" parameterType="" resultType="kr.smhrd.model.ProductVO">
+<!--     <select id="getRecommendSizeProductList" parameterType="" resultType="kr.smhrd.model.ProductVO">
         
-    </select>
+    </select> -->
 </mapper>
