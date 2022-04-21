@@ -253,4 +253,5 @@ select pr.*, ph.ph_date, ph.mem_num , m.mem_nick
         and ph.mem_num = m.mem_num
         
 SELECT * FROM anisize.product_stock WHERE pd_num = 1;
+select * from product_stock where pd_num = 9;
         

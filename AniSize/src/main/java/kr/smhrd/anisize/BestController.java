@@ -81,32 +81,30 @@ public class BestController {
 
 		if (mem != null) {
 			AnimalVO ani = animalMapper.getAniInfo(mem.getMem_num());
-//			System.out.println("저장된 동물 등길이 : " + ani.getAni_back_length());
-//			System.out.println("저장된 동물 목 : " + ani.getAni_neck_length());
-//			System.out.println("저장된 동물 가슴길이 : " + ani.getAni_chest_length());
+			System.out.println("저장된 동물 등길이 : " + ani.getAni_back_length());
+			System.out.println("저장된 동물 목 : " + ani.getAni_neck_length());
+			System.out.println("저장된 동물 가슴길이 : " + ani.getAni_chest_length());
+
 			if (ani.getAni_back_length() != 0) {
 
 				for (int i = 0; i < productList.size(); i++) {
 					List<ProductStockVO> stkList = productMapper.getProductSizeList(productList.get(i).getPd_num());
-//					System.out.println(stkList.toString());
 					List<Integer> tmp = new ArrayList<Integer>();
-					System.out.println("pd _ num : " + productList.get(i).getPd_num());
+					System.out.println("pd _ num : "+productList.get(i).getPd_num());
 					for (int j = 0; j < stkList.size(); j++) {
 						// s는 3cm 범위
-						System.out.println("back : " + stkList.get(j).getStk_back_length());
-						System.out.println("neck : " + stkList.get(j).getStk_neck_length());
-						System.out.println("chest : " + stkList.get(j).getStk_chest_length());
 						if (ani.getAni_back_length() < stkList.get(j).getStk_back_length()
 								&& ani.getAni_neck_length() < stkList.get(j).getStk_neck_length()
 								&& ani.getAni_chest_length() < stkList.get(j).getStk_chest_length()) {
-							Integer n = sizeMap.get(stkList.get(j).getStk_size());
+							String aaa = stkList.get(j).getStk_size().toUpperCase();
+							int n = sizeMap.get(aaa);
 							tmp.add(n);
-							// 대문자로 바꿔서 비교
+							//대문자로 바꿔서 비교
 						}
 					}
-					System.out.println(tmp.toString());
+					System.out.println("tmp to string : "+tmp.toString());
 					if (!tmp.isEmpty()) {
-//					if (false) {
+//						System.out.println("여긴옴");
 						int sizeNum = Collections.min(tmp);
 						String rcmSize = "";
 						for (String key : sizeMap.keySet()) {
