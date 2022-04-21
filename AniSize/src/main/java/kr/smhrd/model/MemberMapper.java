@@ -12,5 +12,6 @@ public interface MemberMapper {
 	public String emailCheck(String email);
 	public String nickCheck(String nick);
 	public void memUpdate(MemberVO vo);
+	public void logout(MemberVO vo);
 	
 }

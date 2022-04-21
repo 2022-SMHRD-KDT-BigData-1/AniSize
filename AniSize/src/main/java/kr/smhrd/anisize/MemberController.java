@@ -51,7 +51,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		System.out.println("로그아웃 동작");
 		session.removeAttribute("member");
-		return "redirect:/home.do";
+		return "redirect:/myPage.do";
 	}
 	@RequestMapping("/joinInsert.do")
 	public String joinInsert(MemberVO vo) {
@@ -80,4 +80,6 @@ public class MemberController {
 		mapper.memUpdate(vo);
 		return "redirect:/myPage.do";
 	}
+	
+	
 }

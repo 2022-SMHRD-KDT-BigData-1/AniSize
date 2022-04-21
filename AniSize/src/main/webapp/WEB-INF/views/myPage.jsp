@@ -160,6 +160,14 @@
        
            
         }
+            a.logout{
+          display:block;
+          width:80px;
+          line-height:30px;
+          text-align:center;
+          background-color:#606060bd;
+          color:#fff;
+        }
 
 
     </style>
@@ -167,6 +175,7 @@
 
   <body>
     <div class="container">
+    <form action="logout.do" method="post">
       <div class="" >
       <img src="resources/images/logo.jpg" style="width: 200px; height: 150px; margin-left: 60px;" />
     </div>
@@ -182,7 +191,12 @@
     	</c:otherwise>
     </c:choose>
     </p>   <div class="logout" style="display: flex; justify-content: right; align-items: right;">
-                <button style="width: 60px; height: 30px; font-size: 5px;  margin-top: 7px; border: none;">로그아웃</button>
+                <a href="logout.do" class="logout" style="    width: 60px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 0px;
+    margin-top: 7px;
+    border: none;">로그아웃</a>
             </div></i>
      <div class="detail_product">
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
@@ -269,6 +283,8 @@
     </div>
     
     <br><br><br><br><br>
+    </div>
+   </form>
   </div>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
