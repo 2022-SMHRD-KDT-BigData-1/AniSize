@@ -71,4 +71,13 @@ public class MemberController {
 		String e = mapper.nickCheck(nick);
 		return e;
 	}
+	@RequestMapping("/memberUpdate.do")
+	public String memberUpdate(MemberVO vo, HttpSession session) {
+		System.out.println("회원정보 수정");
+		System.out.println(vo.toString());
+		session.removeAttribute("member");
+		session.setAttribute("member", vo);
+		mapper.memUpdate(vo);
+		return "redirect:/myPage.do";
+	}
 }

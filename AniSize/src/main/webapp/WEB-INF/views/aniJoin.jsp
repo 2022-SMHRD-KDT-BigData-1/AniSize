@@ -155,6 +155,7 @@ html, body {
     
     <script>
     function predict() {
+    	
     	var form = $('#inputGroupFile04')[0].files[0];
 		var formData = new FormData();
 		formData.append('img', form);

@@ -11,5 +11,6 @@ public interface MemberMapper {
 	public List<MemberVO> memberList();
 	public String emailCheck(String email);
 	public String nickCheck(String nick);
+	public void memUpdate(MemberVO vo);
 	
 }
