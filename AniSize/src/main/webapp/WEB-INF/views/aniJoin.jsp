@@ -160,7 +160,7 @@ html, body {
 		var formData = new FormData();
 		formData.append('img', form);
     	$.ajax({
-            url : "http://222.102.104.24:5000/predict",
+            url : "http://f5.project-jupyter.ddns.net:8875/predict",
             type : "POST",
             enctype: 'multipart/form-data',
             data : formData,
