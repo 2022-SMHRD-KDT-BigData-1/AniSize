@@ -23,6 +23,12 @@
 		select mem_nick from member where mem_nick = #{mem_nick}
 	</select>
 	
+	<update id="memUpdate" parameterType="kr.smhrd.model.MemberVO">
+		update member set mem_pw=#{mem_pw}, mem_nick=#{mem_nick}, mem_tel=#{mem_tel}, mem_address=#{mem_address}
+		where mem_email = #{mem_email}
+	</update>
+	
+	
 
   
 </mapper>

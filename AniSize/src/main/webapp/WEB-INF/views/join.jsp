@@ -103,6 +103,7 @@ html, body {
 				<span style="font-size: 13px">비밀번호<span style="color: red">*</span></span> 
 				<input type="password" class="form-control my-2" id="password" placeholder="비밀번호" name="mem_pw" />
 				<input type="password" class="form-control my-2" id="passwordCk" placeholder="비밀번호 확인" /> 
+				<p id="checkPwd" ></p>
 				<span style="font-size: 13px">닉네임<span style="color: red">*</span></span> 
 				<input type="text" class="form-control my-2" id="nick" placeholder="닉네임" name="mem_nick" /> 
 				<font id = "checkNick" size = "2"></font>
@@ -168,6 +169,28 @@ html, body {
 			});
 
 		});
+		
+		 
+		$('#passwordCk').focusout( function (){
+		
+			var pwd1=$("#password").val();
+			var pwd2=$("#passwordCk").val();
+			
+		
+		  if(pwd1 != pwd2){
+		
+			$('#checkPwd').text('동일한 암호를 입력하세요');
+			$("#checkPwd").css("color", 'red');
+		  	/* document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요."; */
+		  }else{
+			
+			$('#checkPwd').text('암호가 확인 되었습니다');
+			$("#checkPwd").css("color", 'blue');
+		  	/* document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다."; */
+		   
+		  	}
+	   	  });
+		 
 	</script>
 
 	<!-- Option 2: Separate Popper and Bootstrap JS -->

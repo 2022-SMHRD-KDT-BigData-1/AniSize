@@ -34,6 +34,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
     />
+    <script type="text/javascript" src="httpRequest.js"></script>
+    <script
+	src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
 
     <link rel="stylesheet" href="resources/css/style.css">
 
@@ -96,12 +99,24 @@
 
       <hr />
       <br />
+      <form action="memberUpdate.do" method="post">
       <div class="d-grid gap-3 col-12 form-group">
+     
         <p style="text-align: right; font-size: 13px; font-weight: bold">
           <span style="color: red">*</span>는 필수사항 입니다.
         </p>
+         <input
+          type="text"
+          class="form-control"
+          id="email"
+          placeholder="이메일"
+          name="mem_email"
+          value="${member.mem_email}"
+          style="visibility:hidden;"
+        />
+     
 
-        <span style="font-size: 13px"
+        <span style="font-size: 13px" id="pw_label"
           >비밀번호<span style="color: red">*</span></span
         >
         <input
@@ -109,14 +124,54 @@
           class="form-control"
           id="password"
           placeholder="비밀번호"
-          name="mem_password"
+          name="mem_pw"
+          required class="pass"
+      
         />
+        
+        
+
         <input
           type="password"
           class="form-control"
           id="passwordCk"
           placeholder="비밀번호 확인"
+          name="mem_pw_check"
+          required class="pass"
+      
         />
+        
+       <p id="checkPwd" ></p>
+  
+
+
+	<script type="text/javascript">
+		
+		 			 
+		$('#passwordCk').focusout( function (){
+		
+			var pwd1=$("#password").val();
+			var pwd2=$("#passwordCk").val();
+			
+		
+		  if(pwd1 != pwd2){
+		
+			$('#checkPwd').text('동일한 암호를 입력하세요');
+			$("#checkPwd").css("color", 'red');
+		  	/* document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요."; */
+		  }else{
+			
+			$('#checkPwd').text('암호가 확인 되었습니다');
+			$("#checkPwd").css("color", 'blue');
+		  	/* document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다."; */
+		   
+		  	}
+	   	  });
+		 
+			 
+	</script>
+
+
         <span style="font-size: 13px"
           >닉네임<span style="color: red">*</span></span
         >
@@ -157,14 +212,18 @@
 
       <div class="d-grid gap-1 col-12 mx-auto">
         <button
-          type="button"
+          type="submit"
           class="btn"
           style="background-color: rgb(173, 103, 234)"
         >
           변경하기
         </button>
+        
       </div>
-    </div>
+   	</form>
+   </div>
+    
+    
             <!-- 메뉴바 + 카데고리 -->
             <nav
             class="navbar fixed-bottom"
