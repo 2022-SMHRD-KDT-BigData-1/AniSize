@@ -190,14 +190,18 @@
    			 ${member.mem_nick}님
     	</c:otherwise>
     </c:choose>
-    </p>   <div class="logout" style="display: flex; justify-content: right; align-items: right;">
+    </p>   
+    <c:if test="${!empty member}">
+    <div class="logout" style="display: flex; justify-content: right; align-items: right;">
                 <a href="logout.do" class="logout" style="    width: 60px;
     height: 30px;
     font-size: 10px;
     margin-left: 0px;
     margin-top: 7px;
     border: none;">로그아웃</a>
-            </div></i>
+            </div>
+    </c:if>
+            </i>
      <div class="detail_product">
       <div style="border: 1px solid rgb(218, 218, 218); padding: 7px 7px; width: 70px;
       height: 70px;"><a href=""><span >0<br> 입금/결제</span></a></div>
