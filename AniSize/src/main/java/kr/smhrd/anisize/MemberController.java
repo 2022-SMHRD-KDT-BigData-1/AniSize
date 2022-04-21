@@ -55,9 +55,12 @@ public class MemberController {
 		return "redirect:/myPage.do";
 	}
 	@RequestMapping("/joinInsert.do")
-	public String joinInsert(MemberVO vo) {
+	public String joinInsert(MemberVO vo, HttpSession session) {
 		System.out.println("회원가입 기능 동작");
 		mapper.insertMemJoin(vo);
+		MemberVO member = mapper.selectLogin(vo);
+		session.setAttribute("member", member);
+		System.out.println(member.toString());
 		return "redirect:/aniJoinCheck.do";
 	}
 	@RequestMapping("/emailCheck.do")

@@ -80,7 +80,7 @@ html, body {
 			<a href="aniJoin.do">
 				<button type="button" class="btn"
 					style="background-color: rgb(173, 103, 234); ">반려동물 등록</button>
-			</a> <br />
+			</a> <br/>
 			<hr />
 			<br />
 			<p class="btn"
