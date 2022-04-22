@@ -21,12 +21,12 @@
     <select id="getAniInfo" resultType="kr.smhrd.model.AnimalVO">
         select * from animal where mem_num = #{mem_num}
     </select> 
-    
+     
     <select id='aniKindList' resultType="kr.smhrd.model.AniKindVO">
         select * from animal_kind
     </select>
     
-<!--     <select id="isAniInfo">
-        select ani_name 
-    </select> -->
+    <update id="aniJoinDone">
+        update member set is_ani_join = 1 where mem_num = #{mem_num}
+    </update> 
 </mapper>

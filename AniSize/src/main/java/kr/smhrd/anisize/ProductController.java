@@ -45,8 +45,6 @@ public class ProductController {
 		model.addAttribute("stkOptionList", stkOptionList);
 		model.addAttribute("countReview", countReview);
 		 
-//		List<ProductStockVO> productStockList = productMapper.getProductStock(pd_num);
-//		model.addAttribute("productStockList", productStockList);
 	}                 
 	@RequestMapping("/selectOptionStock.do")
 	public @ResponseBody List<ProductStockVO> selectOptionStock(ProductStockVO vo){
@@ -58,17 +56,13 @@ public class ProductController {
 	@RequestMapping("/selectNullOptionStock.do")
 	public @ResponseBody List<ProductStockVO> selectNullOptionStock(int pd_num){
 		List<ProductStockVO> stockList = productMapper.selectNullOptionStock(pd_num);
-		//나오는게 사이즈 , 가격, 재고
-//		System.out.println(stockList.toString());
 		return stockList;
 	}
 
-	//@RequestParam("pd_num") int pd_num, @RequestParam("stk_option") String stk_option
 	@RequestMapping("/highScoreProduct.do")
 	public String highScoreProduct(Model model) {
 		List<ProductVO> product = productMapper.highScoreProduct();
 		model.addAttribute("product", product);
-		//뒤로가기 하고 새로고침해야하나? 어떤상황에서든 같은함수쓰고싶은데 
 		return "";
 	}
 	

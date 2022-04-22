@@ -14,4 +14,5 @@ public class MemberVO {
 	private String mem_nick;
 	private String mem_tel;
 	private String mem_address;
+	private int is_ani_join;
 }

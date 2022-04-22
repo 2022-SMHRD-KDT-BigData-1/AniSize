@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.smhrd.model.AnimalMapper;
 import kr.smhrd.model.MemberMapper;
 import kr.smhrd.model.MemberVO;
 
@@ -16,6 +17,8 @@ public class MemberController {
 
 	@Inject
 	private MemberMapper mapper;
+	@Inject
+	private AnimalMapper animalMapper;
 
 	@RequestMapping("/login.do")
 	public void login() {
@@ -59,6 +62,7 @@ public class MemberController {
 		System.out.println("회원가입 기능 동작");
 		mapper.insertMemJoin(vo);
 		MemberVO member = mapper.selectLogin(vo);
+		
 		session.setAttribute("member", member);
 		System.out.println(member.toString());
 		return "redirect:/aniJoinCheck.do";

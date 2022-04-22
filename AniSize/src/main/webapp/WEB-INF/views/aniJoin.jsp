@@ -86,7 +86,7 @@ html, body {
 			<form action="insertAniInfo.do" method="post">
 				<input type="hidden" id="mem_num" name="mem_num" value="${member.mem_num}">
 
-				<input type="text" class="form-control my-2" id="ani_name" placeholder="강아지 이름" name="ani_name" required /> 
+				<input type="text" class="form-control my-2" id="ani_name" placeholder="강아지 이름" name="ani_name"  /> 
 				<input type="text" class="form-control my-2" id="ani_kind" list="kindList" placeholder="견종" name="ani_kind" required />
 				<datalist id ="kindList">
 					<c:forEach var = 'kind' items ='${aniKindList}'>
@@ -105,9 +105,9 @@ html, body {
 				<p
 					style="text-align: left; font-size: 12px; font-weight: bold; margin-bottom: 0px;">
 					이미지를 클릭하면 사진을 업로드 할 수 있습니다.</p>
-				<input type="number" class="form-control my-2" id="ani_back_len" placeholder="등 길이" name="ani_back_length" min=0 step='0.1'/>
-				<input type="number" class="form-control my-2" id="ani_neck_len" placeholder="목 둘레" name="ani_neck_length" min=0 step='0.1'/>
-				<input type="number" class="form-control my-2" id="ani_chest_len" placeholder="몸통(가슴) 둘레" name="ani_chest_length" min=0 step='0.1'/>
+				<input type="number" class="form-control my-2" id="ani_back_len" placeholder="등 길이" name="ani_back_length" min=0 step='0.1' value="1" required/>
+				<input type="number" class="form-control my-2" id="ani_neck_len" placeholder="목 둘레" name="ani_neck_length" min=0 step='0.1' required/>
+				<input type="number" class="form-control my-2" id="ani_chest_len" placeholder="몸통(가슴) 둘레" name="ani_chest_length" min=0 step='0.1' required/>
 
 				<p
 					style="text-align: left; font-size: 15px; font-weight: bold; margin-bottom: 0px;">

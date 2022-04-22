@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class AnimalVO {
 	private int ani_num;
 	private String ani_name;
-	private String mem_num;
+	private int mem_num;
 	private String ani_sex;
 	private String ani_kind;
 	private double ani_weight;

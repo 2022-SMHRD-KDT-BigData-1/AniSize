@@ -38,6 +38,8 @@ public class AniController {
 		System.out.println("인서트애니인포함수까진옴");
 		System.out.println(vo.getAni_kind());
 		aniMapper.insertAniInfo(vo);
+		System.out.println(vo.toString());
+		aniMapper.aniJoinDone(vo.getMem_num());
 		return "redirect:/home.do";
 	}
 	@RequestMapping("/insertAniInfoLater.do")

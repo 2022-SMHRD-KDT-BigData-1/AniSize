@@ -50,7 +50,6 @@ public class HomeController {
 		int max = page * 10;
 		int min = max - 9;
 		List<ProductVO> productList = productMapper.getProductListByPage(new MinMaxVO(min, max));
-
 		MemberVO mem = (MemberVO) session.getAttribute("member");
 		Map<String, Integer> sizeMap = new HashMap<>();
 		sizeMap.put("XS", 1);
@@ -72,19 +71,19 @@ public class HomeController {
 					for (int i = 0; i < productList.size(); i++) {
 						List<ProductStockVO> stkList = productMapper.getProductSizeList(productList.get(i).getPd_num());
 						List<Integer> tmp = new ArrayList<Integer>();
-						System.out.println("pd _ num : " + productList.get(i).getPd_num());
+//						System.out.println("pd _ num : " + productList.get(i).getPd_num());
 						for (int j = 0; j < stkList.size(); j++) {
 							// s는 3cm 범위
 							if (ani.getAni_back_length() < stkList.get(j).getStk_back_length()
 									&& ani.getAni_neck_length() < stkList.get(j).getStk_neck_length()
+									&& ani.getAni_chest_length() > (stkList.get(j).getStk_chest_length()-3.9)
 									&& ani.getAni_chest_length() < stkList.get(j).getStk_chest_length()) {
 								String aaa = stkList.get(j).getStk_size().toUpperCase();
 								int n = sizeMap.get(aaa);
 								tmp.add(n);
-								// 대문자로 바꿔서 비교
 							}
 						}
-						System.out.println("tmp to string : " + tmp.toString());
+//						System.out.println("tmp to string : " + tmp.toString());
 						if (!tmp.isEmpty()) {
 //							System.out.println("여긴옴");
 							int sizeNum = Collections.min(tmp);
