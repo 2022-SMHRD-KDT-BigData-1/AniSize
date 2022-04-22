@@ -1,0 +1,1 @@
+SELECT * FROM product_stock where pd_num=9;
