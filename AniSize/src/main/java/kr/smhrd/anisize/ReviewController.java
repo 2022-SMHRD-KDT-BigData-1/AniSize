@@ -66,7 +66,7 @@ public class ReviewController {
 		System.out.println(review_image.getOriginalFilename());
 //		System.out.println(review_img.getSize());
 //		System.out.println(vo.getReview_image().getOriginalFilename());
-		String dir = "/home/ubuntu/dev/shm/";
+		String dir = "/home/ubuntu/dev/shm/"; 
 		String path = session.getServletContext().getRealPath(dir);
 //		String path2 = "C:\\Users\\smhrd\\git\\AniSize\\AniSize\\src\\main\\webapp\\resources\\images\\review";
 //		System.out.println(path);
