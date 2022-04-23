@@ -142,24 +142,27 @@
       </div>
       
       
-    <select name="select" style="font-size: 15px; margin-bottom: 20px; margin-top: -5px;">
+    <select name="select" style="font-size: 15px; margin-bottom: 20px; margin-top: -5px;" onchange="categoryFilter()" id="categoryFilter">
         <option value="">정렬방식</option>
-        <option value="신상품">신상품</option>
-        <option value="상품명">상품명</option>
-        <option value="낮은가격">낮은가격</option>
-        <option value="높은가격">높은가격</option>
-        <option value="인기상품">인기상품</option>
-        <option value="사용후기">사용후기</option>
-        <option value="조회수">조회수</option>
+        <option value="recent">신상품</option>
+        <option value="pdName">상품명</option>
+        <option value="lowPrice">낮은가격</option>
+        <option value="highPrice">높은가격</option>
+        <option value="highSales">인기상품</option>
+        <!-- <option value="manyReview">사용후기</option> -->
+        <!-- <option value="조회수">조회수</option> -->
     </select>
      
 
       <ul class="products_list">
       <c:forEach items="${productList}" var="product">
         <li>
-          <a href="">
+          <a href="product.do?pd_num=${product.pd_num}">
             <div class="picture" style="background-image: url('resources/images/product/${product.pd_num}/thumnail.jpg')">
-              
+            
+        		<c:if test="${product.recommend_size ne null}">
+					<img src="images/dh/${product.recommend_size}_size.png" style="width: 50px; float: right; padding-top: 176px; padding-right: 7px;">
+				</c:if>
             </div>
           </a>
           <h3><a href="">${product.pd_name}</a></h3>
@@ -171,6 +174,30 @@
     </div>
 
     <jsp:include page="menuBar.jsp"></jsp:include>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+    	function categoryFilter(){
+    		let filter = $('#categoryFilter').val();
+    		let d = {
+     				"categoryNum" : '${cateNum}',
+     				"filter" : filter
+     				};
+    		console.log(d);
+        	$.ajax({
+     			url : 'categorySearch2.do',
+     			type : 'post',
+     			data: d,
+     			success : function(res){
+     				console.log(res);
+     				location.href="category.do";
+     			},
+     			error : function(e){
+     				console.log(e);
+     			}
+     		}); 
+    		
+    	}
+    </script>
 
     <!-- 아래 Popper 있어야 슬라이드로 나옴..... 절대 지우지마!!!!!!!! -->
     <!-- Optional JavaScript; choose one of the two! -->

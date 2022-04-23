@@ -174,7 +174,7 @@ width:158.39px; height: 224px;
 			</c:when>
 			<c:otherwise>
 			<h2>검색 결과</h2>
-			<div class="row">
+<%-- 			<div class="row">
 				<c:forEach items="${searchedProductList}" var="product">
 					<div class="col-6">
 						<a class="namePrice" href="product.do?pd_num=${product.pd_num}" 
@@ -189,7 +189,23 @@ width:158.39px; height: 224px;
 						</a>
 					</div>
 				</c:forEach>
-			</div>
+			</div> --%>
+	  <ul class="products_list">
+      <c:forEach items="${productList}" var="product">
+        <li>
+          <a href="product.do?pd_num=${product.pd_num}">
+            <div class="picture" style="background-image: url('resources/images/product/${product.pd_num}/thumnail.jpg')">
+            
+        		<c:if test="${product.recommend_size ne null}">
+					<img src="images/dh/${product.recommend_size}_size.png" style="width: 50px; float: right; padding-top: 176px; padding-right: 7px;">
+				</c:if>
+            </div>
+          </a>
+          <h3><a href="">${product.pd_name}</a></h3>
+          <h4>${product.pd_price}</h4>
+        </li>
+      </c:forEach>
+      </ul>
 
 			</c:otherwise>
 		</c:choose>

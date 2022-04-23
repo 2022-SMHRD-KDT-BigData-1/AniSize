@@ -11,7 +11,21 @@
     <select id="selectCategoryProductList" resultType="kr.smhrd.model.ProductVO">
         select pd_name, pd_price, pd_num from product where pd_cate_num = #{categoryNum}
     </select>
+    <select id="categoryHighSalseFilter" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_num from product where pd_cate_num = #{categoryNum} order by sales_count desc
+    </select>
     
+    <select id="categoryHighPriceFilter" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_num from product where pd_cate_num = #{categoryNum} order by pd_price desc
+    </select>
+    <select id="categoryLowPriceFilter" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_num from product where pd_cate_num = #{categoryNum} order by pd_price asc
+    </select>
+    
+    <select id="categoryPdNameFilter" resultType="kr.smhrd.model.ProductVO">
+        select pd_name, pd_price, pd_num from product where pd_cate_num = #{categoryNum} order by pd_name asc
+    </select>
+     
     <select id ="getRecentProductListByPage" parameterType = "kr.smhrd.model.MinMaxVO" resultType="kr.smhrd.model.ProductVO">
         select * from pageRecentProduct where num between #{min} and #{max}
     </select>
