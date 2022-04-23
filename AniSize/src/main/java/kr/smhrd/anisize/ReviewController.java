@@ -66,7 +66,7 @@ public class ReviewController {
 		System.out.println(review_image.getOriginalFilename());
 //		System.out.println(review_img.getSize());
 //		System.out.println(vo.getReview_image().getOriginalFilename());
-		String dir = "/home/ubuntu/efs/anisize/review_img/"; 
+		String dir = "/home/ubuntu/review_img/"; 
 		String path = session.getServletContext().getRealPath(dir);
 //		String path2 = "C:\\Users\\smhrd\\git\\AniSize\\AniSize\\src\\main\\webapp\\resources\\images\\review";
 //		System.out.println(path);
@@ -83,7 +83,7 @@ public class ReviewController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		String a = "/home/ubuntu/efs/anisize/review_img/";
+		String a = "/home/ubuntu/review_img/";
 		vo.setReview_img(a + ranFileName);
 		reviewMapper.insertProductReview(vo);
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
