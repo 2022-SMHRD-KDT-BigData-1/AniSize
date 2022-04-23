@@ -145,6 +145,7 @@
         overflow: hidden;
         pointer-events: none;
         }
+
     </style>
 </head>
 
@@ -385,8 +386,8 @@
                 <span> ${review.review_score/2}</span>
                 <span>/ 5.0 점</span><br>
                 <span>${review.review_content}
-
                 </span>
+
                 <hr style="display:flex; max-width: 330px; margin-top: 3px; margin-bottom: 5px;">
 				</c:forEach>
             </div>
@@ -479,12 +480,12 @@
 
                         <!-- 옵션 선택시 후, 하단에 선택한 옵션 보여줌-->
                         <div class="selected_option" style="font-size: 15px;">
-                            <span>상품명 / </span>
+                            <!-- <span>상품명 / </span>
                             <span>컬러 / </span>
                             <span>사이즈</span>
-                            <!-- 옵션 삭제 X 버튼 -->
+                            옵션 삭제 X 버튼
                             <i class="bi bi-x" style="font-size: 30px; margin-left: 150px;"></i>
-
+ -->
                             <!--수량 수정  -->
                             <div class="number" style="font-size: 20px; text-align: left; ">
                                 <a href="#" id="increaseQuantity">
@@ -525,8 +526,8 @@
 	                        <a href="#" onclick="addCart()">
 	                        <button type="button" class="btn secondary" style="width: 160px; color: #ad67ea; border-color: #ad67ea;">장바구니 담기</button>
 	                        </a>
-							<a>
-	                        <button type="button" class="btn" style="background-color: #ad67ea; color: #ffffff; width: 160px;">바로 </button>
+							<a href="#" onclick="nowBuy()">
+	                        <button type="button" class="btn" style="background-color: #ad67ea; color: #ffffff; width: 160px;">바로 구매</button>
 							</a>
 						</c:otherwise>
 					</c:choose>
@@ -539,6 +540,42 @@
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">  /* ajax 재고 가져오기 */
+	
+	
+		function nowBuy(){ 
+			if($('#optionSize').val().indexOf('[필수]') != -1){
+				alert('사이즈를 선택해주세요')
+				return
+			}
+
+		    let form = document.createElement("form");
+		    form.setAttribute("id", "form1");
+		    form.setAttribute("method", "post");
+		    form.setAttribute("action", "nowBuy.do");
+		    
+		    let mem_num = document.createElement("input");
+		    mem_num.setAttribute("type", "hidden");
+		    mem_num.setAttribute("name", "mem_num");
+		    mem_num.setAttribute("value", '${member.mem_num}');
+		    form.appendChild(mem_num);
+		    
+		    let stk_num = document.createElement("input");
+		    stk_num.setAttribute("type", "hidden");
+		    stk_num.setAttribute("name", "stk_num");
+		    stk_num.setAttribute("value", $('#optionSize').val());
+		    form.appendChild(stk_num);
+		    
+		    let cart_quantity = document.createElement("input");
+		    cart_quantity.setAttribute("type", "hidden");
+		    cart_quantity.setAttribute("name", "cart_quantity");
+		    cart_quantity.setAttribute("value", $('#cart_quantity').val());
+		    form.appendChild(cart_quantity);
+		    
+		    document.body.appendChild(form);
+		    form.submit();
+		    document.getElementById("form1").remove();
+			
+		}
 		function addCart(){ 
 			if($('#optionSize').val().indexOf('[필수]') != -1){
 				alert('사이즈를 선택해주세요')

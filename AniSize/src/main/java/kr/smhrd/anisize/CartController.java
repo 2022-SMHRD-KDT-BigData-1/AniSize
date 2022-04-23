@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ public class CartController {
 		System.out.println("장바구니 담기 성공");
 		return "SuccessAddCart";
 	}
+
 	@RequestMapping("/deleteCart.do")
 	public @ResponseBody String deleteCart(int cart_num) {
 		System.out.println("카트삭제로 넘어옴");
@@ -100,6 +102,25 @@ public class CartController {
 		session.setAttribute("orderList", orderList);
 		
 		return "구매이동";
+	}
+	
+	@RequestMapping("/nowBuy.do")
+	public  String nowBuy(CartVO vo, Model model, HttpSession session) {
+		System.out.println("상품페이지 > 바로구매 이동 컨트롤러");
+		System.out.println("vo : " + vo.toString());
+		List<CartVO> cartList = cartMapper.getCart(vo.getMem_num());
+		int stk_num = cartList.get(0).getStk_num();
+		PurchaseHistoryVO orderList = cartMapper.selectStkDetail(stk_num);
+		orderList.setPh_quantity(vo.getCart_quantity());
+		
+		List<PurchaseHistoryVO> orderList1 = new ArrayList<PurchaseHistoryVO>();
+		orderList1.add(orderList);		
+		
+		session.removeAttribute("orderList");
+		session.setAttribute("orderList", orderList1);
+		System.out.println(orderList1);
+		
+		return "order";
 	}
 	
 }

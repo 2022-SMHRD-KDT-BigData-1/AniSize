@@ -213,12 +213,12 @@
                 </div>
             </div>
 
-            <div class="row rororo" style="margin-top: 16px; ">
+            <div class="row rororo" style="margin-top: 0px; "> <!-- 16 -->
                 <div class="col-6">
                     <!-- 바로 구매 -->
-                    <button type="button" class="btn btn secondary btn-sm" style=" color: #fff;
+<!--                     <button type="button" class="btn btn secondary btn-sm" onclick="nowBuy()" style=" color: #fff;
             padding: 0 0 0 0; background-color: #ad67ea; width: 120px; height: 28px; display: flex; text-align: center; justify-content: center;
-            align-items: center; "> 바로구매</button>
+            align-items: center; "> 바로구매</button> -->
                 </div>
                 
                 <div class="col-6 rongrong">
@@ -334,6 +334,40 @@
     		
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
+	function nowBuy(){ 
+		if($('#optionSize').val().indexOf('[필수]') != -1){
+			alert('사이즈를 선택해주세요')
+			return
+		}
+
+	    let form = document.createElement("form");
+	    form.setAttribute("id", "form1");
+	    form.setAttribute("method", "post");
+	    form.setAttribute("action", "nowBuy.do");
+	    
+	    let mem_num = document.createElement("input");
+	    mem_num.setAttribute("type", "hidden");
+	    mem_num.setAttribute("name", "mem_num");
+	    mem_num.setAttribute("value", '${member.mem_num}');
+	    form.appendChild(mem_num);
+	    
+	    let stk_num = document.createElement("input");
+	    stk_num.setAttribute("type", "hidden");
+	    stk_num.setAttribute("name", "stk_num");
+	    stk_num.setAttribute("value", $('#optionSize').val());
+	    form.appendChild(stk_num);
+	    
+	    let cart_quantity = document.createElement("input");
+	    cart_quantity.setAttribute("type", "hidden");
+	    cart_quantity.setAttribute("name", "cart_quantity");
+	    cart_quantity.setAttribute("value", $('#cart_quantity').val());
+	    form.appendChild(cart_quantity);
+	    
+	    document.body.appendChild(form);
+	    form.submit();
+	    document.getElementById("form1").remove();
+		
+	}
     /* 갯수랑 번호 리스트로 담아서 넘기기 체크된거 찾아서 그 위치서 반복문 */
     function deleteCart(cart_num){
     	console.log(cart_num);
@@ -368,10 +402,6 @@
 			console.log(h);
 		}
 		$('#hidden').html(h); */
-
-		
-		
-		
 		
    		$.ajax({
  			url : 'buy.do',
