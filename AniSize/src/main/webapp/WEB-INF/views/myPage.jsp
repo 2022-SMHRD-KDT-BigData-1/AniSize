@@ -242,11 +242,11 @@
         	<c:when test="${!empty member}">
 		        <a class="" href="memUpdate.do">회원정보 수정</a>
 		        <c:choose>
-		        	<c:when test="${member.is_ani_join eq 0}">
-				        <a class="" href="aniJoin.do">반려동물 정보 등록</a>
+		        	<c:when test="${isAniJoinDone eq 0}">
+						<a class="" href="aniJoin.do">반려동물 정보 등록</a>
 		        	</c:when>
 		        	<c:otherwise>
-				        <a class="" href="aniUpdate.do">반려동물 정보 수정</a>
+						<a class="" href="aniUpdate.do">반려동물 정보 수정</a>
 		        	</c:otherwise>
 		        </c:choose>
       			<a class="" href="javascript:hiddenQuery('purchaseHistory.do','${member.mem_num}')">구매 내역</a>
@@ -256,7 +256,7 @@
         	</c:when>
         	<c:otherwise>
 		        <a class="" href="#" onclick="requestLogin()">회원정보 수정</a>
-		        <a class="" href="#" onclick="requestLogin()">반려동물 정보 수정</a>
+		        <a class="" href="#" onclick="requestLogin()">반려동물 정보 등록</a>
       			<a class="" href="#" onclick="requestLogin()">구매 내역</a>
 		        <a class="" href="#" onclick="requestLogin()">상품 리뷰</a>
 		        <a class="" href="#" onclick="requestLogin()">입점 문의</a>

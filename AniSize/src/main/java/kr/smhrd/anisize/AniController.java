@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.smhrd.model.AniKindVO;
 import kr.smhrd.model.AnimalMapper;
 import kr.smhrd.model.AnimalVO;
+import kr.smhrd.model.MemberMapper;
 import kr.smhrd.model.MemberVO;
 
 @Controller
 public class AniController {
 	@Inject
 	AnimalMapper aniMapper;
+	@Inject
+	MemberMapper memberMapper;
 	
 	@RequestMapping("/aniJoin.do")
 	public void aniJoin(Model model) {
@@ -34,12 +37,15 @@ public class AniController {
 	}
 
 	@RequestMapping("/insertAniInfo.do")
-	public String insertAniInfo(AnimalVO vo) {
+	public String insertAniInfo(AnimalVO vo, HttpSession session) {
 		System.out.println("인서트애니인포함수까진옴");
 		System.out.println(vo.getAni_kind());
 		aniMapper.insertAniInfo(vo);
 		System.out.println(vo.toString());
-		aniMapper.aniJoinDone(vo.getMem_num());
+		aniMapper.updateAniJoinDone(vo.getMem_num());
+		
+		int isAniJoinDone = memberMapper.selectIsAniJoinDone(vo.getMem_num());
+		session.setAttribute("isAniJoinDone", isAniJoinDone);
 		return "redirect:/home.do";
 	}
 	@RequestMapping("/insertAniInfoLater.do")

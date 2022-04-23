@@ -19,7 +19,7 @@
 	<select id="emailCheck" resultType="String">
 		select mem_email from member where mem_email = #{mem_email}
 	</select>
-	<select id="nickCheck" resultType="String">
+	<select id="nickCheck" resultType="String"> 
 		select mem_nick from member where mem_nick = #{mem_nick}
 	</select>
 	
@@ -27,6 +27,10 @@
 		update member set mem_pw=#{mem_pw}, mem_nick=#{mem_nick}, mem_tel=#{mem_tel}, mem_address=#{mem_address}
 		where mem_email = #{mem_email}
 	</update>
+	
+	<select id="selectIsAniJoinDone" resultType="int">
+	    select is_ani_join from member where mem_num = #{mem_num}
+	</select>
 	
 	
 

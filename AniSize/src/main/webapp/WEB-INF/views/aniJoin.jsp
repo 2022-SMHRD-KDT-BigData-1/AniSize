@@ -97,7 +97,11 @@ html, body {
 					<option selected>성별</option>
 					<option value="f">암컷</option>
 					<option value="m">수컷</option>
-				</select> <input type="number" class="form-control my-2" id="ani_weight" placeholder="체중 (숫자만 입력)" name="ani_weight" min=0 step='0.1' required/>
+				</select> 
+				<table style = "width:100%;">
+					<tr><td style = "width : 20%; text-align:center;font-size: 12px; font-weight: bold;">체중</td><td><input type="number" class="form-control my-2" id="ani_weight" placeholder="체중 (숫자만 입력)" name="ani_weight" min=0 step='0.1' value = 0 required/></td>
+				</table>
+				
 				<hr/>
 				<p
 					style="text-align: left; font-size: 15px; font-weight: bold; margin-bottom: 0px;">
@@ -105,10 +109,11 @@ html, body {
 				<p
 					style="text-align: left; font-size: 12px; font-weight: bold; margin-bottom: 0px;">
 					이미지를 클릭하면 사진을 업로드 할 수 있습니다.</p>
-				<input type="number" class="form-control my-2" id="ani_back_len" placeholder="등 길이" name="ani_back_length" min=0 step='0.1' value="1" required/>
-				<input type="number" class="form-control my-2" id="ani_neck_len" placeholder="목 둘레" name="ani_neck_length" min=0 step='0.1' required/>
-				<input type="number" class="form-control my-2" id="ani_chest_len" placeholder="몸통(가슴) 둘레" name="ani_chest_length" min=0 step='0.1' required/>
-
+				<table style = "width:100%;">
+					<tr><td style = "width : 20%; text-align:center;font-size: 12px; font-weight: bold;">등 길이</td><td><input type="number" class="form-control my-2" id="ani_back_len" name="ani_back_length" value = 0 min=0 step='0.1'/></td>
+					<tr><td style = "width : 20%; text-align:center;font-size: 12px; font-weight: bold;">목 둘레</td><td><input type="number" class="form-control my-2" id="ani_neck_len" name="ani_neck_length" value = 0 min=0 step='0.1'/></td>
+					<tr><td style = "width : 20%; text-align:center;font-size: 12px; font-weight: bold;">가슴 둘레</td><td><input type="number" class="form-control my-2" id="ani_chest_len" name="ani_chest_length" value = 0 min=0 step='0.1'/></td>
+				</table>
 				<p
 					style="text-align: left; font-size: 15px; font-weight: bold; margin-bottom: 0px;">
 					옆면 사진 (신용카드와 같이 찍은 사진)</p>

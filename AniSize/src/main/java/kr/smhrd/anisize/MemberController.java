@@ -41,6 +41,8 @@ public class MemberController {
 		MemberVO member = mapper.selectLogin(vo);
 		if (member != null) {
 			session.setAttribute("member", member);
+			int isAniJoinDone = mapper.selectIsAniJoinDone(member.getMem_num());
+			session.setAttribute("isAniJoinDone", isAniJoinDone);
 			
 			return "redirect:/home.do";
 			
@@ -55,6 +57,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		System.out.println("로그아웃 동작");
 		session.removeAttribute("member");
+		session.removeAttribute("isAniJoinDone");
 		return "redirect:/myPage.do";
 	}
 	@RequestMapping("/joinInsert.do")
@@ -64,6 +67,8 @@ public class MemberController {
 		MemberVO member = mapper.selectLogin(vo);
 		
 		session.setAttribute("member", member);
+		int isAniJoinDone = mapper.selectIsAniJoinDone(member.getMem_num());
+		session.setAttribute("isAniJoinDone", isAniJoinDone);
 		System.out.println(member.toString());
 		return "redirect:/aniJoinCheck.do";
 	}

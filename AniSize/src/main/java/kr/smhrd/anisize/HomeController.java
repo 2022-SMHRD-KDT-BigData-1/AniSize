@@ -50,6 +50,7 @@ public class HomeController {
 		int max = page * 10;
 		int min = max - 9;
 		List<ProductVO> productList = productMapper.getProductListByPage(new MinMaxVO(min, max));
+		
 		MemberVO mem = (MemberVO) session.getAttribute("member");
 		Map<String, Integer> sizeMap = new HashMap<>();
 		sizeMap.put("XS", 1);
@@ -113,7 +114,7 @@ public class HomeController {
 	public String categorySearch(Model model, int categoryNum) {
 		List<ProductVO> productList = filterMapper.selectCategoryProductList(categoryNum);
 		model.addAttribute("productList", productList);
-		return "home";
+		return "category";
 
 	}
 

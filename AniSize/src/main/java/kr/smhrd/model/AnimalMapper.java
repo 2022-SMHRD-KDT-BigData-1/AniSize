@@ -11,6 +11,6 @@ public interface AnimalMapper {
 	public void updateAniInfo(AnimalVO vo);
 	public AnimalVO getAniInfo(int mem_num);
 	public List<AniKindVO> aniKindList();
-	public void aniJoinDone(int mem_num);
+	public void updateAniJoinDone(int mem_num);
 	
 }

@@ -13,5 +13,6 @@ public interface MemberMapper {
 	public String nickCheck(String nick);
 	public void memUpdate(MemberVO vo);
 	public void logout(MemberVO vo);
+	public int selectIsAniJoinDone(int mem_num);
 	
 }
