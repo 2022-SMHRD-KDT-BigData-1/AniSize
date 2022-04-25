@@ -57,7 +57,7 @@ public class ReviewController {
 		// 동물 정보 가져오고
 		// 재고 정보 가져와서 보여주고
 	}
-
+ 
 	@RequestMapping("/insertProductReview.do")
 	public String insertProductReview(ReviewVO vo, HttpSession session) {
 		System.out.println("리뷰작성버튼은 성공함");
