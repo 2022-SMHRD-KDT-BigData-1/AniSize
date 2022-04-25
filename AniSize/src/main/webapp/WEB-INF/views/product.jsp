@@ -151,6 +151,7 @@
 
 <body>
 
+
     <div class="container">
         <!-- 뒤로 가기 + 로고 -->
         <div class="row">
@@ -488,16 +489,16 @@
  -->
                             <!--수량 수정  -->
                             <div class="number" style="font-size: 20px; text-align: left; ">
-                                <a href="#" id="increaseQuantity">
+                                <a href="#" id="increaseQuantity" onclick="cc()">
                                     <i class="bi bi-plus-square-fill" style="color: #5e5e5e;"></i></a>
                                 <!-- <i class="bi bi-plus-square"></i> -->
                                 <span id="numberUpDown">1</span>
                                 <input type="hidden" value="1" id="cart_quantity"> 
-                                <a href="#" id="decreaseQuantity">
+                                <a href="#" id="decreaseQuantity" onclick="dd()">
                                     <i class="bi bi-dash-square" style="color: #5e5e5e;"></i></a>
 
                                 <!-- 가격 X 수량 => 총금액 -->
-                                <span style="font-size: 15px; padding-left: 200px;">54,900원</span>
+                                <span style="font-size: 15px; padding-left: 200px;" id="product_price">0원</span>
 
                             </div>
                         </div>
@@ -544,7 +545,7 @@
 	
 		function nowBuy(){ 
 			if($('#optionSize').val().indexOf('[필수]') != -1){
-				alert('사이즈를 선택해주세요')
+				alert('사이즈를 선택해주세요');
 				return
 			}
 
@@ -578,7 +579,7 @@
 		}
 		function addCart(){ 
 			if($('#optionSize').val().indexOf('[필수]') != -1){
-				alert('사이즈를 선택해주세요')
+				alert('사이즈를 선택해주세요');
 				return
 			}
 		 	let form = {
@@ -620,11 +621,13 @@
 			data : d,
 			dataType : 'json',
 			success : function(res){
+				$('#optionSize').empty();
 				for(let i = 0; i<res.length; i++){
 					size = `
 						<option  value="` + res[i].stk_num + `"> `+ res[i].stk_size +`</option>
 					`;
 					$('#optionSize').append(size);
+					
 				}
 			},
 			error : function(e){
@@ -652,14 +655,59 @@
 			}
 		});
 	}
+
 		
 	</script>
+	<script type="text/javascript">
+	function dd(){
+		console.log("ghgg");
+		if($('#optionSize').val().indexOf('[필수]') != -1){
+			alert('사이즈를 선택해주세요');
+			return
+		}
+	    var stat = $('#numberUpDown').text();
+	    var num = parseInt(stat, 10);
+	    num--;
+	    if (num <= 0) {
+	    	alert('더이상 줄일수 없습니다.'); 
+	    	num = 1; 
+	    }
+	    $('#numberUpDown').text(num);
+	    $('#cart_quantity').val(num);
+	    let v = $('#cart_quantity').val() * '${product.pd_price}';
+	    $('#product_price').text(v+'원');
+	}
+	
+	function cc(){
+		console.log("ghgg");
+		if($('#optionSize').val().indexOf('[필수]') != -1){
+			alert('사이즈를 선택해주세요');
+			return
+		}
+	    var stat = $('#numberUpDown').text();
+	    var num = parseInt(stat, 10);
+	    num++; 
+	    if (num > 10) {
+	        alert('더이상 늘릴수 없습니다.');
+	        num = 10;
+	    }
+	    $('#numberUpDown').text(num);
+	    $('#cart_quantity').val(num);
+	    let v = $('#cart_quantity').val() * '${product.pd_price}';
+	    $('#product_price').text(v+'원');
+	}
+</script>
 
     <script>  /* 수량 수정 */
-        
 
-        $(function () {
+
+/*         $(function () {
             $('#decreaseQuantity').click(function (e) {
+            	console.log("ghgg");
+    			if($('#optionSize').val().indexOf('[필수]') != -1){
+    				alert('사이즈를 선택해주세요');
+    				return
+    			}
                 e.preventDefault();
                 var stat = $('#numberUpDown').text();
                 var num = parseInt(stat, 10);
@@ -667,8 +715,13 @@
                 if (num <= 0) { alert('더이상 줄일수 없습니다.'); num = 1; }
                 $('#numberUpDown').text(num);
                 $('#cart_quantity').val(num);
+                $('#product_price').text($('#cart_quantity')*'${product.pd_price}'원);
             });
             $('#increaseQuantity').click(function (e) {
+    			if($('#optionSize').val().indexOf('[필수]') != -1){
+    				alert('사이즈를 선택해주세요');
+    				return
+    			}
                 e.preventDefault();
                 var stat = $('#numberUpDown').text();
                 var num = parseInt(stat, 10);
@@ -678,18 +731,17 @@
                 }
                 $('#numberUpDown').text(num);
                 $('#cart_quantity').val(num);
+                $('#product_price').text($('#cart_quantity').val() * '${product.pd_price}'원);
             });
-        });
+        }); */
 
 
     </script>
-<script type="text/javascript">
-	function requestLogin(){
-		alert('로그인을 해주세요');
-	}
-</script>
-
-
+	<script type="text/javascript">
+		function requestLogin(){
+			alert('로그인을 해주세요');
+		}
+	</script>
 
 
     <!-- 아래 Popper 있어야 슬라이드로 나옴..... 절대 지우지마!!!!!!!! -->
@@ -708,17 +760,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"></script> -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

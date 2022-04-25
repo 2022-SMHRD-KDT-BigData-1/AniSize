@@ -148,16 +148,7 @@
                     전체 선택(선택한 숫자 / 전체 상품 숫자)
                 </label>
                 <!-- 지우기 금지 -->
-                <script>
-                    function selectAll(selectAll) {
-                        const checkboxes
-                            = document.getElementsByName('select');
 
-                        checkboxes.forEach((checkbox) => {
-                            checkbox.checked = selectAll.checked;
-                        })
-                    }
-                </script>
 
             </div>
         </div>
@@ -224,7 +215,7 @@
                 <div class="col-6 rongrong">
                     <!-- 가격 X 수량 => 총금액 -->
                     <p style="text-align: end; font-weight: 600; font-size: 18px;">총 ${product.stk_price * product.cart_quantity}원</p>
-                    <input type="hidden" class="" value="${product.stk_price * product.cart_quantity}">
+                    <input type="hidden" class="pp" value="${product.stk_price * product.cart_quantity}">
                     <input type="hidden" value="${product.stk_num}">
                 </div>
             </div>
@@ -302,11 +293,11 @@
                         </tr>
                         <tr>
                             <th scope="row">총 주문금액</th>
-                            <td id="del_price2">0 원</td>
+                            <td id=sum_price3>0 원</td>
                         </tr>
                         <tr>
                             <th scope="row">총 배송비</th>
-                            <td>0 원</td>
+                            <td id="del_price">0 원</td>
                         </tr>
                         <tr>
                             <th scope="row">총 결제금액</th>
@@ -350,7 +341,7 @@
 	    mem_num.setAttribute("name", "mem_num");
 	    mem_num.setAttribute("value", '${member.mem_num}');
 	    form.appendChild(mem_num);
-	    
+
 	    let stk_num = document.createElement("input");
 	    stk_num.setAttribute("type", "hidden");
 	    stk_num.setAttribute("name", "stk_num");
@@ -419,7 +410,6 @@
     }
 	   
     
-    
           $(function(){
         	$('.ckck').change(function (e){
         		e.preventDefault();
@@ -444,7 +434,8 @@
     				}
     				$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
     				$('#sum_price2').text((sum+del_price)+' 원');
-    				$('#del_price2').text(del_price+' 원');
+    				$('#del_price').text(del_price+' 원');
+    				$('#sum_price3').text(sum+' 원');
     				$('#pd_cnt').text('총 '+pd_count+' 개');
         			
         		}else{
@@ -465,7 +456,8 @@
     				}
     				$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
     				$('#sum_price2').text((sum+del_price)+' 원');
-    				$('#del_price2').text(del_price+' 원');
+    				$('#del_price').text(del_price+' 원');
+    				$('#sum_price3').text(sum+' 원');
     				$('#pd_cnt').text('총 '+pd_count+' 개');
         		}
         	});
@@ -497,7 +489,8 @@
 				}
 				$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
 				$('#sum_price2').text((sum+del_price)+' 원');
-				$('#del_price2').text(del_price+' 원');
+				$('#sum_price3').text(sum+' 원');
+				$('#del_price').text(del_price+' 원');
                 
             });
             $('.increaseQuantity').click(function (e) {
@@ -524,13 +517,45 @@
                 }
                 $('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
                 $('#sum_price2').text((sum+del_price)+' 원');
-                $('#del_price2').text(del_price+' 원');
+                $('#del_price').text(del_price+' 원');
+                $('#sum_price3').text(sum+' 원');
             });
         });
 
 
     </script>
-
+    <script>
+        function selectAll(selectAll) {
+            const checkboxes = document.getElementsByName('select');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            })
+            if(selectAll.checked == true){
+            	$('.pp').addClass('priceprice')
+            }else{
+            	$('.pp').removeClass('priceprice')
+            	
+            }
+			let sum = 0; 
+			let pd_count = 0;
+			$('.priceprice').each(function(){
+				sum+= Number($(this).val());
+				pd_count +=1;
+			});
+			pd_cnt = pd_count;
+			let del_price = 3000;
+			
+			if(sum>=50000){
+				del_price = 0;
+			}
+			$('#sum_price').text('상품 ' +sum + '  + 배송비 '+del_price+' = '+(sum+del_price));
+			$('#sum_price2').text((sum+del_price)+' 원');
+			$('#del_price').text(del_price+' 원');
+			$('#sum_price3').text(sum+' 원');
+			$('#pd_cnt').text('총 '+pd_count+' 개');
+            
+        }
+    </script>
 
 
 

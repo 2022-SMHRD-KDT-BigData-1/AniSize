@@ -108,10 +108,12 @@ public class CartController {
 	public  String nowBuy(CartVO vo, Model model, HttpSession session) {
 		System.out.println("상품페이지 > 바로구매 이동 컨트롤러");
 		System.out.println("vo : " + vo.toString());
-		List<CartVO> cartList = cartMapper.getCart(vo.getMem_num());
-		int stk_num = cartList.get(0).getStk_num();
-		PurchaseHistoryVO orderList = cartMapper.selectStkDetail(stk_num);
+//		List<CartVO> cartList = cartMapper.getCart(vo.getMem_num());
+//		int stk_num = cartList.get(0).getStk_num();
+		
+		PurchaseHistoryVO orderList = cartMapper.selectStkDetail(vo.getStk_num());
 		orderList.setPh_quantity(vo.getCart_quantity());
+		orderList.setMem_num(vo.getMem_num());
 		
 		List<PurchaseHistoryVO> orderList1 = new ArrayList<PurchaseHistoryVO>();
 		orderList1.add(orderList);		

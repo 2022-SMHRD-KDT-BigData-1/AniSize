@@ -39,6 +39,7 @@ public class ReviewController {
 		List<ReviewVO> reviewList = reviewMapper.selectMemReview(mem.getMem_num());
 		model.addAttribute("writeReviewList", writeReviewList);
 		model.addAttribute("reviewList", reviewList);
+		
 	}
 
 	@RequestMapping("/review1_2.do") // 리뷰내역
