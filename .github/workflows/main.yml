@@ -8,7 +8,7 @@ on: [push] # github action이 동작할 시점 (push할때 동작)
         
 jobs:
   build:
-    runs-on: anisize                 # 본인 aws서버에서 실행-// 추가 했던 label 
+    runs-on: self-hosted                 # 본인 aws서버에서 실행-// 추가 했던 label 
     permissions:
       contents: read
       packages: write

@@ -58,34 +58,31 @@ public class ReviewController {
 		// 동물 정보 가져오고
 		// 재고 정보 가져와서 보여주고
 	}
-
+ 
 	@RequestMapping("/insertProductReview.do")
-	public String insertProductReview(ReviewVO vo, HttpSession session){
+	public String insertProductReview(ReviewVO vo, HttpSession session) {
 		System.out.println("리뷰작성버튼은 성공함");
 		MultipartFile review_image = vo.getReview_image();
 		System.out.println(vo.toString());
 		System.out.println(review_image.getOriginalFilename());
-//		System.out.println(review_img.getSize());
-//		System.out.println(vo.getReview_image().getOriginalFilename());
-		String dir = "/home/ubuntu/review_img";
+//		String dir = "/aniReview_img/"; 
+		String dir = "resource/images/review";
 		String path = session.getServletContext().getRealPath(dir);
-//		String path2 = "C:\\Users\\smhrd\\git\\AniSize\\AniSize\\src\\main\\webapp\\resources\\images\\review";
-//		System.out.println(path);
-		
-//		String folder = "C:/";
+//		String path = "anisize.ddns.net:8080\\aniReview_img\\";
 		String fileName = review_image.getOriginalFilename();
-		
+
 		UUID uuid = UUID.randomUUID();
-        String ranFileName = uuid.toString()+"_"+fileName;
-        
+		String ranFileName = uuid.toString() + "_" + fileName;
+
 		File saveFile = new File(path, ranFileName);
 		try {
 			review_image.transferTo(saveFile);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		String a = "/home/ubuntu/review_img";
-		vo.setReview_img(a+ranFileName);
+//		String a = "/home/ubuntu/web/apache-tomcat-8.5.78/webapps/aniReview_img/";
+		String a = "resource/images/review/";
+		vo.setReview_img(a + ranFileName);
 		reviewMapper.insertProductReview(vo);
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
 		productMapper.updateProductAvgScore(score);
