@@ -559,7 +559,7 @@
         <span style="width: ${review.review_score * 10}%">★★★★★</span>
     </span>  
  
-
+ 
     <br>
     <!--이미지 넣는구간-->
     <c:if test="${!empty review.review_img}">
