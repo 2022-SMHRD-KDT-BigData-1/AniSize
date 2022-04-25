@@ -64,14 +64,9 @@ public class ReviewController {
 		MultipartFile review_image = vo.getReview_image();
 		System.out.println(vo.toString());
 		System.out.println(review_image.getOriginalFilename());
-//		System.out.println(review_img.getSize());
-//		System.out.println(vo.getReview_image().getOriginalFilename());
-		String dir = "/home/ubuntu/web/review_img/"; 
-		String path = session.getServletContext().getRealPath(dir);
-//		String path2 = "C:\\Users\\smhrd\\git\\AniSize\\AniSize\\src\\main\\webapp\\resources\\images\\review";
-//		System.out.println(path);
-
-//		String folder = "C:/";
+//		String dir = "/aniReview_img/"; 
+//		String path = session.getServletContext().getRealPath(dir);
+		String path = "anisize.ddns.net:8080\\aniReview_img\\";
 		String fileName = review_image.getOriginalFilename();
 
 		UUID uuid = UUID.randomUUID();
@@ -83,7 +78,8 @@ public class ReviewController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		String a = "/home/ubuntu/web/review_img/";
+//		String a = "/home/ubuntu/web/apache-tomcat-8.5.78/webapps/aniReview_img/";
+		String a = "anisize.ddns.net:8080\\aniReview_img\\";;
 		vo.setReview_img(a + ranFileName);
 		reviewMapper.insertProductReview(vo);
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
