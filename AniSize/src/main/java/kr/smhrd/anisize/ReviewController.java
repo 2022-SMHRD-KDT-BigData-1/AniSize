@@ -66,7 +66,7 @@ public class ReviewController {
 		System.out.println(vo.toString());
 		System.out.println(review_image.getOriginalFilename());
 //		String dir = "/aniReview_img/"; 
-		String dir = "resource/images/review";
+		String dir = "resources/images/review";
 		String path = session.getServletContext().getRealPath(dir);
 //		String path = "anisize.ddns.net:8080\\aniReview_img\\";
 		String fileName = review_image.getOriginalFilename();
@@ -81,7 +81,7 @@ public class ReviewController {
 			System.out.println(e);
 		}
 //		String a = "/home/ubuntu/web/apache-tomcat-8.5.78/webapps/aniReview_img/";
-		String a = "resource/images/review/";
+		String a = "resources/images/review/";
 		vo.setReview_img(a + ranFileName);
 		reviewMapper.insertProductReview(vo);
 		double score = reviewMapper.getReviewAvgScore(vo.getPd_num());
